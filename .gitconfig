@@ -1,0 +1,36 @@
+[user]
+  name = ¨Huu Khiem (Mark)¨
+  email = tonghuukhiem@gmail.com
+
+[core]
+  repositoryformatversion = 0
+  filemode = true
+  bare = false
+  logallrefupdates = true
+  editor = sublime -w
+  whitespace = trailing-space
+
+[merge]
+  tool = kdiff3
+  ff = false
+
+[color]
+  ui = true
+
+[diff]
+  tool = kidff3
+[difftool]
+  prompt = false
+
+[push]
+  default = simple
+
+[alias]
+  s = status
+  cm = commit --message
+  tree = log --graph --pretty=oneline --abbrev-commit --decorate
+  adda = add --all
+  resolve = mergetool
+  dfa = diff -w
+  dfs = diff --cached
+  fetch = fetch -a
