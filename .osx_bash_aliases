@@ -1,0 +1,8 @@
+# ritual
+alias startcoding='cd ~/source'
+ 
+# grep
+alias grep='grep --color=auto'
+
+# useful commands
+alias ll='ls -alF'

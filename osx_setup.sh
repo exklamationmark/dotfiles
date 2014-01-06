@@ -29,3 +29,6 @@ gem install rails
 
 # install coffescript compiler
 gem install coffee-script-source
+
+# install bash completion feature
+brew install bash-completion
