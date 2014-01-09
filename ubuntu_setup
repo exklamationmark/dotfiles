@@ -1,0 +1,57 @@
+#!/bin/bash
+
+# coloring helper
+
+# package status helper
+is_installed(){
+	if dpkg --get-selections | grep -q "^$1[[:space:]]*install$" >/dev/null
+	then
+		return 0
+	fi
+	return 1
+}
+# instalation helper
+install_apt() {
+	sudo apt-get install $1
+}
+install_deb() {
+	local PKG=$1
+	local PACKAGE_URL=$2
+
+	if [[ -n "$PACKAGE_URL" ]]
+	then
+		curl $PACKAGE_URL > ~/.temp/$PKG.deb
+	fi
+	sudo dpkg -i ~/.temp/$PKG.deb
+}
+install() {
+	local PKG=$1
+	local INSTALLER=$2
+	if is_installed $PKG
+	then
+		echo $PKG is already installed
+		return 0
+	fi
+
+	# run apt-get install for apt packages
+	if ( ! is_installed $PKG ) && [[ $INSTALLER == "apt" ]]
+	then
+		echo "Installing $PKG using $INSTALLER ..."
+		install_apt $PKG
+	fi
+
+	# run dpkg -i for .deb files
+	if ( ! is_installed $PKG ) && [[ $INSTALLER == "deb" ]]
+	then
+		local PACKAGE_URL=$3
+		echo "Installing $PKG using $INSTALLER ..."
+		install_deb $PKG $PACKAGE_URL
+	fi
+}
+
+rm -rf ~/.temp
+mkdir -p ~/.temp
+install git apt
+install gitk apt
+install curl apt
+install google-chrome-stable deb "https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb"
