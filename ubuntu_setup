@@ -60,18 +60,22 @@ mkdir -p ~/.temp
 
 # essential 
 install git apt
-install gitk apt
 install curl apt
 install vim apt
 # browsers
 install google-chrome-stable deb "https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb"
+# version control
+install gitk apt
+install kdiff3 apt
 
 
-# configuration
+# bash config
 git clone https://github.com/exklamationmark/dotfiles.git ~/.temp/dotfiles
 cp -f ~/.temp/dotfiles/.bashrc ~/.bashrc
 cp -f ~/.temp/dotfiles/.bash_aliases ~/.bash_aliases
 source ~/.bashrc
+# git config
+cp -f ~/.temp/dotfiles/.gitconfig ~/.gitconfig
 # minimum .vimrc
 cp -f ~/.temp/dotfiles/.vimrc ~/.vimrc
 # vim's plugin: pathogen
