@@ -74,21 +74,32 @@ git clone https://github.com/exklamationmark/dotfiles.git ~/.temp/dotfiles
 cp -f ~/.temp/dotfiles/.bashrc ~/.bashrc
 cp -f ~/.temp/dotfiles/.bash_aliases ~/.bash_aliases
 source ~/.bashrc
+
 # git config
 cp -f ~/.temp/dotfiles/.gitconfig ~/.gitconfig
+
+# show branch name in git repo
+cat ~/.temp/dotfiles/.githelper >> ~/.bash_aliases
+
+# git alias
+echo "alias gitka='gitk --all'" >> ~/.bash_aliases
+
 # minimum .vimrc
 cp -f ~/.temp/dotfiles/.vimrc ~/.vimrc
+
 # vim's plugin: pathogen
 rm -rf ~/.vim
 mkdir -p ~/.vim/autoload ~/.vim/bundle
 curl -Sso ~/.vim/autoload/pathogen.vim https://raw.github.com/tpope/vim-pathogen/master/autoload/pathogen.vim
 echo "execute pathogen#infect()" >> ~/.vimrc
+
 # use solarized theme in vim
 git clone git://github.com/altercation/vim-colors-solarized.git ~/.vim/bundle/vim-colors-solarized
 echo "syntax enable
 set background=dark
 colorscheme solarized" >> ~/.vimrc
 echo "export TERM=screen-256color" >> ~/.bashrc
+
 # user solarized gnome (terminal) 
 git clone git://github.com/sigurdga/gnome-terminal-colors-solarized.git ~/.temp/gnome-terminal-colors-solarized
 sh ~/.temp/gnome-terminal-colors-solarized/set_dark.sh
