@@ -1,6 +1,12 @@
 #!/bin/bash
 
 # coloring helper
+COLOR_RED='\e[0;31m'
+COLOR_GREEN='\e[0;32m'
+COLOR_YELLOW='\e[0;33m'
+COLOR_BLUE='\e[0;34m'
+COLOR_MAGENTA='\e[0;35m'
+COLOR_NONE='\e[0m'
 
 # package status helper
 is_installed(){
@@ -29,14 +35,14 @@ install() {
 	local INSTALLER=$2
 	if is_installed $PKG
 	then
-		echo $PKG is already installed
+		echo -e $COLOR_GREEN"$PKG is already installed"$COLOR_NONE
 		return 0
 	fi
 
 	# run apt-get install for apt packages
 	if ( ! is_installed $PKG ) && [[ $INSTALLER == "apt" ]]
 	then
-		echo "Installing $PKG using $INSTALLER ..."
+		echo -e $COLOR_YELLOW"Installing $PKG using $INSTALLER ..."$COLOR_NONE
 		install_apt $PKG
 	fi
 
@@ -44,7 +50,7 @@ install() {
 	if ( ! is_installed $PKG ) && [[ $INSTALLER == "deb" ]]
 	then
 		local PACKAGE_URL=$3
-		echo "Installing $PKG using $INSTALLER ..."
+		echo -e $COLOR_YELLOW"Installing $PKG using $INSTALLER ..."$COLOR_NONE
 		install_deb $PKG $PACKAGE_URL
 	fi
 }
@@ -140,7 +146,7 @@ if [[ ! -d ~/.rvm ]]
 then
 	\curl -sSL https://get.rvm.io | bash -s stable --ruby
 else
-	echo "RVM is already installed"
+	echo $COLOR_GREEN"RVM is already installed"$COLOR_NONE
 fi
 
 # nodejs
