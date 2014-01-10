@@ -127,6 +127,15 @@ fi
 #--------------------------------------------------------------------------------------------------
 # go
 install golang apt
+# gopath
+echo "export GOPATH='~/workspace'
+REPOS=\$(find ~/workspace -maxdepth 1 -mindepth 1 -type d -printf '%f ')
+for dir in \$REPOS
+do
+	export GOPATH=\$GOPATH:~/workspace/\$dir
+	export PATH=\$PATH:~/workspace/\$dir/bin
+done" >> ~/.bashrc
+source ~/.bashrc
 
 # hipchat
 if ( ! is_installed hipchat )
@@ -146,7 +155,7 @@ if [[ ! -d ~/.rvm ]]
 then
 	\curl -sSL https://get.rvm.io | bash -s stable --ruby
 else
-	echo $COLOR_GREEN"RVM is already installed"$COLOR_NONE
+	echo -e $COLOR_GREEN"RVM is already installed"$COLOR_NONE
 fi
 
 # nodejs
@@ -168,3 +177,4 @@ install nodejs apt
 
 # clean up
 rm -rf ~/.temp
+echo -e $COLOR_BLUE"To get things started correctly, you might wanna do "$COLOR_RED"source ~/.bashrc"$COLOR_NONE" or re-open all the terminals"
