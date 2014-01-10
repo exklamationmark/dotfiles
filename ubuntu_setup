@@ -62,12 +62,13 @@ mkdir -p ~/.temp
 install git apt
 install curl apt
 install vim apt
+
 # browsers
 install google-chrome-stable deb "https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb"
+
 # version control
 install gitk apt
 install kdiff3 apt
-
 
 # bash config
 git clone https://github.com/exklamationmark/dotfiles.git ~/.temp/dotfiles
@@ -104,6 +105,23 @@ echo "export TERM=screen-256color" >> ~/.bashrc
 git clone git://github.com/sigurdga/gnome-terminal-colors-solarized.git ~/.temp/gnome-terminal-colors-solarized
 sh ~/.temp/gnome-terminal-colors-solarized/set_dark.sh
 
+# coding environment
+if [[ -d "~/workspace" ]]
+then
+	mkdir ~/workspace
+fi
+
+# go
+install golang apt
+
+# hipchat
+if ( ! is_installed hipchat )
+then
+	sudo echo "deb http://downloads.hipchat.com/linux/apt stable main" > /etc/apt/sources.list.d/atlassian-hipchat.list
+	sudo wget -O - https://www.hipchat.com/keys/hipchat-linux.key | sudo apt-key add -
+	sudo apt-get update
+fi
+install hipchat apt
 
 # clean up
 # rm -rf ~/.temp
