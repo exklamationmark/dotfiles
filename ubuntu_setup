@@ -123,5 +123,9 @@ then
 fi
 install hipchat apt
 
+# postgresql
+install postgresql-9.1 apt
+install postgresql-server-dev-9.1 apt
+
 # clean up
 # rm -rf ~/.temp
