@@ -1,5 +1,5 @@
 [global_config]
-  window_state = fullscreen
+  window_state = maximise
   focus = mouse
   title_transmit_fg_color = "#002b36"
   title_inactive_fg_color = "#fdf6e3"
