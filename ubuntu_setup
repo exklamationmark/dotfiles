@@ -118,6 +118,7 @@ then
 	mkdir ~/workspace
 fi
 
+#--------------------------------------------------------------------------------------------------
 # go
 install golang apt
 
@@ -133,6 +134,17 @@ install hipchat apt
 # postgresql
 install postgresql-9.1 apt
 install postgresql-server-dev-9.1 apt
+
+# rvm with ruby
+if [[ ! -d ~/.rvm ]]
+then
+	\curl -sSL https://get.rvm.io | bash -s stable --ruby
+else
+	echo "RVM is already installed"
+fi
+
+# nodejs
+install nodejs apt
 
 # clean up
 # rm -rf ~/.temp
