@@ -105,6 +105,13 @@ echo "export TERM=screen-256color" >> ~/.bashrc
 git clone git://github.com/sigurdga/gnome-terminal-colors-solarized.git ~/.temp/gnome-terminal-colors-solarized
 sh ~/.temp/gnome-terminal-colors-solarized/set_dark.sh
 
+# terminator terminal (multiple windows)
+install terminator apt
+
+# terminator config
+mkdir -p ~/.config/terminator
+cp -f ~/.temp/dotfiles/.terminator_config ~/.config/terminator/config
+
 # coding environment
 if [[ -d "~/workspace" ]]
 then
