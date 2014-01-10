@@ -152,5 +152,19 @@ fi
 # nodejs
 install nodejs apt
 
+# misc.
+# # Spotify
+# sudo bash -c "echo '# Spotify' >> /etc/apt/sources.list"
+# sudo bash -c "echo 'deb http://repository.spotify.com stable non-free' >> /etc/apt/sources.list"
+# sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 94558F59
+# sudo apt-get update && sudo apt-get install spotify-client
+# # xbindkeys mapping
+# if hash xbindkeys 2>/dev/null; then echo "xbindkeys is installed\n"
+# else echo "xbindkeys is not installed. installing..\n"
+# 	sudo apt-get install xbindkeys
+# fi
+# git clone https://gist.github.com/5487103.git $folder/xbindkeysrc
+# sudo mv $folder/xbindkeysrc/.xbindkeysrc ~/.xbindkeysrc
+
 # clean up
-# rm -rf ~/.temp
+rm -rf ~/.temp
