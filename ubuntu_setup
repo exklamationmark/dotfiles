@@ -177,4 +177,4 @@ install nodejs apt
 
 # clean up
 rm -rf ~/.temp
-echo -e $COLOR_BLUE"To get things started correctly, you might wanna do "$COLOR_RED"source ~/.bashrc"$COLOR_NONE" or re-open all the terminals"
+# echo -e $COLOR_BLUE"To get things started correctly, you might wanna do "$COLOR_RED"source ~/.bashrc"$COLOR_NONE" or re-open all the terminals"
