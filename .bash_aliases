@@ -2,4 +2,4 @@
 alias grep='grep --color=auto'
  
 # coding "ritual"
-alias startcoding='cd workspace'
+alias startcoding='cd $HOME/workspace'
