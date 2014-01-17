@@ -128,13 +128,11 @@ fi
 # go
 install golang apt
 # gopath
-echo "export GOPATH='~/workspace'
-REPOS=\$(find ~/workspace -maxdepth 1 -mindepth 1 -type d -printf '%f ')
-for dir in \$REPOS
-do
-	export GOPATH=\$GOPATH:~/workspace/\$dir
-	export PATH=\$PATH:~/workspace/\$dir/bin
-done" >> ~/.bashrc
+echo "export GOPATH='$HOME/workspace'" >> ~/.bashrc
+echo "export PATH=\$PATH:\$GOPATH/bin" >> ~/.bashrc
+mkdir -p ~/workspace/bin
+mkdir -p ~/workspace/pkg
+mkdir -p ~/workspace/src
 source ~/.bashrc
 
 # hipchat
@@ -156,6 +154,8 @@ then
 	\curl -sSL https://get.rvm.io | bash -s stable --ruby
 else
 	echo -e $COLOR_GREEN"RVM is already installed"$COLOR_NONE
+	echo "source ~/.rvm/scripts/rvm" >> ~/.bashrc #since what RVM put there was lost when ubuntu_setup is run twice
+	source ~/.bashrc
 fi
 
 # nodejs
