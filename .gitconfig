@@ -7,8 +7,9 @@
   filemode = true
   bare = false
   logallrefupdates = true
-  editor = sublime -w
+  editor = vim
   whitespace = trailing-space
+  excludesfile = ~/.gitignore
 
 [merge]
   tool = kdiff3
