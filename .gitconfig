@@ -30,7 +30,7 @@
   s = status
   cm = commit --message
   tree = log --graph --pretty=oneline --abbrev-commit --decorate
-  adda = add --all
+  adda = add --all :/
   resolve = mergetool
   dfa = diff -w
   dfs = diff --cached
