@@ -18,7 +18,7 @@ install curl apt
 install vim apt
 
 # browsers
-install libxss1 apt
+install libxss1:amd64 apt
 install google-chrome-stable deb "https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb"
 
 # version control
