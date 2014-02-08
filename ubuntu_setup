@@ -47,13 +47,11 @@ cp -f ~/.temp/dotfiles/.vimrc ~/.vimrc
 rm -rf ~/.vim
 mkdir -p ~/.vim/autoload ~/.vim/bundle
 curl -Sso ~/.vim/autoload/pathogen.vim https://raw.github.com/tpope/vim-pathogen/master/autoload/pathogen.vim
-echo "execute pathogen#infect()" >> ~/.vimrc
+echo "\n# Pathogen\nexecute pathogen#infect()" >> ~/.vimrc
 
 # use solarized theme in vim
 git clone git://github.com/altercation/vim-colors-solarized.git ~/.vim/bundle/vim-colors-solarized
-echo "syntax enable
-set background=dark
-colorscheme solarized" >> ~/.vimrc
+echo "\n Solarized\nset background=dark\ncolorscheme solarized" >> ~/.vimrc
 echo "export TERM=screen-256color" >> ~/.bashrc
 
 # user solarized gnome (terminal) 
