@@ -35,7 +35,7 @@ source ~/.bashrc
 cp -f ~/.temp/dotfiles/.gitconfig ~/.gitconfig
 
 # show branch name in git repo
-cat ~/.temp/dotfiles/.githelper >> ~/.bashrc
+cat ~/.temp/dotfiles/.custom_prompt >> ~/.bashrc
 
 # git alias
 echo "alias gitka='gitk --all'" >> ~/.bash_aliases
