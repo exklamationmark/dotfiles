@@ -1,42 +1,42 @@
 filetype plugin indent on
 
-# indent with = 2 space
+" indent with = 2 space
 set expandtab
 set tabstop=2
 set shiftwidth=2
 
-# show line number
+" show line numbers
 set nu
 
-# show rule
+" show ruler
 set ruler
 set cursorline
 
-# highlight search result
+" highlight search result
 set hlsearch
 
-# show matching brackets
+" show matching brackets
 set showmatch
 
-# syntax highlighting
+" syntax highlighting
 syntax enable
 
-# encoding UTF-8 (Unicode)
+" encoding UTF-8 (Unicode)
 set encoding=utf8
 
-# no backup, since most file is in Git
+" no backup, since most file is in Git
 set nobackup
 set nowb
 set noswapfile
 
-# wrap text
+" wrap text
 set wrap
 
-# forward search with space, backward search with Ctrl+Space
+" forward search with space, backward search with Ctrl+Space
 map <space> /
 map <C-space> ?
 
-# faster window navigation
+" faster window navigation
 map <C-j> <C-W>j
 map <C-k> <C-W>k
 map <C-h> <C-W>h
