@@ -1,67 +1,15 @@
 #!/bin/bash
+. setup_functions
 
-# coloring helper
-COLOR_RED='\e[0;31m'
-COLOR_GREEN='\e[0;32m'
-COLOR_YELLOW='\e[0;33m'
-COLOR_BLUE='\e[0;34m'
-COLOR_MAGENTA='\e[0;35m'
-COLOR_NONE='\e[0m'
-
-# package status helper
-is_installed(){
-	if dpkg --get-selections | grep -q "^$1[[:space:]]*install$" >/dev/null
-	then
-		return 0
-	fi
-	return 1
-}
-# instalation helper
-install_apt() {
-	sudo apt-get install $1
-}
-install_deb() {
-	local PKG=$1
-	local PACKAGE_URL=$2
-
-	if [[ -n "$PACKAGE_URL" ]]
-	then
-		curl $PACKAGE_URL > ~/.temp/$PKG.deb
-	fi
-	sudo dpkg -i ~/.temp/$PKG.deb
-}
-install() {
-	local PKG=$1
-	local INSTALLER=$2
-	if is_installed $PKG
-	then
-		echo -e $COLOR_GREEN"$PKG is already installed"$COLOR_NONE
-		return 0
-	fi
-
-	# run apt-get install for apt packages
-	if ( ! is_installed $PKG ) && [[ $INSTALLER == "apt" ]]
-	then
-		echo -e $COLOR_YELLOW"Installing $PKG using $INSTALLER ..."$COLOR_NONE
-		install_apt $PKG
-	fi
-
-	# run dpkg -i for .deb files
-	if ( ! is_installed $PKG ) && [[ $INSTALLER == "deb" ]]
-	then
-		local PACKAGE_URL=$3
-		echo -e $COLOR_YELLOW"Installing $PKG using $INSTALLER ..."$COLOR_NONE
-		install_deb $PKG $PACKAGE_URL
-	fi
-}
-
-
-
-#-------------------------------------------------------------------------------------------------
-#-------------------------------------------------------------------------------------------------
 # temp folder
 rm -rf ~/.temp
 mkdir -p ~/.temp
+
+
+
+
+
+
 
 
 # essential 
@@ -70,6 +18,7 @@ install curl apt
 install vim apt
 
 # browsers
+install libxss1 apt
 install google-chrome-stable deb "https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb"
 
 # version control
@@ -112,11 +61,13 @@ git clone git://github.com/sigurdga/gnome-terminal-colors-solarized.git ~/.temp/
 sh ~/.temp/gnome-terminal-colors-solarized/set_dark.sh
 
 # terminator terminal (multiple windows)
-install terminator apt
-
+#install terminator apt
 # terminator config
-mkdir -p ~/.config/terminator
-cp -f ~/.temp/dotfiles/.terminator_config ~/.config/terminator/config
+#mkdir -p ~/.config/terminator
+#cp -f ~/.temp/dotfiles/.terminator_config ~/.config/terminator/config
+
+# tmux
+install tmux apt
 
 # coding environment
 if [[ -d "~/workspace" ]]
@@ -134,15 +85,6 @@ mkdir -p ~/workspace/bin
 mkdir -p ~/workspace/pkg
 mkdir -p ~/workspace/src
 source ~/.bashrc
-
-# hipchat
-if ( ! is_installed hipchat )
-then
-	sudo echo "deb http://downloads.hipchat.com/linux/apt stable main" > /etc/apt/sources.list.d/atlassian-hipchat.list
-	sudo wget -O - https://www.hipchat.com/keys/hipchat-linux.key | sudo apt-key add -
-	sudo apt-get update
-fi
-install hipchat apt
 
 # postgresql
 install postgresql-9.1 apt
@@ -174,6 +116,11 @@ install nodejs apt
 # fi
 # git clone https://gist.github.com/5487103.git $folder/xbindkeysrc
 # sudo mv $folder/xbindkeysrc/.xbindkeysrc ~/.xbindkeysrc
+
+
+
+
+
 
 # clean up
 rm -rf ~/.temp
