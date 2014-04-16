@@ -10,7 +10,15 @@ mkdir -p ~/.temp
 
 
 
-
+# faster mirror
+sudo cp /etc/apt/sources.list /etc/apt/sources.list.orig
+touch sources.list
+echo "deb mirror://mirrors.ubuntu.com/mirrors.txt precise main restricted universe multiverse" > sources.list
+echo "deb mirror://mirrors.ubuntu.com/mirrors.txt precise-updates main restricted universe multiverse" >> sources.list
+echo "deb mirror://mirrors.ubuntu.com/mirrors.txt precise-security main restricted universe multiverse" >> sources.list
+chmod 644 sources.list
+sudo mv sources.list /etc/apt/sources.list
+sudo chown root:root /etc/apt/sources.list
 
 # essential 
 install git apt

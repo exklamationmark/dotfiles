@@ -18,7 +18,7 @@ is_installed(){
 }
 # instalation helper
 install_apt() {
-	sudo apt-get install $1
+	sudo apt-get install $1 -y
 }
 install_deb() {
 	local PKG=$1
