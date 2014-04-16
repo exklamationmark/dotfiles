@@ -10,6 +10,11 @@ mkdir -p ~/.temp
 
 
 
+# essential 
+install git apt
+install curl apt
+install vim apt
+
 # faster mirror
 sudo cp /etc/apt/sources.list /etc/apt/sources.list.orig
 touch sources.list
@@ -19,11 +24,7 @@ echo "deb mirror://mirrors.ubuntu.com/mirrors.txt precise-security main restrict
 chmod 644 sources.list
 sudo mv sources.list /etc/apt/sources.list
 sudo chown root:root /etc/apt/sources.list
-
-# essential 
-install git apt
-install curl apt
-install vim apt
+sudo apt-get update
 
 # browsers
 install libxss1:amd64 apt
