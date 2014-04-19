@@ -8,23 +8,12 @@ mkdir -p ~/.temp
 
 
 
-
+# advisable to first select a faster mirror
 
 # essential 
 install git apt
 install curl apt
 install vim apt
-
-# faster mirror
-sudo cp /etc/apt/sources.list /etc/apt/sources.list.orig
-touch sources.list
-echo "deb mirror://mirrors.ubuntu.com/mirrors.txt precise main restricted universe multiverse" > sources.list
-echo "deb mirror://mirrors.ubuntu.com/mirrors.txt precise-updates main restricted universe multiverse" >> sources.list
-echo "deb mirror://mirrors.ubuntu.com/mirrors.txt precise-security main restricted universe multiverse" >> sources.list
-chmod 644 sources.list
-sudo mv sources.list /etc/apt/sources.list
-sudo chown root:root /etc/apt/sources.list
-sudo apt-get update
 
 # browsers
 install libxss1:amd64 apt
@@ -67,12 +56,6 @@ echo "export TERM=screen-256color" >> ~/.bashrc
 git clone git://github.com/sigurdga/gnome-terminal-colors-solarized.git ~/.temp/gnome-terminal-colors-solarized
 sh ~/.temp/gnome-terminal-colors-solarized/set_dark.sh
 
-# terminator terminal (multiple windows)
-#install terminator apt
-# terminator config
-#mkdir -p ~/.config/terminator
-#cp -f ~/.temp/dotfiles/.terminator_config ~/.config/terminator/config
-
 # tmux
 install tmux apt
 
@@ -94,8 +77,8 @@ mkdir -p ~/workspace/src
 source ~/.bashrc
 
 # postgresql
-install postgresql-9.1 apt
-install postgresql-server-dev-9.1 apt
+install postgresql-9.3 apt
+install postgresql-server-dev-9.3 apt
 
 # rvm with ruby
 if [[ ! -d ~/.rvm ]]
@@ -106,6 +89,9 @@ else
 	echo "source ~/.rvm/scripts/rvm" >> ~/.bashrc #since what RVM put there was lost when ubuntu_setup is run twice
 	source ~/.bashrc
 fi
+# progress bar for gem download
+echo progress-bar >> ~/.curlrc
+echo "gem: --no-rdoc --no-ri " >> ~/.gemrc
 
 # nodejs
 install nodejs apt
@@ -116,6 +102,7 @@ install nodejs apt
 # sudo bash -c "echo 'deb http://repository.spotify.com stable non-free' >> /etc/apt/sources.list"
 # sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 94558F59
 # sudo apt-get update && sudo apt-get install spotify-client
+
 # # xbindkeys mapping
 # if hash xbindkeys 2>/dev/null; then echo "xbindkeys is installed\n"
 # else echo "xbindkeys is not installed. installing..\n"
