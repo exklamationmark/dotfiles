@@ -75,6 +75,14 @@ mkdir -p ~/workspace/bin
 mkdir -p ~/workspace/pkg
 mkdir -p ~/workspace/src
 source ~/.bashrc
+# syntax highlighting in vim
+git clone git://github.com/jnwhiteh/vim-golang.git ~/.vim/bundle/vim-golang
+mkdir -p $HOME/.vim/ftdetect
+mkdir -p $HOME/.vim/syntax
+mkdir -p $HOME/.vim/autoload/go
+ln -s $HOME/.vim/bundle/vim-golang/ftdetect/gofiletype.vim $HOME/.vim/ftdetect/
+ln -s $HOME/.vim/bundle/vim-golang/syntax/go.vim $HOME/.vim/syntax
+ln -s $HOME/.vim/bundle/vim-golang/autoload/go/complete.vim $HOME/.vim/autoload/go
 
 # postgresql
 install postgresql-9.3 apt
