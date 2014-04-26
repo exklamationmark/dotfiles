@@ -88,6 +88,14 @@ ln -s $HOME/.vim/bundle/vim-golang/autoload/go/complete.vim $HOME/.vim/autoload/
 install postgresql-9.3 apt
 install postgresql-server-dev-9.3 apt
 
+# redis
+install redis-server apt
+
+# rabbitmq
+install rabbitmq-server apt
+sudo rabbitmq-plugins enable rabbitmq_management
+sudo service rabbitmq-server restart
+
 # rvm with ruby
 if [[ ! -d ~/.rvm ]]
 then
