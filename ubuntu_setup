@@ -14,6 +14,7 @@ mkdir -p ~/.temp
 install git apt
 install curl apt
 install vim apt
+install python-software-properties apt
 
 # browsers
 install libxss1:amd64 apt
@@ -110,8 +111,11 @@ echo progress-bar >> ~/.curlrc
 echo "gem: --no-rdoc --no-ri " >> ~/.gemrc
 
 # nodejs
+apt-add-repository ppa:chris-lea/node.js
+apt-get update
 install nodejs apt
-
+npm config set prefix $HOME/npm
+echo 'export PATH=$PATH:$HOME/npm/bin' >> ~/.bashrc
 # misc.
 # # Spotify
 # sudo bash -c "echo '# Spotify' >> /etc/apt/sources.list"
