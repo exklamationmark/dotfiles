@@ -60,6 +60,13 @@ sh ~/.temp/gnome-terminal-colors-solarized/set_dark.sh
 # tmux
 install tmux apt
 
+# docker
+sudo groupadd docker
+USER=`whoami`
+sudo usermod -aG docker $USER
+install dokcer.io apt
+sudo ln -sf /usr/bin/docker.io /usr/local/bin/docker
+
 # coding environment
 if [[ -d "~/workspace" ]]
 then
