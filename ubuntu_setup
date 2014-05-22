@@ -11,18 +11,18 @@ mkdir -p ~/.temp
 # advisable to first select a faster mirror
 
 # essential 
-install git apt
-install curl apt
-install vim apt
-install python-software-properties apt
+install_linux git apt
+install_linux curl apt
+install_linux vim apt
+install_linux python-software-properties apt
 
 # browsers
-install libxss1:amd64 apt
-install google-chrome-stable deb "https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb"
+install_linux libxss1:amd64 apt
+install_linux google-chrome-stable deb "https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb"
 
 # version control
-install gitk apt
-install kdiff3 apt
+install_linux gitk apt
+install_linux kdiff3 apt
 
 # bash config
 git clone https://github.com/exklamationmark/dotfiles.git ~/.temp/dotfiles
@@ -58,13 +58,13 @@ git clone git://github.com/sigurdga/gnome-terminal-colors-solarized.git ~/.temp/
 sh ~/.temp/gnome-terminal-colors-solarized/set_dark.sh
 
 # tmux
-install tmux apt
+install_linux tmux apt
 
 # docker
 sudo groupadd docker
 USER=`whoami`
 sudo usermod -aG docker $USER
-install dokcer.io apt
+install_linux dokcer.io apt
 sudo ln -sf /usr/bin/docker.io /usr/local/bin/docker
 
 # coding environment
@@ -75,7 +75,7 @@ fi
 
 #--------------------------------------------------------------------------------------------------
 # go
-install golang apt
+install_linux golang apt
 # gopath
 echo "export GOPATH='$HOME/workspace'" >> ~/.bashrc
 echo "export PATH=\$PATH:\$GOPATH/bin" >> ~/.bashrc
@@ -93,14 +93,14 @@ ln -s $HOME/.vim/bundle/vim-golang/syntax/go.vim $HOME/.vim/syntax
 ln -s $HOME/.vim/bundle/vim-golang/autoload/go/complete.vim $HOME/.vim/autoload/go
 
 # postgresql
-install postgresql-9.3 apt
-install postgresql-server-dev-9.3 apt
+install_linux postgresql-9.3 apt
+install_linux postgresql-server-dev-9.3 apt
 
 # redis
-install redis-server apt
+install_linux redis-server apt
 
 # rabbitmq
-install rabbitmq-server apt
+install_linux rabbitmq-server apt
 sudo rabbitmq-plugins enable rabbitmq_management
 sudo service rabbitmq-server restart
 
@@ -120,7 +120,7 @@ echo "gem: --no-rdoc --no-ri " >> ~/.gemrc
 # nodejs
 apt-add-repository ppa:chris-lea/node.js
 apt-get update
-install nodejs apt
+install_linux nodejs apt
 npm config set prefix $HOME/npm
 echo 'export PATH=$PATH:$HOME/npm/bin' >> ~/.bashrc
 # misc.
