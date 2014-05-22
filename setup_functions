@@ -9,48 +9,63 @@ COLOR_MAGENTA='\e[0;35m'
 COLOR_NONE='\e[0m'
 
 # package status helper
-is_installed(){
-	if dpkg --get-selections | grep -q "^$1[[:space:]]*install$" >/dev/null
-	then
-		return 0
-	fi
-	return 1
+is_installed_ubuntu(){
+  local PACKAGE=$1
+  if dpkg --get-selections | grep -q "^$PACKAGE[[:space:]]*install$" >/dev/null
+  then
+    return 0
+  fi
+  return 1
 }
 # instalation helper
 install_apt() {
-	sudo apt-get install $1 -y
+  local PACKAGE=$1
+  sudo apt-get install $PACKAGE -y
 }
 install_deb() {
-	local PKG=$1
-	local PACKAGE_URL=$2
+  local PACKAGE=$1
+  local URL=$2
 
-	if [[ -n "$PACKAGE_URL" ]]
-	then
-		curl $PACKAGE_URL > ~/.temp/$PKG.deb
-	fi
-	sudo dpkg -i ~/.temp/$PKG.deb
+  if [[ -n "$URL" ]]
+  then
+    curl $URL > ~/.temp/$PACKAGE.deb
+  fi
+  sudo dpkg -i ~/.temp/$PACKAGE.deb
+}
+install_dmg(){
+  local NAME=$1
+  local URL=$2
+  local DIR=~/.temp
+  
+  curl -o $DIR/$NAME.dmg $URL
+  # mount dmg
+  sudo hdiutil attach $TEMPDIR/$NAME.dmg
+  # install
+  sudo installer -pkg /Volumes/$NAME/$NAME.pkg -target /
+  # unmount dmg
+  sudo hdiutil detach /Volumes/$NAME
 }
 install() {
-	local PKG=$1
-	local INSTALLER=$2
-	if is_installed $PKG
-	then
-		echo -e $COLOR_GREEN"$PKG is already installed"$COLOR_NONE
-		return 0
-	fi
+  local PKG=$1
+  local INSTALLER=$2
+  if is_installed_ubuntu $PKG
+  then
+    echo -e $COLOR_GREEN"$PKG is already installed"$COLOR_NONE
+    return 0
+  fi
 
-	# run apt-get install for apt packages
-	if ( ! is_installed $PKG ) && [[ $INSTALLER == "apt" ]]
-	then
-		echo -e $COLOR_YELLOW"Installing $PKG using $INSTALLER ..."$COLOR_NONE
-		install_apt $PKG
-	fi
+  # run apt-get install for apt packages
+  if ( ! is_installed_ubuntu $PKG ) && [[ $INSTALLER == "apt" ]]
+  then
+    echo -e $COLOR_YELLOW"Installing $PKG using $INSTALLER ..."$COLOR_NONE
+    install_apt $PKG
+  fi
 
-	# run dpkg -i for .deb files
-	if ( ! is_installed $PKG ) && [[ $INSTALLER == "deb" ]]
-	then
-		local PACKAGE_URL=$3
-		echo -e $COLOR_YELLOW"Installing $PKG using $INSTALLER ..."$COLOR_NONE
-		install_deb $PKG $PACKAGE_URL
-	fi
+  # run dpkg -i for .deb files
+  if ( ! is_installed_ubuntu $PKG ) && [[ $INSTALLER == "deb" ]]
+  then
+    local PACKAGE_URL=$3
+    echo -e $COLOR_YELLOW"Installing $PKG using $INSTALLER ..."$COLOR_NONE
+    install_deb $PKG $PACKAGE_URL
+  fi
 }
