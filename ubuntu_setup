@@ -60,13 +60,6 @@ sh ~/.temp/gnome-terminal-colors-solarized/set_dark.sh
 # tmux
 install_linux tmux apt
 
-# docker
-sudo groupadd docker
-USER=`whoami`
-sudo usermod -aG docker $USER
-install_linux dokcer.io apt
-sudo ln -sf /usr/bin/docker.io /usr/local/bin/docker
-
 # coding environment
 if [[ -d "~/workspace" ]]
 then
@@ -91,6 +84,14 @@ mkdir -p $HOME/.vim/autoload/go
 ln -s $HOME/.vim/bundle/vim-golang/ftdetect/gofiletype.vim $HOME/.vim/ftdetect/
 ln -s $HOME/.vim/bundle/vim-golang/syntax/go.vim $HOME/.vim/syntax
 ln -s $HOME/.vim/bundle/vim-golang/autoload/go/complete.vim $HOME/.vim/autoload/go
+
+# docker
+sudo groupadd docker
+USER=`whoami`
+sudo usermod -aG docker $USER
+install_linux dokcer.io apt
+sudo ln -sf /usr/bin/docker.io /usr/local/bin/docker
+git clone https://github.com/ekalinin/Dockerfile.vim.git ~/.vim/bundle/Dockerfile
 
 # postgresql
 install_linux postgresql-9.3 apt
