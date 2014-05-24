@@ -91,7 +91,10 @@ USER=`whoami`
 sudo usermod -aG docker $USER
 install_linux dokcer.io apt
 sudo ln -sf /usr/bin/docker.io /usr/local/bin/docker
+# syntax highlighting for docker files
 git clone https://github.com/ekalinin/Dockerfile.vim.git ~/.vim/bundle/Dockerfile
+# docker login
+cp -f ~/.temp/dotfiles/.dockercfg ~/.dockercfg
 
 # postgresql
 install_linux postgresql-9.3 apt
