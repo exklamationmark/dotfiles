@@ -20,8 +20,8 @@ red(){
   local MSG=$1
   if [[ $OS="OSX" ]]
   then
-    echo -e $OSX_COLOR_RED"$MSG"$OSX_COLOR_NONE
-  elif
+    echo $OSX_COLOR_RED"$MSG"$OSX_COLOR_NONE
+  else
     echo -e $GNOME_GNOME_COLOR_RED"$MSG"$GNOME_COLOR_NONE
   fi
 }
@@ -29,8 +29,8 @@ green(){
   local MSG=$1
   if [[ $OS="OSX" ]]
   then
-    echo -e $OSX_COLOR_GREEN"$MSG"$OSX_COLOR_NONE
-  elif
+    echo $OSX_COLOR_GREEN"$MSG"$OSX_COLOR_NONE
+  else
     echo -e $GNOME_GNOME_COLOR_GREEN"$MSG"$GNOME_COLOR_NONE
   fi
 }
@@ -38,8 +38,8 @@ yellow(){
   local MSG=$1
   if [[ $OS="OSX" ]]
   then
-    echo -e $OSX_COLOR_YELLOW"$MSG"$OSX_COLOR_NONE
-  elif
+    echo $OSX_COLOR_YELLOW"$MSG"$OSX_COLOR_NONE
+  else
     echo -e $GNOME_GNOME_COLOR_YELLOW"$MSG"$GNOME_COLOR_NONE
   fi
 }
@@ -47,8 +47,8 @@ blue(){
   local MSG=$1
   if [[ $OS="OSX" ]]
   then
-    echo -e $OSX_COLOR_BLUE"$MSG"$OSX_COLOR_NONE
-  elif
+    echo $OSX_COLOR_BLUE"$MSG"$OSX_COLOR_NONE
+  else
     echo -e $GNOME_GNOME_COLOR_BLUE"$MSG"$GNOME_COLOR_NONE
   fi
 }
@@ -80,29 +80,30 @@ install_deb() {
 install_dmg(){
   local NAME=$1
   local URL=$2
-  local DIR=$3
+  local DOWNLOAD_DIR=$3
+  local MOUNT_POINT=/Volumes/$NAME
   
-  curl -o $DIR/$NAME.dmg $URL
+  curl -o $DOWNLOAD_DIR/$NAME.dmg -L $URL
   # mount dmg
-  sudo hdiutil attach $TEMPDIR/$NAME.dmg
+  sudo hdiutil attach -mountpoint $MOUNT_POINT $TEMPDIR/$NAME.dmg
   # install
-  sudo installer -pkg /Volumes/$NAME/$NAME.pkg -target /
+  sudo installer -pkg $MOUNT_POINT/$NAME.pkg -target /
   # unmount dmg
-  sudo hdiutil detach /Volumes/$NAME
+  sudo hdiutil detach $MOUNT_POINT 
 }
 install_linux() {
   local PKG=$1
   local INSTALLER=$2
   if is_installed_dpkg $PKG
   then
-    green("$PKG is already installed")
+    green "$PKG is already installed"
     return 0
   fi
 
   # run apt-get install for apt packages
   if ( ! is_installed_dpkg $PKG ) && [[ $INSTALLER == "apt" ]]
   then
-    yellow("Installing $PKG using $INSTALLER ...")
+    yellow "Installing $PKG using $INSTALLER ..."
     install_apt $PKG
   fi
 
@@ -110,7 +111,7 @@ install_linux() {
   if ( ! is_installed_dpkg $PKG ) && [[ $INSTALLER == "deb" ]]
   then
     local PACKAGE_URL=$3
-    yellow("Installing $PKG using $INSTALLER ...")
+    yellow "Installing $PKG using $INSTALLER ..."
     install_deb $PKG $PACKAGE_URL
   fi
 }
