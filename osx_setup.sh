@@ -1,18 +1,18 @@
 . setup_functions
 
 # machine setup
-echo -e $OSX_COLOR_YELLOW"Setting up machine for dev"$OSX_COLOR_NONE
+yellow "Setting up machine for dev"
 mkdir -p ~/workspace/src ~/workspace/bin ~/workspace/pkg
 echo "alias ll='ls -alF'" >> ~/.bash_profile
 
 # add an admin group and make yourself part of it
-echo -e $OSX_COLOR_YELLOW"Create admin group & add you there"$OSX_COLOR_NONE
+yellow "Create admin group & add you there"
 sudo dscl . -create /groups/admin
 MYUSER=`whoami`
 sudo dscl . append /Groups/admin GroupMembership $MYUSER
 
 # create /usr/local for homebrew
-echo -e $OSX_COLOR_YELLOW"Prepare for Homebrew install"$OSX_COLOR_NONE
+yellow "Prepare for Homebrew install"
 sudo mkdir -p /usr/local
 sudo chown -R root:admin /usr/local
 # install homebrew
@@ -37,21 +37,51 @@ mkdir $OPTDIR
 BINDIR=/usr/local/bin
 
 # get virtual box
-echo -e $OSX_COLOR_YELLOW"Install VirtualBox"$OSX_COLOR_NONE
+yellow "Install VirtualBox"
 install_dmg VirtualBox http://dlc.sun.com.edgesuite.net/virtualbox/4.3.12/VirtualBox-4.3.12-93733-OSX.dmg $TEMPDIR
 
 # install docker & dependencies
 brew install docker
 brew install boot2docker
-echo -e $OSX_COLOR_YELLOW"Set up Docker VM"$OSX_COLOR_NONE
+yellow "Setting up Docker VM"
 boot2docker init
-echo -e $OSX_COLOR_YELLOW"Starting docker VM"$OSX_COLOR_NONE
+yellow "Starting docker VM"
 boot2docker up
-echo -e $OSX_COLOR_YELLOW"Set DOCKER_HOST via .bash_profile"$OSX_COLOR_NONE
+yellow "Set DOCKER_HOST via .bash_profile"
 echo "export DOCKER_HOST=tcp://localhost:4243" >> ~/.bash_profile
 
+# install rvm
+yellow "Install RVM"
+\curl -sSL https://get.rvm.io | bash -s stable
+
+# install postgres
+yellow "Install Postgres (latest)"
+brew install postgresql
+
+# install python & pip
+yellow "Install python (no-symlink) and pip"
+brew install python
+
+# install supervisord
+yellow "Install supervisor"
+pip install supervisor
+
+# install fabric
+yellow "Install fabric"
+pip install fabric
+
+# install redis
+yellow "Install redis"
+brew install redis
+
+# install phantomjs
+yellow "install phantomjs
+brew install phantomjs
+
+# advanced stuff
+
 # do some port forwarding, depending on dev machine
-echo -e $OSX_COLOR_YELLOW"Forward ports from the docker with this syntax:"$OSX_COLOR_NONE
+yellow "Forward ports from the docker with this syntax:" 
 echo "    boot2docker ssh -L 8000:localhost:8000"
 echo "    most of the time you will need to forward 22, 80 and 443 (for ssh, http & https)"
 # most will need port 22, 80, 443 on the docker to be open, at least
@@ -59,7 +89,7 @@ echo "    most of the time you will need to forward 22, 80 and 443 (for ssh, htt
 # read more: https://github.com/boot2docker/boot2docker/blob/master/doc/WORKAROUNDS.md#port-forwarding
 
 # tell them how to ssh to the docker host
-echo -e $OSX_COLOR_YELLOW"You can ssh into the docker VM with:"$OSX_COLOR_NONE
+yellow "You can ssh into the docker VM with:"
 echo "    boot2docker ssh"
 echo "    username: docker"
 echo "    password: tcuser"
@@ -68,7 +98,17 @@ echo "    password: tcuser"
 # boot2docker stop
 # boot2docker download
 # boot2docker start
- 
+
+# homework
+green "non-mandatory things you should install yourself:"
+echo "    A ruby version (i.e: 2.1)"
+echo "    Your editor (vim / emacs / sublime...)"
+echo "    Browsers for your work (Chrome, Firefox, Safari)"
+echo "    RubyMine"
+echo "    GitX / Gitk / SourceTree"
+echo "    oh my zsh"
+echo "    Viki's Redis (with fvind) (Platform)"
+
 # clean up
-echo -e $OSX_COLOR_YELLOW"Cleaning up"$OSX_COLOR_NONE
+green "Cleaning up"
 rm -rf $TEMPDIR
