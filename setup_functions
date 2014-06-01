@@ -12,6 +12,46 @@ OSX_COLOR_GREEN='\033[0;32m'
 OSX_COLOR_YELLOW='\033[0;33m'
 OSX_COLOR_BLUE='\033[0;34m'
 OSX_COLOR_NONE='\033[0m'
+# color helper
+use_color_for(){
+  OS=$1
+}
+red(){
+  local MSG=$1
+  if [[ $OS="OSX" ]]
+  then
+    echo -e $OSX_COLOR_RED"$MSG"$OSX_COLOR_NONE
+  elif
+    echo -e $GNOME_GNOME_COLOR_RED"$MSG"$GNOME_COLOR_NONE
+  fi
+}
+green(){
+  local MSG=$1
+  if [[ $OS="OSX" ]]
+  then
+    echo -e $OSX_COLOR_GREEN"$MSG"$OSX_COLOR_NONE
+  elif
+    echo -e $GNOME_GNOME_COLOR_GREEN"$MSG"$GNOME_COLOR_NONE
+  fi
+}
+yellow(){
+  local MSG=$1
+  if [[ $OS="OSX" ]]
+  then
+    echo -e $OSX_COLOR_YELLOW"$MSG"$OSX_COLOR_NONE
+  elif
+    echo -e $GNOME_GNOME_COLOR_YELLOW"$MSG"$GNOME_COLOR_NONE
+  fi
+}
+blue(){
+  local MSG=$1
+  if [[ $OS="OSX" ]]
+  then
+    echo -e $OSX_COLOR_BLUE"$MSG"$OSX_COLOR_NONE
+  elif
+    echo -e $GNOME_GNOME_COLOR_BLUE"$MSG"$GNOME_COLOR_NONE
+  fi
+}
 
 # package status helper
 is_installed_dpkg(){
@@ -55,14 +95,14 @@ install_linux() {
   local INSTALLER=$2
   if is_installed_dpkg $PKG
   then
-    echo -e $GNOME_GNOME_COLOR_GREEN"$PKG is already installed"$GNOME_COLOR_NONE
+    green("$PKG is already installed")
     return 0
   fi
 
   # run apt-get install for apt packages
   if ( ! is_installed_dpkg $PKG ) && [[ $INSTALLER == "apt" ]]
   then
-    echo -e $GNOME_COLOR_YELLOW"Installing $PKG using $INSTALLER ..."$GNOME_COLOR_NONE
+    yellow("Installing $PKG using $INSTALLER ...")
     install_apt $PKG
   fi
 
@@ -70,7 +110,7 @@ install_linux() {
   if ( ! is_installed_dpkg $PKG ) && [[ $INSTALLER == "deb" ]]
   then
     local PACKAGE_URL=$3
-    echo -e $GNOME_COLOR_YELLOW"Installing $PKG using $INSTALLER ..."$GNOME_COLOR_NONE
+    yellow("Installing $PKG using $INSTALLER ...")
     install_deb $PKG $PACKAGE_URL
   fi
 }
