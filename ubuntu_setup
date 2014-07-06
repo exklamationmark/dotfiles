@@ -88,8 +88,8 @@ ln -s $HOME/.vim/bundle/vim-golang/autoload/go/complete.vim $HOME/.vim/autoload/
 # docker
 sudo groupadd docker
 USER=`whoami`
+install_linux docker.io apt
 sudo usermod -aG docker $USER
-install_linux dokcer.io apt
 sudo ln -sf /usr/bin/docker.io /usr/local/bin/docker
 # syntax highlighting for docker files
 git clone https://github.com/ekalinin/Dockerfile.vim.git ~/.vim/bundle/Dockerfile
@@ -133,6 +133,14 @@ echo 'export PATH=$PATH:$HOME/npm/bin' >> ~/.bashrc
 # sudo bash -c "echo 'deb http://repository.spotify.com stable non-free' >> /etc/apt/sources.list"
 # sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 94558F59
 # sudo apt-get update && sudo apt-get install spotify-client
+
+# hipchat
+sudo su
+echo "deb http://downloads.hipchat.com/linux/apt stable main" > \
+    /etc/apt/sources.list.d/atlassian-hipchat.list
+wget -O - https://www.hipchat.com/keys/hipchat-linux.key | apt-key add -
+apt-get update
+apt-get install hipchat
 
 # # xbindkeys mapping
 # if hash xbindkeys 2>/dev/null; then echo "xbindkeys is installed\n"
