@@ -86,9 +86,8 @@ ln -s $HOME/.vim/bundle/vim-golang/syntax/go.vim $HOME/.vim/syntax
 ln -s $HOME/.vim/bundle/vim-golang/autoload/go/complete.vim $HOME/.vim/autoload/go
 
 # docker
-sudo groupadd docker
-USER=`whoami`
 install_linux docker.io apt
+USER=`whoami`
 sudo usermod -aG docker $USER
 sudo ln -sf /usr/bin/docker.io /usr/local/bin/docker
 # syntax highlighting for docker files
@@ -122,11 +121,12 @@ echo progress-bar >> ~/.curlrc
 echo "gem: --no-rdoc --no-ri " >> ~/.gemrc
 
 # nodejs
-apt-add-repository ppa:chris-lea/node.js
-apt-get update
-install_linux nodejs apt
-npm config set prefix $HOME/npm
-echo 'export PATH=$PATH:$HOME/npm/bin' >> ~/.bashrc
+# apt-add-repository ppa:chris-lea/node.js
+# apt-get update
+# install_linux nodejs apt
+# npm config set prefix $HOME/npm
+# echo 'export PATH=$PATH:$HOME/npm/bin' >> ~/.bashrc
+
 # misc.
 # # Spotify
 # sudo bash -c "echo '# Spotify' >> /etc/apt/sources.list"
@@ -135,12 +135,12 @@ echo 'export PATH=$PATH:$HOME/npm/bin' >> ~/.bashrc
 # sudo apt-get update && sudo apt-get install spotify-client
 
 # hipchat
-sudo su
-echo "deb http://downloads.hipchat.com/linux/apt stable main" > \
-    /etc/apt/sources.list.d/atlassian-hipchat.list
-wget -O - https://www.hipchat.com/keys/hipchat-linux.key | apt-key add -
-apt-get update
-apt-get install hipchat
+# sudo su
+# echo "deb http://downloads.hipchat.com/linux/apt stable main" > \
+#     /etc/apt/sources.list.d/atlassian-hipchat.list
+# wget -O - https://www.hipchat.com/keys/hipchat-linux.key | apt-key add -
+# apt-get update
+# apt-get install hipchat
 
 # # xbindkeys mapping
 # if hash xbindkeys 2>/dev/null; then echo "xbindkeys is installed\n"
