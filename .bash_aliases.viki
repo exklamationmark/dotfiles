@@ -34,3 +34,6 @@ alias local.db=local_db
 # git-crypt key sync
 alias gitcryptdl='scp sl.ops:~/.ssh/gitcrypt/* ~/.viki/gitcrypt/'
 alias gitcryptup='scp ~/.viki/gitcrypt/* sl.ops:~/.ssh/gitcrypt/'
+
+# vpn
+alias happyvpn='sudo ~/.ssh/happyvpn'

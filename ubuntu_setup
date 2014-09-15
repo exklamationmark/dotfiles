@@ -33,6 +33,9 @@ cp -f ~/.temp/dotfiles/.bash_aliases ~/.bash_aliases
 cat ~/.temp/dotfiles/.bash_aliases.viki >> ~/.bash_aliases
 source ~/.bashrc
 
+# vpn routing
+cp -f ~/.temp/dotfiles/happyvpn ~/.ssh/happyvpn
+
 # git config
 cp -f ~/.temp/dotfiles/.gitconfig ~/.gitconfig
 
