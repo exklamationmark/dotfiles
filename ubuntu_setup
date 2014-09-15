@@ -12,6 +12,7 @@ mkdir -p ~/.temp
 
 # essential 
 install_linux git apt
+install_linux mercurial apt
 install_linux curl apt
 install_linux vim apt
 install_linux python-software-properties apt
@@ -20,14 +21,16 @@ install_linux python-software-properties apt
 install_linux libxss1:amd64 apt
 install_linux google-chrome-stable deb "https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb"
 
-# version control
+# version control helpers
 install_linux gitk apt
 install_linux kdiff3 apt
+install_linux meld apt
 
 # bash config
 git clone https://github.com/exklamationmark/dotfiles.git ~/.temp/dotfiles
 cp -f ~/.temp/dotfiles/.bashrc ~/.bashrc
 cp -f ~/.temp/dotfiles/.bash_aliases ~/.bash_aliases
+cat ~/.temp/dotfiles/.bash_aliases.viki >> ~/.bash_aliases
 source ~/.bashrc
 
 # git config
@@ -35,9 +38,6 @@ cp -f ~/.temp/dotfiles/.gitconfig ~/.gitconfig
 
 # show branch name in git repo
 cat ~/.temp/dotfiles/.custom_prompt >> ~/.bashrc
-
-# git alias
-echo "alias gitka='gitk --all'" >> ~/.bash_aliases
 
 # minimum .vimrc
 cp -f ~/.temp/dotfiles/.vimrc ~/.vimrc
@@ -69,6 +69,9 @@ fi
 #--------------------------------------------------------------------------------------------------
 # go
 install_linux golang apt
+# utils
+go get github.com/vube/depman
+go get github.com/golang/lint/golint
 # gopath
 echo "export GOPATH='$HOME/workspace'" >> ~/.bashrc
 echo "export PATH=\$PATH:\$GOPATH/bin" >> ~/.bashrc

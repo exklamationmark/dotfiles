@@ -12,8 +12,9 @@
   excludesfile = ~/.gitignore
 
 [merge]
-  tool = kdiff3
+  tool = meld
   ff = false
+
 
 [color]
   ui = true
