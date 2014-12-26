@@ -37,3 +37,7 @@ alias gitcryptup='scp ~/.viki/gitcrypt/* sl.ops:~/.ssh/gitcrypt/'
 
 # vpn
 alias happyvpn='sudo ~/.ssh/happyvpn'
+
+# docker host
+alias heredocker='unset DOCKER_HOST'
+alias hostdocker='export DOCKER_HOST="tcp://ip:2375"'
