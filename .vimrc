@@ -21,6 +21,9 @@ set showmatch
 " syntax highlighting
 syntax enable
 
+" 100-character line for readability
+set colorcolumn=100
+
 " encoding UTF-8 (Unicode)
 set encoding=utf8
 
