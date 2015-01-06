@@ -138,20 +138,20 @@ echo "gem: --no-rdoc --no-ri " >> ~/.gemrc
 # npm config set prefix $HOME/npm
 # echo 'export PATH=$PATH:$HOME/npm/bin' >> ~/.bashrc
 
-# misc.
-# Spotify
-sudo bash -c "echo '# Spotify' >> /etc/apt/sources.list"
-sudo bash -c "echo 'deb http://repository.spotify.com stable non-free' >> /etc/apt/sources.list"
-sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 94558F59 && sudo apt-get update
-install_linux spotify-client apt
-
-# hipchat
-sudo su
-echo "deb http://downloads.hipchat.com/linux/apt stable main" > \
-    /etc/apt/sources.list.d/atlassian-hipchat.list
-wget -O - https://www.hipchat.com/keys/hipchat-linux.key | apt-key add -
-sudo apt-get update
-install_linux hipchat apt
+# # misc.
+# # Spotify
+# # sudo bash -c "echo '# Spotify' >> /etc/apt/sources.list"
+# # sudo bash -c "echo 'deb http://repository.spotify.com stable non-free' >> /etc/apt/sources.list"
+# # sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 94558F59 && sudo apt-get update
+# # install_linux spotify-client apt
+#
+# # hipchat
+# sudo su
+# echo "deb http://downloads.hipchat.com/linux/apt stable main" > \
+#     /etc/apt/sources.list.d/atlassian-hipchat.list
+# wget -O - https://www.hipchat.com/keys/hipchat-linux.key | apt-key add -
+# sudo apt-get update
+# install_linux hipchat apt
 
 
 
