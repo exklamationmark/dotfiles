@@ -21,6 +21,9 @@ install_linux python-software-properties apt
 install_linux libxss1:amd64 apt
 install_linux google-chrome-stable deb "https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb"
 
+# sublime
+install_linux sublime deb "http://c758482.r82.cf2.rackcdn.com/sublime-text_build-3065_amd64.deb"
+
 # version control helpers
 install_linux gitk apt
 install_linux kdiff3 apt
@@ -30,7 +33,7 @@ install_linux meld apt
 git clone https://github.com/exklamationmark/dotfiles.git ~/.temp/dotfiles
 cp -f ~/.temp/dotfiles/.bashrc ~/.bashrc
 cp -f ~/.temp/dotfiles/.bash_aliases ~/.bash_aliases
-cat ~/.temp/dotfiles/.bash_aliases.viki >> ~/.bash_aliases
+cat ~/.temp/dotfiles/.bash_aliases.work >> ~/.bash_aliases
 source ~/.bashrc
 
 # vpn routing
@@ -57,7 +60,7 @@ echo "\n Solarized\nset background=dark\ncolorscheme solarized" >> ~/.vimrc
 echo "export TERM=screen-256color" >> ~/.bashrc
 
 # user solarized gnome (terminal) 
-git clone git://github.com/sigurdga/gnome-terminal-colors-solarized.git ~/.temp/gnome-terminal-colors-solarized
+git clone https://github.com/Anthony25/gnome-terminal-colors-solarized.git ~/.temp/gnome-terminal-colors-solarized
 sh ~/.temp/gnome-terminal-colors-solarized/set_dark.sh
 
 # tmux
@@ -70,14 +73,16 @@ then
 fi
 
 #--------------------------------------------------------------------------------------------------
-# go
-install_linux golang apt
+# go (1.4)
+curl 'https://storage.googleapis.com/golang/go1.4.linux-amd64.tar.gz' > ~/.temp/go1.4.linux.amd64.tar.gz
+sudo tar -C /usr/local/ -xzvf ~/.temp/go1.4.linux.amd64.tar.gz 
+sudo ln -s /usr/local/go/bin/go /usr/local/bin/go
 # utils
 go get github.com/vube/depman
 go get github.com/golang/lint/golint
 # gopath
 echo "export GOPATH='$HOME/workspace'" >> ~/.bashrc
-echo "export PATH=\$PATH:\$GOPATH/bin" >> ~/.bashrc
+echo "export PATH=\$GOPATH/bin:\$PATH" >> ~/.bashrc
 mkdir -p ~/workspace/bin
 mkdir -p ~/workspace/pkg
 mkdir -p ~/workspace/src
@@ -134,33 +139,26 @@ echo "gem: --no-rdoc --no-ri " >> ~/.gemrc
 # echo 'export PATH=$PATH:$HOME/npm/bin' >> ~/.bashrc
 
 # misc.
-# # Spotify
-# sudo bash -c "echo '# Spotify' >> /etc/apt/sources.list"
-# sudo bash -c "echo 'deb http://repository.spotify.com stable non-free' >> /etc/apt/sources.list"
-# sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 94558F59
-# sudo apt-get update && sudo apt-get install spotify-client
+# Spotify
+sudo bash -c "echo '# Spotify' >> /etc/apt/sources.list"
+sudo bash -c "echo 'deb http://repository.spotify.com stable non-free' >> /etc/apt/sources.list"
+sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 94558F59 && sudo apt-get update
+install_linux spotify-client apt
 
 # hipchat
-# sudo su
-# echo "deb http://downloads.hipchat.com/linux/apt stable main" > \
-#     /etc/apt/sources.list.d/atlassian-hipchat.list
-# wget -O - https://www.hipchat.com/keys/hipchat-linux.key | apt-key add -
-# apt-get update
-# apt-get install hipchat
-
-# # xbindkeys mapping
-# if hash xbindkeys 2>/dev/null; then echo "xbindkeys is installed\n"
-# else echo "xbindkeys is not installed. installing..\n"
-# 	sudo apt-get install xbindkeys
-# fi
-# git clone https://gist.github.com/5487103.git $folder/xbindkeysrc
-# sudo mv $folder/xbindkeysrc/.xbindkeysrc ~/.xbindkeysrc
+sudo su
+echo "deb http://downloads.hipchat.com/linux/apt stable main" > \
+    /etc/apt/sources.list.d/atlassian-hipchat.list
+wget -O - https://www.hipchat.com/keys/hipchat-linux.key | apt-key add -
+sudo apt-get update
+install_linux hipchat apt
 
 
 
 
+# ---------------------------------------------------------
 
 
 # clean up
 rm -rf ~/.temp
-# echo -e $COLOR_BLUE"To get things started correctly, you might wanna do "$COLOR_RED"source ~/.bashrc"$COLOR_NONE" or re-open all the terminals"
+echo -e $COLOR_BLUE"To get things started correctly, you might wanna do "$COLOR_RED"source ~/.bashrc"$COLOR_NONE" or re-open all the terminals"
