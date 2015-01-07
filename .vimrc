@@ -21,9 +21,6 @@ set showmatch
 " syntax highlighting
 syntax enable
 
-" 100-character line for readability
-set colorcolumn=100
-
 " encoding UTF-8 (Unicode)
 set encoding=utf8
 
@@ -35,6 +32,9 @@ set noswapfile
 " wrap text
 set wrap
 
+" 100-char width
+set colorcolumn=100
+
 " forward search with space, backward search with Ctrl+Space
 map <space> /
 map <C-space> ?
@@ -44,3 +44,12 @@ map <C-j> <C-W>j
 map <C-k> <C-W>k
 map <C-h> <C-W>h
 map <C-l> <C-W>l
+
+" editor's background
+set background=dark
+
+" lazyredraw for fast scrolling
+set lazyredraw
+
+" start Pathogen
+silent! call pathogen#infect()
