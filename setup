@@ -56,26 +56,26 @@ cp -f ~/.temp/dotfiles/.gitconfig ~/.gitconfig
 cp -f ~/.temp/dotfiles/.vimrc ~/.vimrc
 
 # use solarized theme in vim
-git clone git://github.com/altercation/vim-colors-solarized.git ~/temp/vim-colors-solarized
-cp -f ~/temp/vim-colors-solarized/colors ~/.vim/colors
+git clone git://github.com/altercation/vim-colors-solarized.git ~/.temp/vim-colors-solarized
+cp -rf ~/.temp/vim-colors-solarized/colors ~/.vim/colors
+
+# user solarized gnome (terminal)
+git clone https://github.com/Anthony25/gnome-terminal-colors-solarized.git ~/.temp/gnome-terminal-colors-solarized
+sh ~/.temp/gnome-terminal-colors-solarized/set_dark.sh
+
+# tmux
+install_linux tmux apt
+
+# coding environment
+if [[ -d "~/workspace" ]]
+then
+	mkdir ~/workspace
+fi
 
 # update
 source ~/.bashrc
 source ~/.bash_aliases
 
-# # user solarized gnome (terminal) 
-# git clone https://github.com/Anthony25/gnome-terminal-colors-solarized.git ~/.temp/gnome-terminal-colors-solarized
-# sh ~/.temp/gnome-terminal-colors-solarized/set_dark.sh
-# 
-# # tmux
-# install_linux tmux apt
-# 
-# # coding environment
-# if [[ -d "~/workspace" ]]
-# then
-# 	mkdir ~/workspace
-# fi
-# 
 # #--------------------------------------------------------------------------------------------------
 # # go (1.4)
 # curl 'https://storage.googleapis.com/golang/go1.4.linux-amd64.tar.gz' > ~/.temp/go1.4.linux.amd64.tar.gz
