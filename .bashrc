@@ -123,3 +123,6 @@ fi
 if [ -f /etc/bash_completion ]; then
   . /etc/bash_completion
 fi
+
+# use 8bit color scheme in terminal
+export TERM=screen-256color

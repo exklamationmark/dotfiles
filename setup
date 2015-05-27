@@ -10,6 +10,8 @@ pause "Select a fast, local mirror, then press [Enter]..."
 # # update apt repos
 # sudo apt-get update
 
+############################# setup workstation #############################
+
 # essential 
 pause "Instaling essential packages. Press [Enter] to continue..."
 
@@ -32,38 +34,35 @@ install_linux apt meld
 # # sublime
 # install_linux deb sublime "http://c758482.r82.cf2.rackcdn.com/sublime-text_build-3083_amd64.deb"
 
-pause "Configuring tools. Press [Enter] to continue..."
+############################# customize tools #############################
+
+pause "Configuring tools & scripts. Press [Enter] to continue..."
 
 # bash config
 git clone https://github.com/exklamationmark/dotfiles.git ~/.temp/dotfiles
 cp -f ~/.temp/dotfiles/.bashrc ~/.bashrc
 cp -f ~/.temp/dotfiles/.bash_aliases ~/.bash_aliases
-# cat ~/.temp/dotfiles/.bash_aliases.work >> ~/.bash_aliases
+
+# show branch name in git repo
+cat ~/.temp/dotfiles/.bash_custom_prompt >> ~/.bashrc
+
+# custom routing for vpn traffic
+cp -f ~/.temp/dotfiles/happyvpn ~/.ssh/happyvpn
+
+# git config
+cp -f ~/.temp/dotfiles/.gitconfig ~/.gitconfig
+
+# minimum .vimrc
+cp -f ~/.temp/dotfiles/.vimrc ~/.vimrc
+
+# use solarized theme in vim
+git clone git://github.com/altercation/vim-colors-solarized.git ~/temp/vim-colors-solarized
+cp -f ~/temp/vim-colors-solarized/colors ~/.vim/colors
+
+# update
 source ~/.bashrc
-# 
-# # vpn routing
-# cp -f ~/.temp/dotfiles/happyvpn ~/.ssh/happyvpn
-# 
-# # git config
-# cp -f ~/.temp/dotfiles/.gitconfig ~/.gitconfig
-# 
-# # show branch name in git repo
-# cat ~/.temp/dotfiles/.custom_prompt >> ~/.bashrc
-# 
-# # minimum .vimrc
-# cp -f ~/.temp/dotfiles/.vimrc ~/.vimrc
-# 
-# # vim's plugin: pathogen
-# rm -rf ~/.vim
-# mkdir -p ~/.vim/autoload ~/.vim/bundle
-# curl -Sso ~/.vim/autoload/pathogen.vim https://raw.github.com/tpope/vim-pathogen/master/autoload/pathogen.vim
-# echo "\n# Pathogen\nexecute pathogen#infect()" >> ~/.vimrc
-# 
-# # use solarized theme in vim
-# git clone git://github.com/altercation/vim-colors-solarized.git ~/.vim/bundle/vim-colors-solarized
-# echo "\n Solarized\nset background=dark\ncolorscheme solarized" >> ~/.vimrc
-# echo "export TERM=screen-256color" >> ~/.bashrc
-# 
+source ~/.bash_aliases
+
 # # user solarized gnome (terminal) 
 # git clone https://github.com/Anthony25/gnome-terminal-colors-solarized.git ~/.temp/gnome-terminal-colors-solarized
 # sh ~/.temp/gnome-terminal-colors-solarized/set_dark.sh
