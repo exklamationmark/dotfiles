@@ -75,10 +75,10 @@ fi
 ############################# work-stuff #############################
 
 # ----------------------------- go (1.4.2) -----------------------------
-rm -rf /usr/local/go
+sudo rm -rf /usr/local/go
 curl 'https://storage.googleapis.com/golang/go1.4.2.linux-amd64.tar.gz' > ~/.temp/golang.tar.gz
 sudo tar -C /usr/local/ -xzvf ~/.temp/golang.tar.gz
-sudo ln -s /usr/local/go/bin/go /usr/local/bin/go
+sudo ln -sf /usr/local/go/bin/go /usr/local/bin/go
 
 go get github.com/tools/godep # dependency management
 go get github.com/golang/lint/golint
@@ -111,7 +111,10 @@ cp -rf ~/.temp/Dockerfile.vim/syntax ~/.vim/syntax
 cp -f ~/.temp/dotfiles/.dockercfg ~/.dockercfg
 
 # ----------------------------- postgresql -----------------------------
-install_linux apt postgresql-9.4
+# echo "deb http://apt.postgresql.org/pub/repos/apt/ trusty-pgdg main install_linux apt postgresql-9.4" > \
+#       sudo /etc/apt/sources.list.d/pgdg.list
+# wget -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
+# sudo apt-get update
 install_linux apt postgresql-server-dev-9.4
  
 # ----------------------------- postgresql -----------------------------
@@ -145,15 +148,15 @@ sudo service rabbitmq-server restart
 # 
 
 # ----------------------------- hipchat -----------------------------
-sudo su
-echo "deb http://downloads.hipchat.com/linux/apt stable main" > \
-      /etc/apt/sources.list.d/atlassian-hipchat.list
-wget -O - https://www.hipchat.com/keys/hipchat-linux.key | apt-key add -
-sudo apt-get update
-install_linux apt hipchat
+# sudo su
+# echo "deb http://downloads.hipchat.com/linux/apt stable main" > \
+#       /etc/apt/sources.list.d/atlassian-hipchat.list
+# exit
+# wget -O - https://www.hipchat.com/keys/hipchat-linux.key | apt-key add -
+# sudo apt-get update
+# install_linux apt hipchat
 
-############################# work-stuff #############################
-
+############################# others #############################
 # ----------------------------- spotify -----------------------------
 # sudo bash -c "echo 'deb http://repository.spotify.com stable non-free' >> /etc/apt/sources.list.d/spotify.list"
 # sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 94558F59 && sudo apt-get update
@@ -162,6 +165,6 @@ install_linux apt hipchat
 ############################# finshing #############################
 source ~/.bashrc
 
-# # clean up
-# rm -rf ~/.temp
+# clean up
+rm -rf ~/.temp
 # echo -e $COLOR_BLUE"To get things started correctly, you might wanna do "$COLOR_RED"source ~/.bashrc"$COLOR_NONE" or re-open all the terminals"
