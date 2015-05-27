@@ -1,0 +1,2 @@
+#! /bin/bash
+sudo route add -net 10.0.0.0/8 dev ppp0

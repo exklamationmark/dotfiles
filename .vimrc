@@ -51,5 +51,6 @@ set background=dark
 " lazyredraw for fast scrolling
 set lazyredraw
 
-" start Pathogen
-silent! call pathogen#infect()
+" color scheme
+set background=dark
+colorscheme solarized
