@@ -1,59 +1,35 @@
 #!/bin/bash
 
-# coloring helper
+############################## colors  ##############################
+
 GNOME_COLOR_RED='\e[0;31m'
-GNOME_GNOME_COLOR_GREEN='\e[0;32m'
+GNOME_COLOR_GREEN='\e[0;32m'
 GNOME_COLOR_YELLOW='\e[0;33m'
 GNOME_COLOR_BLUE='\e[0;34m'
 GNOME_COLOR_NONE='\e[0m'
-# OSX colors
-OSX_COLOR_RED='\033[0;31m'
-OSX_COLOR_GREEN='\033[0;32m'
-OSX_COLOR_YELLOW='\033[0;33m'
-OSX_COLOR_BLUE='\033[0;34m'
-OSX_COLOR_NONE='\033[0m'
-# color helper
-use_color_for(){
-  OS=$1
-}
+
 red(){
   local MSG=$1
-  if [[ $OS="OSX" ]]
-  then
-    echo $OSX_COLOR_RED"$MSG"$OSX_COLOR_NONE
-  else
-    echo -e $GNOME_GNOME_COLOR_RED"$MSG"$GNOME_COLOR_NONE
-  fi
-}
-green(){
-  local MSG=$1
-  if [[ $OS="OSX" ]]
-  then
-    echo $OSX_COLOR_GREEN"$MSG"$OSX_COLOR_NONE
-  else
-    echo -e $GNOME_GNOME_COLOR_GREEN"$MSG"$GNOME_COLOR_NONE
-  fi
-}
-yellow(){
-  local MSG=$1
-  if [[ $OS="OSX" ]]
-  then
-    echo $OSX_COLOR_YELLOW"$MSG"$OSX_COLOR_NONE
-  else
-    echo -e $GNOME_GNOME_COLOR_YELLOW"$MSG"$GNOME_COLOR_NONE
-  fi
-}
-blue(){
-  local MSG=$1
-  if [[ $OS="OSX" ]]
-  then
-    echo $OSX_COLOR_BLUE"$MSG"$OSX_COLOR_NONE
-  else
-    echo -e $GNOME_GNOME_COLOR_BLUE"$MSG"$GNOME_COLOR_NONE
-  fi
+  echo -e $GNOME_COLOR_RED"$MSG"$GNOME_COLOR_NONE
 }
 
-# package status helper
+green(){
+  local MSG=$1
+  echo -e $GNOME_COLOR_GREEN"$MSG"$GNOME_COLOR_NONE
+}
+
+yellow(){
+  local MSG=$1
+  echo -e $GNOME_COLOR_YELLOW"$MSG"$GNOME_COLOR_NONE
+}
+
+blue(){
+  local MSG=$1
+  echo -e $GNOME_COLOR_BLUE"$MSG"$GNOME_COLOR_NONE
+}
+
+############################## package helper ##############################
+
 is_installed_dpkg(){
   local PACKAGE=$1
   if dpkg --get-selections | grep -q "^$PACKAGE[[:space:]]*install$" >/dev/null
@@ -62,11 +38,12 @@ is_installed_dpkg(){
   fi
   return 1
 }
-# instalation helper
+
 install_apt() {
   local PACKAGE=$1
   sudo apt-get install $PACKAGE -y
 }
+
 install_deb() {
   local PACKAGE=$1
   local URL=$2
@@ -77,6 +54,7 @@ install_deb() {
   fi
   sudo dpkg -i ~/.temp/$PACKAGE.deb
 }
+
 install_dmg(){
   local NAME=$1
   local URL=$2
@@ -91,9 +69,10 @@ install_dmg(){
   # unmount dmg
   sudo hdiutil detach $MOUNT_POINT 
 }
+
 install_linux() {
-  local PKG=$1
-  local INSTALLER=$2
+  local INSTALLER=$1
+  local PKG=$2
   if is_installed_dpkg $PKG
   then
     green "$PKG is already installed"
@@ -114,4 +93,10 @@ install_linux() {
     yellow "Installing $PKG using $INSTALLER ..."
     install_deb $PKG $PACKAGE_URL
   fi
+}
+
+############################## shorthands & utilities ##############################
+
+pause(){
+  read -p "$*"
 }
