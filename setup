@@ -25,6 +25,7 @@ install_linux apt openssh-server
 install_linux apt gitk
 install_linux apt kdiff3
 install_linux apt meld
+install_linux apt tmux
 
 
 # # browsers
@@ -39,7 +40,7 @@ install_linux apt meld
 pause "Configuring tools & scripts. Press [Enter] to continue..."
 
 # bash config
-git clone https://github.com/exklamationmark/dotfiles.git ~/.temp/dotfiles
+git clone git://github.com/exklamationmark/dotfiles.git ~/.temp/dotfiles
 cp -f ~/.temp/dotfiles/.bashrc ~/.bashrc
 cp -f ~/.temp/dotfiles/.bash_aliases ~/.bash_aliases
 
@@ -60,11 +61,8 @@ git clone git://github.com/altercation/vim-colors-solarized.git ~/.temp/vim-colo
 cp -rf ~/.temp/vim-colors-solarized/colors ~/.vim/colors
 
 # user solarized gnome (terminal)
-git clone https://github.com/Anthony25/gnome-terminal-colors-solarized.git ~/.temp/gnome-terminal-colors-solarized
-sh ~/.temp/gnome-terminal-colors-solarized/set_dark.sh
-
-# tmux
-install_linux tmux apt
+git clone git://github.com/Anthony25/gnome-terminal-colors-solarized.git ~/.temp/gnome-terminal-colors-solarized
+~/.temp/gnome-terminal-colors-solarized/set_dark.sh
 
 # coding environment
 if [[ -d "~/workspace" ]]
@@ -72,57 +70,59 @@ then
 	mkdir ~/workspace
 fi
 
-# update
-source ~/.bashrc
-source ~/.bash_aliases
 
-# #--------------------------------------------------------------------------------------------------
-# # go (1.4)
-# curl 'https://storage.googleapis.com/golang/go1.4.linux-amd64.tar.gz' > ~/.temp/go1.4.linux.amd64.tar.gz
-# sudo tar -C /usr/local/ -xzvf ~/.temp/go1.4.linux.amd64.tar.gz 
-# sudo ln -s /usr/local/go/bin/go /usr/local/bin/go
-# # utils
-# go get github.com/vube/depman
-# go get github.com/golang/lint/golint
-# # gopath
-# echo "export GOPATH='$HOME/workspace'" >> ~/.bashrc
-# echo "export PATH=\$GOPATH/bin:\$PATH" >> ~/.bashrc
-# mkdir -p ~/workspace/bin
-# mkdir -p ~/workspace/pkg
-# mkdir -p ~/workspace/src
-# source ~/.bashrc
-# # syntax highlighting in vim
-# git clone git://github.com/jnwhiteh/vim-golang.git ~/.vim/bundle/vim-golang
-# mkdir -p $HOME/.vim/ftdetect
-# mkdir -p $HOME/.vim/syntax
-# mkdir -p $HOME/.vim/autoload/go
-# ln -s $HOME/.vim/bundle/vim-golang/ftdetect/gofiletype.vim $HOME/.vim/ftdetect/
-# ln -s $HOME/.vim/bundle/vim-golang/syntax/go.vim $HOME/.vim/syntax
-# ln -s $HOME/.vim/bundle/vim-golang/autoload/go/complete.vim $HOME/.vim/autoload/go
-# 
-# # docker
-# install_linux docker.io apt
-# USER=`whoami`
-# sudo usermod -aG docker $USER
-# sudo ln -sf /usr/bin/docker.io /usr/local/bin/docker
-# # syntax highlighting for docker files
-# git clone https://github.com/ekalinin/Dockerfile.vim.git ~/.vim/bundle/Dockerfile
-# # docker login
-# cp -f ~/.temp/dotfiles/.dockercfg ~/.dockercfg
-# 
-# # postgresql
-# install_linux postgresql-9.3 apt
-# install_linux postgresql-server-dev-9.3 apt
-# 
-# # redis
-# install_linux redis-server apt
-# 
-# # rabbitmq
-# install_linux rabbitmq-server apt
-# sudo rabbitmq-plugins enable rabbitmq_management
-# sudo service rabbitmq-server restart
-# 
-# # rvm with ruby
+
+############################# work-stuff #############################
+
+# ----------------------------- go (1.4.2) -----------------------------
+rm -rf /usr/local/go
+curl 'https://storage.googleapis.com/golang/go1.4.2.linux-amd64.tar.gz' > ~/.temp/golang.tar.gz
+sudo tar -C /usr/local/ -xzvf ~/.temp/golang.tar.gz
+sudo ln -s /usr/local/go/bin/go /usr/local/bin/go
+
+go get github.com/tools/godep # dependency management
+go get github.com/golang/lint/golint
+
+mkdir -p ~/workspace/bin
+mkdir -p ~/workspace/pkg
+mkdir -p ~/workspace/src
+source ~/.bashrc
+
+# vim-related
+git clone git://github.com/fatih/vim-go ~/.temp/vim-go
+mkdir -p $HOME/.vim/autoload/go
+cp -rf ~/.temp/vim-go/ftdetect ~/.vim/ftdetect
+cp -rf ~/.temp/vim-go/ftplugin ~/.vim/ftplugin
+cp -rf ~/.temp/vim-go/syntax ~/.vim/syntax
+cp -f ~/.temp/vim-go/autoload/go/complete.vim ~/.vim/autoload/go/complete.vim
+
+# ----------------------------- docker -----------------------------
+install_linux apt docker.io
+USER=`whoami`
+sudo usermod -aG docker $USER
+sudo ln -sf /usr/bin/docker.io /usr/local/bin/docker
+
+# vim-related
+git clone git://github.com/ekalinin/Dockerfile.vim.git ~/.temp/Dockerfile.vim
+cp -rf ~/.temp/Dockerfile.vim/ftdetect ~/.vim/ftdetect
+cp -rf ~/.temp/Dockerfile.vim/syntax ~/.vim/syntax
+
+# docker login
+cp -f ~/.temp/dotfiles/.dockercfg ~/.dockercfg
+
+# ----------------------------- postgresql -----------------------------
+install_linux apt postgresql-9.4
+install_linux apt postgresql-server-dev-9.4
+ 
+# ----------------------------- postgresql -----------------------------
+install_linux apt redis-server apt
+
+# ----------------------------- rabbitmq -----------------------------
+install_linux apt rabbitmq-server apt
+sudo rabbitmq-plugins enable rabbitmq_management
+sudo service rabbitmq-server restart
+
+# ----------------------------- ruby -----------------------------
 # if [[ ! -d ~/.rvm ]]
 # then
 # 	\curl -sSL https://get.rvm.io | bash -s stable --ruby
@@ -135,34 +135,33 @@ source ~/.bash_aliases
 # echo progress-bar >> ~/.curlrc
 # echo "gem: --no-rdoc --no-ri " >> ~/.gemrc
 # 
-# # nodejs
-# # apt-add-repository ppa:chris-lea/node.js
-# # apt-get update
-# # install_linux nodejs apt
-# # npm config set prefix $HOME/npm
-# # echo 'export PATH=$PATH:$HOME/npm/bin' >> ~/.bashrc
+# ----------------------------- nodejs -----------------------------
+# nodejs
+# apt-add-repository ppa:chris-lea/node.js
+# apt-get update
+# install_linux apt nodejs
+# npm config set prefix $HOME/npm
+# echo 'export PATH=$PATH:$HOME/npm/bin' >> ~/.bashrc
 # 
-# # # misc.
-# # # Spotify
-# # # sudo bash -c "echo '# Spotify' >> /etc/apt/sources.list"
-# # # sudo bash -c "echo 'deb http://repository.spotify.com stable non-free' >> /etc/apt/sources.list"
-# # # sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 94558F59 && sudo apt-get update
-# # # install_linux spotify-client apt
-# #
-# # # hipchat
-# # sudo su
-# # echo "deb http://downloads.hipchat.com/linux/apt stable main" > \
-# #     /etc/apt/sources.list.d/atlassian-hipchat.list
-# # wget -O - https://www.hipchat.com/keys/hipchat-linux.key | apt-key add -
-# # sudo apt-get update
-# # install_linux hipchat apt
-# 
-# 
-# 
-# 
-# # ---------------------------------------------------------
-# 
-# 
+
+# ----------------------------- hipchat -----------------------------
+sudo su
+echo "deb http://downloads.hipchat.com/linux/apt stable main" > \
+      /etc/apt/sources.list.d/atlassian-hipchat.list
+wget -O - https://www.hipchat.com/keys/hipchat-linux.key | apt-key add -
+sudo apt-get update
+install_linux apt hipchat
+
+############################# work-stuff #############################
+
+# ----------------------------- spotify -----------------------------
+# sudo bash -c "echo 'deb http://repository.spotify.com stable non-free' >> /etc/apt/sources.list.d/spotify.list"
+# sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 94558F59 && sudo apt-get update
+# install_linux apt spotify-client
+ 
+############################# finshing #############################
+source ~/.bashrc
+
 # # clean up
 # rm -rf ~/.temp
 # echo -e $COLOR_BLUE"To get things started correctly, you might wanna do "$COLOR_RED"source ~/.bashrc"$COLOR_NONE" or re-open all the terminals"
