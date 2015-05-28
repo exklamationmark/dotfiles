@@ -58,7 +58,7 @@ cp -f ~/.temp/dotfiles/.vimrc ~/.vimrc
 
 # use solarized theme in vim
 git clone git://github.com/altercation/vim-colors-solarized.git ~/.temp/vim-colors-solarized
-cp -rf ~/.temp/vim-colors-solarized/colors ~/.vim/colors
+cp -rf ~/.temp/vim-colors-solarized/colors/solarized.vim ~/.vim/colors/
 
 # user solarized gnome (terminal)
 git clone git://github.com/Anthony25/gnome-terminal-colors-solarized.git ~/.temp/gnome-terminal-colors-solarized
