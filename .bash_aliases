@@ -8,7 +8,7 @@ alias startcoding='cd ~/workspace/src'
 alias xtime="/usr/bin/time -f '%Uu %Ss %er %MkB %C' \"$@\""
 
 # gitk tree view
-echo "alias gitka='gitk --all'" >> ~/.bash_aliases
+alias gitka='gitk --all'
 
 # quick db access
 connect_postgres_db(){
@@ -44,3 +44,10 @@ alias local.db=local_db
 
 # custom routing for vpn traffic
 alias happyvpn='sudo ~/.ssh/happyvpn'
+
+# gofmt
+gofmt_recursive(){
+  files=$(find -type f -name "*.go" | grep -v Godeps)
+  for file in $files; do go fmt $file; done
+}
+alias gofmtr=gofmt_recursive
