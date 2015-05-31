@@ -143,6 +143,7 @@ sudo service rabbitmq-server restart
 # apt-add-repository ppa:chris-lea/node.js
 # apt-get update
 # install_linux apt nodejs
+# mkdir -p $HOME/npm
 # npm config set prefix $HOME/npm
 # echo 'export PATH=$PATH:$HOME/npm/bin' >> ~/.bashrc
 # 
