@@ -54,9 +54,6 @@ cp -f ~/.temp/dotfiles/.bash_aliases ~/.bash_aliases
 # show branch name in git repo
 cat ~/.temp/dotfiles/.bash_custom_prompt >> ~/.bashrc
 
-# custom routing for vpn traffic
-cp -f ~/.temp/dotfiles/happyvpn ~/.ssh/happyvpn
-
 # git config
 cp -f ~/.temp/dotfiles/.gitconfig ~/.gitconfig
 
@@ -81,9 +78,9 @@ fi
 
 ############################# work-stuff #############################
 
-# ----------------------------- go (1.4.2) -----------------------------
+# ----------------------------- go (1.5.3) -----------------------------
 sudo rm -rf /usr/local/go
-curl 'https://storage.googleapis.com/golang/go1.4.2.linux-amd64.tar.gz' > ~/.temp/golang.tar.gz
+curl 'https://storage.googleapis.com/golang/go1.5.3.linux-amd64.tar.gz' > ~/.temp/golang.tar.gz
 sudo tar -C /usr/local/ -xzvf ~/.temp/golang.tar.gz
 sudo ln -sf /usr/local/go/bin/go /usr/local/bin/go
 

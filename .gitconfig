@@ -12,7 +12,7 @@
   excludesfile = ~/.gitignore
 
 [merge]
-  tool = meld
+  tool = vimdiff
   ff = false
 
 
@@ -36,3 +36,7 @@
   dfa = diff -w
   dfs = diff --cached
   fetch = fetch -a
+  ap = add --patch
+
+[url "git@github.com:"]
+  insteadOf = https://github.com/
