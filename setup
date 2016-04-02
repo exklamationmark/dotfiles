@@ -5,6 +5,13 @@
 rm -rf ~/.temp
 mkdir -p ~/.temp
 
+############################# Qualcomm Atheros Ethernet #############################
+# if the motherboard is using this (which is not recognized by Ubuntu right away)
+# sudo apt-get install git dkms build-essential linux-headers-generic
+# sudo dkms add ./atheros_ethernet
+# sudo dkms build atheros_ethernet/2.0
+# sudo dkms install atheros_ethernet/2.0
+
 pause "Select a fast, local mirror, then press [Enter]..."
 
 # # update apt repos
