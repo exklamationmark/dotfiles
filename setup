@@ -19,7 +19,7 @@ pause "Select a fast, local mirror, then press [Enter]..."
 
 ############################# setup workstation #############################
 
-# essential 
+# essential
 pause "Instaling essential packages. Press [Enter] to continue..."
 
 install_linux apt git
@@ -33,6 +33,7 @@ install_linux apt gitk
 install_linux apt kdiff3
 install_linux apt meld
 install_linux apt tmux
+install_linux apt xclip
 
 
 # # browsers
@@ -50,6 +51,10 @@ pause "Configuring tools & scripts. Press [Enter] to continue..."
 git clone git://github.com/exklamationmark/dotfiles.git ~/.temp/dotfiles
 cp -f ~/.temp/dotfiles/.bashrc ~/.bashrc
 cp -f ~/.temp/dotfiles/.bash_aliases ~/.bash_aliases
+
+# add xclip helper functions
+cat ~/.temp/dotfiles/.bash_xclip >> ~/.bashrc
+
 
 # show branch name in git repo
 cat ~/.temp/dotfiles/.bash_custom_prompt >> ~/.bashrc
@@ -120,7 +125,7 @@ cp -f ~/.temp/dotfiles/.dockercfg ~/.dockercfg
 # wget -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
 # sudo apt-get update
 install_linux apt postgresql-server-dev-9.4
- 
+
 # ----------------------------- postgresql -----------------------------
 install_linux apt redis-server apt
 
@@ -141,7 +146,7 @@ sudo service rabbitmq-server restart
 # # progress bar for gem download
 # echo progress-bar >> ~/.curlrc
 # echo "gem: --no-rdoc --no-ri " >> ~/.gemrc
-# 
+#
 # ----------------------------- nodejs -----------------------------
 # nodejs
 # apt-add-repository ppa:chris-lea/node.js
@@ -150,7 +155,7 @@ sudo service rabbitmq-server restart
 # mkdir -p $HOME/npm
 # npm config set prefix $HOME/npm
 # echo 'export PATH=$PATH:$HOME/npm/bin' >> ~/.bashrc
-# 
+#
 
 # ----------------------------- hipchat -----------------------------
 # sudo su
@@ -170,7 +175,7 @@ sudo service rabbitmq-server restart
 ############################# key mapping #############################
 install_linux apt gnome-tweak-tool
 # open it, make Caps Lock an additional control in the Typing section
- 
+
 ############################# finshing #############################
 source ~/.bashrc
 
