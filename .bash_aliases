@@ -42,5 +42,6 @@ alias staging.db=staging_db
 alias prod.db=prod_db
 alias local.db=local_db
 
-# custom routing for vpn traffic
-alias happyvpn='sudo ~/.ssh/happyvpn'
+# color git diff
+alias gdiff='git diff --color-words --no-index'
+
