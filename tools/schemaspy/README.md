@@ -10,8 +10,7 @@ Adapter:
 # Installing
 
 - Install `java` (i.e: oracle / openjdk)
-- Install `graphviz` -> used for generating the graphics (HTML5 canvas)
-
+- Install `graphviz` -> used for generating the graphics
 # Usage
 
 ```
