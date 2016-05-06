@@ -15,9 +15,9 @@ Adapter:
 # Usage
 
 ```
-java -jar schemaSpy_jar -t dbType -host dbHost -u dbUser -p dbPassword -db dbName [-s dbSchema] -dp jdbc_driver_jar -o output_folder
+java -jar schemaSpy_jar -t dbType -host dbHost -u dbUser -p dbPassword -db dbName [-s dbSchema] -dp jdbc_driver_jar -hq -o output_folder
 
 i.e:
 -----------------------------------
-java -jar schemaSpy_5.0.0.jar -t pgsql -host localhost -u postgres -p 'password' -db my_db -s public -dp postgresql-9.4.1208.jre6.jar -o temp/
+java -jar schemaSpy_5.0.0.jar -t pgsql -host localhost -u postgres -p 'password' -db my_db -s public -dp postgresql-9.4.1208.jre6.jar -hq -o temp/
 ```
