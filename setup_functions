@@ -50,9 +50,9 @@ install_deb() {
 
   if [[ -n "$URL" ]]
   then
-    curl $URL > ~/.temp/$PACKAGE.deb
+    curl $URL > /tmp/$PACKAGE.deb
   fi
-  sudo dpkg -i ~/.temp/$PACKAGE.deb
+  sudo dpkg -i /tmp/$PACKAGE.deb
 }
 
 install_dmg(){
