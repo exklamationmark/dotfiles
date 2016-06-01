@@ -53,6 +53,15 @@ cat /tmp/dotfiles/.bash_xclip >> ~/.bash_aliases
 
 # define a custom prompt that shows more info on git repository
 cat /tmp/dotfiles/.bash_custom_prompt >> ~/.bashrc
+# golang env variables
+cp -f /tmp/dotfiles/.bash_golang ~/.bash_golang
+# nodejs env variables
+cp -f /tmp/dotfiles/.bash_nodejs ~/.bash_nodejs
+# reload bash
+source ~/.bashrc
+source ~/.bash_golang
+source ~/.nodejs
+
 
 # customize vim
 # vundle
@@ -95,8 +104,6 @@ go get github.com/tools/godep
 # linter
 go get github.com/golang/lint/golint
 # go env variables
-cp -f /tmp/dotfiles/.bash_golang ~/.bash_golang
-source ~/.bashrc
 
 # ----------------------------- docker -----------------------------
 install_linux apt docker.io
@@ -133,8 +140,6 @@ mkdir -p $HOME/npm
 npm config set prefix $HOME/npm
 echo 'export PATH=$PATH:$HOME/npm/bin' >> ~/.bashrc
 # nodejs env variables 
-cp -f /tmp/dotfiles/.bash_nodejs ~/.bash_golang
-source ~/.bashrc
 
 # ############################# work-related helpers #############################
 cat /tmp/dotfiles/.bash_viki >> ~/.bash_aliases
