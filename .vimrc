@@ -15,6 +15,8 @@ Plugin 'VundleVim/Vundle.vim'
 
 " Keep Plugin commands between vundle#begin/end.
 Plugin 'altercation/vim-colors-solarized'
+Plugin 'fatih/vim-go'
+Plugin 'ekalinin/Dockerfile.vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -88,3 +90,6 @@ set lazyredraw
 " color scheme
 set background=dark
 colorscheme solarized
+
+" vim 7.4 patch for logipat (cause Ex command :E to become ambiguous)
+let g:loaded_logipat = 1
