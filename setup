@@ -27,158 +27,163 @@ install_linux apt mercurial
 install_linux apt curl
 install_linux apt vim
 install_linux apt python-software-properties
+install_linux apt python-pip
 install_linux apt python3-pip
 install_linux apt openssh-server
 install_linux apt gitk
-install_linux apt kdiff3
-install_linux apt meld
 install_linux apt tmux
 install_linux apt xclip
+install_linux apt logkeys
 
+# browsers
+install_linux apt libindicator7
+install_linux apt libappindicator1
+install_linux deb google-chrome-stable "https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb"
 
-# # browsers
-# install_linux libxss1:amd64 apt
-# install_linux google-chrome-stable deb "https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb"
-
-# # sublime
-# install_linux deb sublime "http://c758482.r82.cf2.rackcdn.com/sublime-text_build-3083_amd64.deb"
+# sublime
+install_linux deb sublime "https://download.sublimetext.com/sublime-text_build-3114_amd64.deb"
 
 ############################# customize tools #############################
 
 pause "Configuring tools & scripts. Press [Enter] to continue..."
 
 # bash config
-git clone git://github.com/exklamationmark/dotfiles.git ~/.temp/dotfiles
-cp -f ~/.temp/dotfiles/.bashrc ~/.bashrc
-cp -f ~/.temp/dotfiles/.bash_aliases ~/.bash_aliases
+git clone https://github.com/exklamationmark/dotfiles.git /tmp/dotfiles
+cp -f /tmp/dotfiles/.bashrc ~/.bashrc
+cp -f /tmp/dotfiles/.bash_aliases ~/.bash_aliases
 
 # add xclip helper functions
-cat ~/.temp/dotfiles/.bash_xclip >> ~/.bashrc
+cat /tmp/dotfiles/.bash_xclip >> ~/.bash_aliases
 
+# define a custom prompt that shows more info on git repository
+cat /tmp/dotfiles/.bash_custom_prompt >> ~/.bashrc
 
-# show branch name in git repo
-cat ~/.temp/dotfiles/.bash_custom_prompt >> ~/.bashrc
+# customize vim
+# vundle
+git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+# minimum .vimrc
+cp -f /tmp/dotfiles/.vimrc ~/.vimrc
+# install solarized color theme
+vim +'PluginInstall altercation/vim-colors-solarized' +qall
+# use solarized gnome (terminal)
+git clone git://github.com/Anthony25/gnome-terminal-colors-solarized.git /tmp/gnome-terminal-colors-solarized
+/tmp/gnome-terminal-colors-solarized/set_dark.sh
+# minimum .vimrc
+cp -f /tmp/dotfiles/.vimrc ~/.vimrc
+
+# tmux config
+cp /tmp/dotfiles/.tmux.conf /home/mark/.tmux.conf
 
 # git config
-cp -f ~/.temp/dotfiles/.gitconfig ~/.gitconfig
-
-# minimum .vimrc
-cp -f ~/.temp/dotfiles/.vimrc ~/.vimrc
-
-# use solarized theme in vim
-git clone git://github.com/altercation/vim-colors-solarized.git ~/.temp/vim-colors-solarized
-cp -rf ~/.temp/vim-colors-solarized/colors/solarized.vim ~/.vim/colors/
-
-# user solarized gnome (terminal)
-git clone git://github.com/Anthony25/gnome-terminal-colors-solarized.git ~/.temp/gnome-terminal-colors-solarized
-~/.temp/gnome-terminal-colors-solarized/set_dark.sh
+cp -f /tmp/dotfiles/.gitconfig ~/.gitconfig
 
 # coding environment
 if [[ -d "~/workspace" ]]
 then
-	mkdir ~/workspace
+	mkdir -p ~/workspace
 fi
 
+# ############################# work-stuff #############################
+# 
+# # ----------------------------- go (1.5.3) -----------------------------
+# sudo rm -rf /usr/local/go
+# curl 'https://storage.googleapis.com/golang/go1.5.3.linux-amd64.tar.gz' > ~/.temp/golang.tar.gz
+# sudo tar -C /usr/local/ -xzvf ~/.temp/golang.tar.gz
+# sudo ln -sf /usr/local/go/bin/go /usr/local/bin/go
+# 
+# go get github.com/tools/godep # dependency management
+# go get github.com/golang/lint/golint
+# 
+# mkdir -p ~/workspace/bin
+# mkdir -p ~/workspace/pkg
+# mkdir -p ~/workspace/src
+# source ~/.bashrc
+# 
+# # vim-related
+# git clone git://github.com/fatih/vim-go ~/.temp/vim-go
+# mkdir -p $HOME/.vim/autoload/go
+# cp -rf ~/.temp/vim-go/ftdetect ~/.vim/ftdetect
+# cp -rf ~/.temp/vim-go/ftplugin ~/.vim/ftplugin
+# cp -rf ~/.temp/vim-go/syntax ~/.vim/syntax
+# cp -f ~/.temp/vim-go/autoload/go/complete.vim ~/.vim/autoload/go/complete.vim
+# 
+# # ----------------------------- docker -----------------------------
+# install_linux apt docker.io
+# USER=`whoami`
+# sudo usermod -aG docker $USER
+# sudo ln -sf /usr/bin/docker.io /usr/local/bin/docker
+# 
+# # vim-related
+# git clone git://github.com/ekalinin/Dockerfile.vim.git ~/.temp/Dockerfile.vim
+# cp -rf ~/.temp/Dockerfile.vim/ftdetect ~/.vim/ftdetect
+# cp -rf ~/.temp/Dockerfile.vim/syntax ~/.vim/syntax
+# 
+# # docker login
+# cp -f ~/.temp/dotfiles/.dockercfg ~/.dockercfg
+# 
+# # ----------------------------- postgresql -----------------------------
+# # echo "deb http://apt.postgresql.org/pub/repos/apt/ trusty-pgdg main install_linux apt postgresql-9.4" > \
+# #       sudo /etc/apt/sources.list.d/pgdg.list
+# # wget -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
+# # sudo apt-get update
+# install_linux apt postgresql-server-dev-9.4
+# 
+# # ----------------------------- postgresql -----------------------------
+# install_linux apt redis-server apt
+# 
+# # ----------------------------- rabbitmq -----------------------------
+# install_linux apt rabbitmq-server apt
+# sudo rabbitmq-plugins enable rabbitmq_management
+# sudo service rabbitmq-server restart
+# 
+# # ----------------------------- ruby -----------------------------
+# # if [[ ! -d ~/.rvm ]]
+# # then
+# # 	\curl -sSL https://get.rvm.io | bash -s stable --ruby
+# # else
+# # 	echo -e $COLOR_GREEN"RVM is already installed"$COLOR_NONE
+# # 	echo "source ~/.rvm/scripts/rvm" >> ~/.bashrc #since what RVM put there was lost when ubuntu_setup is run twice
+# # 	source ~/.bashrc
+# # fi
+# # # progress bar for gem download
+# # echo progress-bar >> ~/.curlrc
+# # echo "gem: --no-rdoc --no-ri " >> ~/.gemrc
+# #
+# # ----------------------------- nodejs -----------------------------
+# # nodejs
+# # apt-add-repository ppa:chris-lea/node.js
+# # apt-get update
+# # install_linux apt nodejs
+# # mkdir -p $HOME/npm
+# # npm config set prefix $HOME/npm
+# # echo 'export PATH=$PATH:$HOME/npm/bin' >> ~/.bashrc
+# #
+# 
+# # ----------------------------- hipchat -----------------------------
+# # sudo su
+# # echo "deb http://downloads.hipchat.com/linux/apt stable main" > \
+# #       /etc/apt/sources.list.d/atlassian-hipchat.list
+# # exit
+# # wget -O - https://www.hipchat.com/keys/hipchat-linux.key | apt-key add -
+# # sudo apt-get update
+# # install_linux apt hipchat
 
+cat /tmp/dotfiles/.bash_xclip >> ~/.bash_aliases
+# 
+# ############################# others #############################
+# # ----------------------------- spotify -----------------------------
+# # sudo bash -c "echo 'deb http://repository.spotify.com stable non-free' >> /etc/apt/sources.list.d/spotify.list"
+# # sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 94558F59 && sudo apt-get update
+# # install_linux apt spotify-client
+# 
+# ############################# key mapping #############################
+# install_linux apt gnome-tweak-tool
+# # open it, make Caps Lock an additional control in the Typing section
+# 
+# ############################# finshing #############################
+# source ~/.bashrc
+# 
+# # clean up
+# rm -rf ~/.temp
+# # echo -e $COLOR_BLUE"To get things started correctly, you might wanna do "$COLOR_RED"source ~/.bashrc"$COLOR_NONE" or re-open all the terminals"
 
-############################# work-stuff #############################
-
-# ----------------------------- go (1.5.3) -----------------------------
-sudo rm -rf /usr/local/go
-curl 'https://storage.googleapis.com/golang/go1.5.3.linux-amd64.tar.gz' > ~/.temp/golang.tar.gz
-sudo tar -C /usr/local/ -xzvf ~/.temp/golang.tar.gz
-sudo ln -sf /usr/local/go/bin/go /usr/local/bin/go
-
-go get github.com/tools/godep # dependency management
-go get github.com/golang/lint/golint
-
-mkdir -p ~/workspace/bin
-mkdir -p ~/workspace/pkg
-mkdir -p ~/workspace/src
-source ~/.bashrc
-
-# vim-related
-git clone git://github.com/fatih/vim-go ~/.temp/vim-go
-mkdir -p $HOME/.vim/autoload/go
-cp -rf ~/.temp/vim-go/ftdetect ~/.vim/ftdetect
-cp -rf ~/.temp/vim-go/ftplugin ~/.vim/ftplugin
-cp -rf ~/.temp/vim-go/syntax ~/.vim/syntax
-cp -f ~/.temp/vim-go/autoload/go/complete.vim ~/.vim/autoload/go/complete.vim
-
-# ----------------------------- docker -----------------------------
-install_linux apt docker.io
-USER=`whoami`
-sudo usermod -aG docker $USER
-sudo ln -sf /usr/bin/docker.io /usr/local/bin/docker
-
-# vim-related
-git clone git://github.com/ekalinin/Dockerfile.vim.git ~/.temp/Dockerfile.vim
-cp -rf ~/.temp/Dockerfile.vim/ftdetect ~/.vim/ftdetect
-cp -rf ~/.temp/Dockerfile.vim/syntax ~/.vim/syntax
-
-# docker login
-cp -f ~/.temp/dotfiles/.dockercfg ~/.dockercfg
-
-# ----------------------------- postgresql -----------------------------
-# echo "deb http://apt.postgresql.org/pub/repos/apt/ trusty-pgdg main install_linux apt postgresql-9.4" > \
-#       sudo /etc/apt/sources.list.d/pgdg.list
-# wget -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
-# sudo apt-get update
-install_linux apt postgresql-server-dev-9.4
-
-# ----------------------------- postgresql -----------------------------
-install_linux apt redis-server apt
-
-# ----------------------------- rabbitmq -----------------------------
-install_linux apt rabbitmq-server apt
-sudo rabbitmq-plugins enable rabbitmq_management
-sudo service rabbitmq-server restart
-
-# ----------------------------- ruby -----------------------------
-# if [[ ! -d ~/.rvm ]]
-# then
-# 	\curl -sSL https://get.rvm.io | bash -s stable --ruby
-# else
-# 	echo -e $COLOR_GREEN"RVM is already installed"$COLOR_NONE
-# 	echo "source ~/.rvm/scripts/rvm" >> ~/.bashrc #since what RVM put there was lost when ubuntu_setup is run twice
-# 	source ~/.bashrc
-# fi
-# # progress bar for gem download
-# echo progress-bar >> ~/.curlrc
-# echo "gem: --no-rdoc --no-ri " >> ~/.gemrc
-#
-# ----------------------------- nodejs -----------------------------
-# nodejs
-# apt-add-repository ppa:chris-lea/node.js
-# apt-get update
-# install_linux apt nodejs
-# mkdir -p $HOME/npm
-# npm config set prefix $HOME/npm
-# echo 'export PATH=$PATH:$HOME/npm/bin' >> ~/.bashrc
-#
-
-# ----------------------------- hipchat -----------------------------
-# sudo su
-# echo "deb http://downloads.hipchat.com/linux/apt stable main" > \
-#       /etc/apt/sources.list.d/atlassian-hipchat.list
-# exit
-# wget -O - https://www.hipchat.com/keys/hipchat-linux.key | apt-key add -
-# sudo apt-get update
-# install_linux apt hipchat
-
-############################# others #############################
-# ----------------------------- spotify -----------------------------
-# sudo bash -c "echo 'deb http://repository.spotify.com stable non-free' >> /etc/apt/sources.list.d/spotify.list"
-# sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 94558F59 && sudo apt-get update
-# install_linux apt spotify-client
-
-############################# key mapping #############################
-install_linux apt gnome-tweak-tool
-# open it, make Caps Lock an additional control in the Typing section
-
-############################# finshing #############################
-source ~/.bashrc
-
-# clean up
-rm -rf ~/.temp
-# echo -e $COLOR_BLUE"To get things started correctly, you might wanna do "$COLOR_RED"source ~/.bashrc"$COLOR_NONE" or re-open all the terminals"
