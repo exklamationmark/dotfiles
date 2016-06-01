@@ -4,6 +4,7 @@
 ############################# development things #############################
 
 # ----------------------------- go (1.6.2) -----------------------------
+echo -e $COLOR_BLUE"Install go 1.6.2"$COLOR_NONE
 sudo rm -rf /usr/local/go
 curl 'https://storage.googleapis.com/golang/go1.6.2.linux-amd64.tar.gz' > /tmp/golang.tar.gz
 sudo tar -C /usr/local/ -xzvf /tmp/golang.tar.gz
@@ -36,6 +37,7 @@ sudo rabbitmq-plugins enable rabbitmq_management
 sudo service rabbitmq-server restart
 
 # ----------------------------- ruby -----------------------------
+echo -e $COLOR_BLUE"Install rvm"$COLOR_NONE
 gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3
 curl -sSL https://get.rvm.io | bash
 # progress bar for gem download
@@ -63,8 +65,5 @@ cat /tmp/dotfiles/.bash_viki >> ~/.bash_aliases
 # install_linux apt gnome-tweak-tool
 # # open it, make Caps Lock an additional control in the Typing section
 # 
-# ############################# post-install #############################
-docker login
-
 ############################# clean up #############################
 echo -e $COLOR_BLUE"To get things started correctly, you might wanna do "$COLOR_RED"source ~/.bashrc"$COLOR_NONE" or start a new terminal session"
