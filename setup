@@ -62,14 +62,14 @@ cat /tmp/dotfiles/.bash_custom_prompt >> ~/.bashrc
 # vundle
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 # minimum .vimrc
-cp -f /tmp/dotfiles/.vimrc ~/.vimrc
+cp -f /tmp/dotfiles/.vimrc.vundle ~/.vimrc # basic vundle only
 # install solarized color theme
-vim +'PluginInstall altercation/vim-colors-solarized' +qall
+vim +'PluginInstall altercation/vim-colors-solarized'
+# minimum .vimrc
+cp -f /tmp/dotfiles/.vimrc ~/.vimrc # vundle + plugins + settings
 # use solarized gnome (terminal)
 git clone git://github.com/Anthony25/gnome-terminal-colors-solarized.git /tmp/gnome-terminal-colors-solarized
 /tmp/gnome-terminal-colors-solarized/set_dark.sh
-# minimum .vimrc
-cp -f /tmp/dotfiles/.vimrc ~/.vimrc
 
 # tmux config
 cp /tmp/dotfiles/.tmux.conf /home/mark/.tmux.conf
