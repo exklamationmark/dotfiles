@@ -127,3 +127,12 @@ if [ -f ~/.bash_golang ]; then
     . ~/.bash_golang
 fi
 
+# RVM
+if [ -f ~/.rvm/scripts/rvm ]; then
+    . ~/.rvm/scripts/rvm
+fi
+
+# nodejs
+if [ -f ~/.bash_nodejs ]; then
+    . ~/.bash_nodejs
+fi
