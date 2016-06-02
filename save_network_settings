@@ -1,0 +1,22 @@
+#! /bin/bash
+
+# copy current settings
+USER=$(whoami)
+mkdir -p ./.tmp/network_connections
+sudo cp /etc/NetworkManager/system-connections/* ./.tmp/network_connections/
+sudo chown $USER:$USER ./.tmp/network_connections/*
+
+# get passpharse
+echo "Enter passphrase to encrypt network info:"
+read -s PASSPHRASE
+
+rm -f ./network_connections/*
+FILES=$(sudo ls /etc/NetworkManager/system-connections/)
+for file in $FILES
+do
+  echo "echo $PASSPHRASE | gpg --symmetric --passphrase-fd 0 --out ./network_connections/$file.gpg ./.tmp/network_connections/$file"
+  echo $PASSPHRASE | gpg --symmetric --passphrase-fd 0 --out ./network_connections/$file.gpg ./.tmp/network_connections/$file
+done
+
+# clean up
+rm -rf ./.tmp
