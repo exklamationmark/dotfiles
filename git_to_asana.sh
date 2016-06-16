@@ -1,0 +1,5 @@
+git config --global --replace-all asana.token 'asana private token'
+git config --global --replace-all asana.workspace 'workspace/organization id'
+git config --global --replace-all asana.user 'user id'
+git config --global --replace-all asana.my.weekly 'weekly project id'
+git config --global --replace-all asana.team 'team id'
