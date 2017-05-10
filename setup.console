@@ -1,18 +1,6 @@
 #!/bin/bash
 . setup_functions
 
-############################# Qualcomm Atheros Ethernet #############################
-# if the motherboard is using this (which is not recognized by Ubuntu right away)
-# sudo apt-get install git dkms build-essential linux-headers-generic
-# sudo dkms add ./atheros_ethernet
-# sudo dkms build atheros_ethernet/2.0
-# sudo dkms install atheros_ethernet/2.0
-
-pause "Select a fast, local mirror, then press [Enter]..."
-
-# # update apt repos
-# sudo apt-get update
-
 ############################# setup workstation #############################
 
 # essential
@@ -30,14 +18,6 @@ install_linux apt gitk
 install_linux apt tmux
 install_linux apt xclip
 install_linux apt logkeys
-
-# browsers
-install_linux apt libindicator7
-install_linux apt libappindicator1
-install_linux deb google-chrome-stable "https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb"
-
-# sublime
-install_linux deb sublime "https://download.sublimetext.com/sublime-text_build-3114_amd64.deb"
 
 ############################# customize tools #############################
 
@@ -88,3 +68,4 @@ then
 fi
 
 echo -e $COLOR_BLUE"Run "$COLOR_RED"source ~/.bashrc"$COLOR_NONE" then run "$COLOR_RED"./workstuff"$COLOR_NONE
+
