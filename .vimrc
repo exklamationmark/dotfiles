@@ -96,3 +96,6 @@ colorscheme solarized
 
 " vim 7.4 patch for logipat (cause Ex command :E to become ambiguous)
 let g:loaded_logipat = 1
+
+" remove trailing spaces
+autocmd BufWritePre * %s/\s\+$//e
