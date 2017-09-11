@@ -99,3 +99,15 @@ let g:loaded_logipat = 1
 
 " remove trailing spaces
 autocmd BufWritePre * %s/\s\+$//e
+
+" golang mappings
+map gd :GoDef<ENTER>
+map gb :GoDefPop<ENTER>
+
+" spell check
+" setlocal spell spelllang=en_us
+noremap <C-c>cs :set spell spelllang=en_us
+noremap <C-m> ]s
+noremap <C-n>s :set nospell
+hi clear SpellBad
+hi SpellBad cterm=underline ctermfg=125 ctermbg=187

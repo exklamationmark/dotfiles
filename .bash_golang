@@ -1,2 +1,11 @@
 export GOPATH="$HOME/workspace"
 export PATH=$GOPATH/bin:/usr/local/go/bin:$PATH
+
+# Aliases / functions leveraging the cb() function
+test.color() {
+  sed ''/PASS/s//$(printf "\033[32mPASS\033[0m")/'' | sed ''/FAIL/s//$(printf "\033[31mFAIL\033[0m")/''
+}
+
+test.all() {
+  go test -race -v | test.color
+}
