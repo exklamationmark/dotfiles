@@ -92,7 +92,7 @@ set lazyredraw
 
 " color scheme
 set background=dark
-colorscheme solarized
+" colorscheme solarized
 
 " vim 7.4 patch for logipat (cause Ex command :E to become ambiguous)
 let g:loaded_logipat = 1
