@@ -36,6 +36,9 @@ cp /tmp/dotfiles/.tmux.conf ~/.tmux.conf
 # git config
 cp -f /tmp/dotfiles/.gitconfig ~/.gitconfig
 
+# inputrc
+cp -f /tmp/dotfiles/.inputrc ~/.inputrc
+
 # bash config
 git clone https://github.com/exklamationmark/dotfiles.git /tmp/dotfiles
 cp -f /tmp/dotfiles/.bashrc ~/.bashrc
