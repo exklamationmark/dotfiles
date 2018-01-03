@@ -1,0 +1,14 @@
+#!/bin/bash
+. setup_functions
+
+############################# setup desktop #############################
+
+# chrome
+install_linux apt libindicator7
+install_linux apt libappindicator1
+install_linux deb google-chrome-stable "https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb"
+
+# sublime
+# install_linux deb sublime "https://download.sublimetext.com/sublime-text_build-3126_amd64.deb"
+
+

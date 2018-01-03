@@ -1,6 +1,6 @@
 [user]
-  name = ¨Huu Khiem (Mark)¨
-  email = tonghuukhiem@gmail.com
+  name = ""
+  email = ""
 
 [core]
   repositoryformatversion = 0
@@ -29,8 +29,10 @@
 
 [alias]
   s = status
-  cm = commit --message
+  cm = commit -a
+  cmm = commit --message
   tree = log --graph --pretty=oneline --abbrev-commit --decorate
+  forest = log --graph --branches=* --pretty=oneline --abbrev-commit --decorate
   adda = add --all
   resolve = mergetool
   dfa = diff -w

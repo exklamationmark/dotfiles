@@ -10,8 +10,8 @@
 
 pause "Select a fast, local mirror, then press [Enter]..."
 
-# # update apt repos
-# sudo apt-get update
+# update apt repos
+sudo apt-get update
 
 ############################# setup workstation #############################
 
@@ -19,59 +19,16 @@ pause "Select a fast, local mirror, then press [Enter]..."
 pause "Instaling essential packages. Press [Enter] to continue..."
 
 install_linux apt git
-install_linux apt mercurial
 install_linux apt curl
 install_linux apt vim
-install_linux apt python-software-properties
-install_linux apt python-pip
-install_linux apt python3-pip
-install_linux apt openssh-server
 install_linux apt gitk
 install_linux apt tmux
 install_linux apt xclip
 install_linux apt logkeys
 
-# browsers
-install_linux apt libindicator7
-install_linux apt libappindicator1
-install_linux deb google-chrome-stable "https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb"
-
-# sublime
-install_linux deb sublime "https://download.sublimetext.com/sublime-text_build-3126_amd64.deb"
-
 ############################# customize tools #############################
 
 pause "Configuring tools & scripts. Press [Enter] to continue..."
-
-# bash config
-git clone https://github.com/exklamationmark/dotfiles.git /tmp/dotfiles
-cp -f /tmp/dotfiles/.bashrc ~/.bashrc
-cp -f /tmp/dotfiles/.bash_aliases ~/.bash_aliases
-
-# add xclip helper functions
-cat /tmp/dotfiles/.bash_xclip >> ~/.bash_aliases
-
-# define a custom prompt that shows more info on git repository
-cat /tmp/dotfiles/.bash_custom_prompt >> ~/.bashrc
-# golang env variables
-cp -f /tmp/dotfiles/.bash_golang ~/.bash_golang
-
-# customize vim
-# vundle
-git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-# minimum .vimrc
-cp -f /tmp/dotfiles/.vimrc.vundle ~/.vimrc # basic vundle only
-# install solarized color theme
-vim +'PluginInstall altercation/vim-colors-solarized' +qall
-# install golang plugin for vim
-vim +'PluginInstall fatih/vim-go' +qall
-# install dockerfile plugin for vim
-vim +'PluginInstall ekalinin/Dockerfile.vim' +qall
-# minimum .vimrc
-cp -f /tmp/dotfiles/.vimrc ~/.vimrc # vundle + plugins + settings
-# use solarized gnome (terminal)
-git clone https://github.com/Anthony25/gnome-terminal-colors-solarized.git /tmp/gnome-terminal-colors-solarized
-/tmp/gnome-terminal-colors-solarized/set_dark.sh
 
 # tmux config
 cp /tmp/dotfiles/.tmux.conf ~/.tmux.conf
@@ -79,10 +36,62 @@ cp /tmp/dotfiles/.tmux.conf ~/.tmux.conf
 # git config
 cp -f /tmp/dotfiles/.gitconfig ~/.gitconfig
 
-# coding environment
-if [[ -d "~/workspace" ]]
+# bash config
+git clone https://github.com/exklamationmark/dotfiles.git /tmp/dotfiles
+cp -f /tmp/dotfiles/.bashrc ~/.bashrc
+cp -f /tmp/dotfiles/.bash_aliases ~/.bash_aliases
+
+# add xclip helper functions
+cp -f /tmp/dotfiles/.bash_xclip ~/.bash_xclip
+echo "
+# xclip shortcuts (xc and xcf)
+if [ -f ~/.bash_xclip ]; then
+    . ~/.bash_xclip
+fi" >> ~/.bashrc
+
+# define a custom prompt that shows more info on git repository
+cp -f /tmp/dotfiles/.bash_custom_prompt ~/.bash_custom_prompt
+echo "
+# bash prompt for working with git repo (show current branch)
+if [ -f ~/.bash_custom_prompt ]; then
+    . ~/.bash_custom_prompt
+fi" >> ~/.bashrc
+
+# Go's helpers
+cp -f /tmp/dotfiles/.bash_golang ~/.bash_golang
+echo "
+# Go's helpers
+if [ -f ~/.bash_golang ]; then
+    . ~/.bash_golang
+fi" >> ~/.bashrc
+
+# use solarized gnome (terminal)
+# git clone https://github.com/Anthony25/gnome-terminal-colors-solarized.git /tmp/gnome-terminal-colors-solarized
+# /tmp/gnome-terminal-colors-solarized/set_dark.sh
+
+############################# customize vim #############################
+
+# vundle
+git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+
+# minimum .vimrc to bootstrap
+cp -f /tmp/dotfiles/.vimrc.vundle ~/.vimrc # basic vundle only
+
+# install solarized color theme
+vim +'PluginInstall altercation/vim-colors-solarized' +qall
+# install golang plugin for vim
+vim +'PluginInstall fatih/vim-go' +qall
+# install dockerfile plugin for vim
+vim +'PluginInstall ekalinin/Dockerfile.vim' +qall
+
+# .vimrc with frequently-used bindings
+cp -f /tmp/dotfiles/.vimrc ~/.vimrc # vundle + plugins + settings
+
+############################# setup workspace #############################
+if [ ! -d "~/workspace/src" ]
 then
-	mkdir -p ~/workspace
+	mkdir -p ~/workspace/src
 fi
 
+############################# cleanup #############################
 echo -e $COLOR_BLUE"Run "$COLOR_RED"source ~/.bashrc"$COLOR_NONE" then run "$COLOR_RED"./workstuff"$COLOR_NONE
