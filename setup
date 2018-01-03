@@ -30,6 +30,8 @@ install_linux apt logkeys
 
 pause "Configuring tools & scripts. Press [Enter] to continue..."
 
+git clone https://github.com/exklamationmark/dotfiles.git /tmp/dotfiles
+
 # tmux config
 cp /tmp/dotfiles/.tmux.conf ~/.tmux.conf
 
@@ -40,7 +42,6 @@ cp -f /tmp/dotfiles/.gitconfig ~/.gitconfig
 cp -f /tmp/dotfiles/.inputrc ~/.inputrc
 
 # bash config
-git clone https://github.com/exklamationmark/dotfiles.git /tmp/dotfiles
 cp -f /tmp/dotfiles/.bashrc ~/.bashrc
 cp -f /tmp/dotfiles/.bash_aliases ~/.bash_aliases
 
