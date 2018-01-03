@@ -3,67 +3,68 @@
 
 ############################# development things #############################
 
-# ----------------------------- go (1.6.2) -----------------------------
-echo -e $COLOR_BLUE"Install go 1.6.2"$COLOR_NONE
+# ----------------------------- go (1.9.2) -----------------------------
+echo -e $COLOR_BLUE"Install go 1.9.2"$COLOR_NONE
 sudo rm -rf /usr/local/go
-curl 'https://storage.googleapis.com/golang/go1.6.2.linux-amd64.tar.gz' > /tmp/golang.tar.gz
+curl 'https://storage.googleapis.com/golang/go1.9.2.linux-amd64.tar.gz' > /tmp/golang.tar.gz
 sudo tar -C /usr/local/ -xzvf /tmp/golang.tar.gz
 sudo ln -sf /usr/local/go/bin/go /usr/local/bin/go
 # tool for dependency management
 go get github.com/tools/godep
 # linter
 go get github.com/golang/lint/golint
-# go env variables
+# vim-go binaries
+vim +'GoInstallBinaries' +qall
 
 # ----------------------------- docker -----------------------------
-install_linux apt docker.io
-USER=`whoami`
-sudo usermod -aG docker $USER
-sudo ln -sf /usr/bin/docker.io /usr/local/bin/docker
+# install_linux apt docker.io
+# USER=`whoami`
+# sudo usermod -aG docker $USER
+# sudo ln -sf /usr/bin/docker.io /usr/local/bin/docker
 
-# ----------------------------- postgresql -----------------------------
-echo "deb http://apt.postgresql.org/pub/repos/apt/ trusty-pgdg main" > \
-      sudo /etc/apt/sources.list.d/pgdg.list
-wget -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
-sudo apt-get update
-install_linux apt postgresql-server-dev-9.5
-
-# ----------------------------- redis -----------------------------
-install_linux apt redis-server apt
-
-# ----------------------------- rabbitmq -----------------------------
-install_linux apt rabbitmq-server apt
-sudo rabbitmq-plugins enable rabbitmq_management
-sudo service rabbitmq-server restart
+# # ----------------------------- postgresql -----------------------------
+# echo "deb http://apt.postgresql.org/pub/repos/apt/ trusty-pgdg main" > \
+#       sudo /etc/apt/sources.list.d/pgdg.list
+# wget -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
+# sudo apt-get update
+# install_linux apt postgresql-server-dev-9.5
+#
+# # ----------------------------- redis -----------------------------
+# install_linux apt redis-server apt
+#
+# # ----------------------------- rabbitmq -----------------------------
+# install_linux apt rabbitmq-server apt
+# sudo rabbitmq-plugins enable rabbitmq_management
+# sudo service rabbitmq-server restart
 
 # ----------------------------- ruby -----------------------------
-echo -e $COLOR_BLUE"Install rvm"$COLOR_NONE
-gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3
-curl -sSL https://get.rvm.io | bash
-# progress bar for gem download
-echo progress-bar >> ~/.curlrc
-echo "gem: --no-rdoc --no-ri " >> ~/.gemrc
+# echo -e $COLOR_BLUE"Install rvm"$COLOR_NONE
+# gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3
+# curl -sSL https://get.rvm.io | bash
+# # progress bar for gem download
+# echo progress-bar >> ~/.curlrc
+# echo "gem: --no-rdoc --no-ri " >> ~/.gemrc
 
-# ----------------------------- nodejs -----------------------------
-curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
-install_linux apt nodejs
-mkdir -p $HOME/npm
-npm config set prefix $HOME/npm
-echo 'export PATH=$PATH:$HOME/npm/bin' >> ~/.bashrc
-# nodejs env variables 
+# # ----------------------------- nodejs -----------------------------
+# curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
+# install_linux apt nodejs
+# mkdir -p $HOME/npm
+# npm config set prefix $HOME/npm
+# echo 'export PATH=$PATH:$HOME/npm/bin' >> ~/.bashrc
+# # nodejs env variables
 
 # ############################# work-related helpers #############################
-cat /tmp/dotfiles/.bash_viki >> ~/.bash_aliases
-# 
+# cat /tmp/dotfiles/.bash_viki >> ~/.bash_aliases
+#
 # ############################# others #############################
 # # ----------------------------- spotify -----------------------------
 # # sudo bash -c "echo 'deb http://repository.spotify.com stable non-free' >> /etc/apt/sources.list.d/spotify.list"
 # # sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 94558F59 && sudo apt-get update
 # # install_linux apt spotify-client
-# 
+#
 # ############################# key mapping #############################
 # install_linux apt gnome-tweak-tool
 # # open it, make Caps Lock an additional control in the Typing section
-# 
+#
 ############################# clean up #############################
 echo -e $COLOR_BLUE"To get things started correctly, you might wanna do "$COLOR_RED"source ~/.bashrc"$COLOR_NONE" or start a new terminal session"
