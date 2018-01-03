@@ -17,10 +17,23 @@ go get github.com/golang/lint/golint
 vim +'GoInstallBinaries' +qall
 
 # ----------------------------- docker -----------------------------
-# install_linux apt docker.io
-# USER=`whoami`
-# sudo usermod -aG docker $USER
-# sudo ln -sf /usr/bin/docker.io /usr/local/bin/docker
+# pre-requisites
+install_linux apt apt-transport-https
+install_linux apt ca-certificates
+install_linux apt curl
+install_linux apt software-properties-common
+
+# add docker's GPG key
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+
+# install
+sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+sudo apt-get update
+install_linux apt docker-ce
+
+# add current user to docker group
+USER=`whoami`
+sudo usermod -aG docker $USER
 
 # # ----------------------------- postgresql -----------------------------
 # echo "deb http://apt.postgresql.org/pub/repos/apt/ trusty-pgdg main" > \
