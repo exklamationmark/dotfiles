@@ -29,7 +29,8 @@
 
 [alias]
   s = status
-  cm = commit -a
+  cm = commit -v
+  cma = commit -v --amend
   cmm = commit --message
   tree = log --graph --pretty=oneline --abbrev-commit --decorate
   forest = log --graph --branches=* --pretty=oneline --abbrev-commit --decorate
