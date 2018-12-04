@@ -36,10 +36,9 @@ filetype plugin indent on    " required
 " -----------------------------------------------------------------
 " vim settings
 " -----------------------------------------------------------------
-" indent with = 2 space
-set expandtab
-set tabstop=2
-set shiftwidth=2
+" indent with = 4 space
+set tabstop=4
+set shiftwidth=4
 
 " show line numbers
 set nu
