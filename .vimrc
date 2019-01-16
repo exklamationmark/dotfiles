@@ -36,7 +36,7 @@ filetype plugin indent on    " required
 " -----------------------------------------------------------------
 " vim settings
 " -----------------------------------------------------------------
-" indent with = 4 space
+" indent with = 2 space
 set tabstop=4
 set shiftwidth=4
 
@@ -102,6 +102,10 @@ autocmd BufWritePre * %s/\s\+$//e
 " golang mappings
 map gd :GoDef<ENTER>
 map gb :GoDefPop<ENTER>
+map gcv :GoCoverage<ENTER>
+map gccc :GoCoverageClear<ENTER>
+map grn :GoRename<ENTER>
+map gip :GoImports<ENTER>
 
 " spell check
 " setlocal spell spelllang=en_us
@@ -110,3 +114,21 @@ noremap <C-m> ]s
 noremap <C-n>s :set nospell
 hi clear SpellBad
 hi SpellBad cterm=underline ctermfg=125 ctermbg=187
+
+" mergetool
+map mm ]c
+map mp [c
+
+" vimdiff colors
+hi DiffAdd      cterm=none ctermfg=112  ctermbg=none
+hi DiffDelete   cterm=none ctermfg=160 ctermbg=none
+hi DiffChange   cterm=none ctermfg=none ctermbg=236
+hi DiffText     cterm=none ctermfg=221 ctermbg=none
+
+" ----------------------------------------
+" Docker
+Plugin 'docker/docker'
+
+" ----------------------------------------
+" Comment for code review
+map rrr O// TODO(mark,review):

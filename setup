@@ -18,13 +18,15 @@ sudo apt-get update
 # essential
 pause "Instaling essential packages. Press [Enter] to continue..."
 
+install_linux apt make
 install_linux apt git
 install_linux apt curl
 install_linux apt vim
 install_linux apt gitk
 install_linux apt tmux
 install_linux apt xclip
-install_linux apt logkeys
+install_linux apt w3m
+install_linux apt pandoc
 
 ############################# customize tools #############################
 
@@ -40,6 +42,10 @@ cp -f /tmp/dotfiles/.gitconfig ~/.gitconfig
 
 # inputrc
 cp -f /tmp/dotfiles/.inputrc ~/.inputrc
+
+# w3m config
+mkdir -p ~/.w3m
+cp -f /tmp/dotfiles/.w3m/keymap ~/.w3m/keymap
 
 # bash config
 cp -f /tmp/dotfiles/.bashrc ~/.bashrc
@@ -98,4 +104,5 @@ then
 fi
 
 ############################# cleanup #############################
+echo -e $COLOR_BLUE"Edit "$COLOR_RED"/etc/hosts"$COLOR_NONE" and add your hostname"$COLOR_NONE
 echo -e $COLOR_BLUE"Run "$COLOR_RED"source ~/.bashrc"$COLOR_NONE" then run "$COLOR_RED"./workstuff"$COLOR_NONE

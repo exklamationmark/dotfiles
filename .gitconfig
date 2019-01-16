@@ -40,6 +40,8 @@
   dfs = diff --cached
   fetch = fetch -a
   ap = add --patch
+  mg = merge --stat
+  shortcmp = diff --color --stat
 
 # [url "git@github.com:"]
 #   insteadOf = https://github.com/
