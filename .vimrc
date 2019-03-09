@@ -68,7 +68,7 @@ set noswapfile
 set wrap
 
 " 100-char width
-set colorcolumn=100
+set colorcolumn=80,100
 
 " forward search with space, backward search with Ctrl+Space
 map <space> /

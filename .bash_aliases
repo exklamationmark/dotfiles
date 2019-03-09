@@ -21,10 +21,6 @@ cleanup.docker.orphan.images() {
 	docker rmi `docker images | grep none | awk '{print $3}'`
 }
 
-godoc.server() {
-	godoc --http=0.0.0.0:10666
-}
-
 dk() {
 	local cmd=$1
 	local pattern=$2
@@ -53,4 +49,15 @@ render.markdown() {
 
 	pandoc $filename > /tmp/markdown.html
 	w3m -T text/html /tmp/markdown.html
+}
+
+# docker cleanup
+cleanup.docker.exited.containers() {
+	docker rm `docker ps -a | grep Exited | awk '{print $1}'`
+}
+cleanup.docker.orphan.images() {
+	docker rmi `docker images | grep none | awk '{print $3}'`
+}
+cleanup.docker.all.images() {
+	docker rmi -f `docker images | grep -v REPO | awk '{print $3}' | sort | uniq`
 }

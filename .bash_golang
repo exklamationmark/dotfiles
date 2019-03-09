@@ -21,3 +21,7 @@ test.color() {
 test.all() {
 	go test -race -v | test.color
 }
+
+godoc.server() {
+	godoc --http=0.0.0.0:10666
+}
