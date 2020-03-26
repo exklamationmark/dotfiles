@@ -1,0 +1,87 @@
+#!/bin/bash
+
+############################## colors  ##############################
+
+GNOME_COLOR_RED='\e[0;31m'
+GNOME_COLOR_GREEN='\e[0;32m'
+GNOME_COLOR_YELLOW='\e[0;33m'
+GNOME_COLOR_BLUE='\e[0;34m'
+GNOME_COLOR_NONE='\e[0m'
+
+red(){
+  local MSG=$1
+  echo -e $GNOME_COLOR_RED"$MSG"$GNOME_COLOR_NONE
+}
+
+green(){
+  local MSG=$1
+  echo -e $GNOME_COLOR_GREEN"$MSG"$GNOME_COLOR_NONE
+}
+
+yellow(){
+  local MSG=$1
+  echo -e $GNOME_COLOR_YELLOW"$MSG"$GNOME_COLOR_NONE
+}
+
+blue(){
+  local MSG=$1
+  echo -e $GNOME_COLOR_BLUE"$MSG"$GNOME_COLOR_NONE
+}
+
+############################## package helper ##############################
+
+is_installed_dpkg(){
+  local PACKAGE=$1
+  if dpkg --get-selections | grep -q "^$PACKAGE[[:space:]]*install$" >/dev/null
+  then
+    return 0
+  fi
+  return 1
+}
+
+install_apt() {
+  local PACKAGE=$1
+  sudo apt-get install $PACKAGE -y
+}
+
+install_deb() {
+  local PACKAGE=$1
+  local URL=$2
+
+  if [[ -n "$URL" ]]
+  then
+    curl $URL > /tmp/$PACKAGE.deb
+  fi
+  sudo dpkg -i /tmp/$PACKAGE.deb
+}
+
+install_linux() {
+  local INSTALLER=$1
+  local PKG=$2
+  if is_installed_dpkg $PKG
+  then
+    green "$PKG is already installed"
+    return 0
+  fi
+
+  # run apt-get install for apt packages
+  if ( ! is_installed_dpkg $PKG ) && [[ $INSTALLER == "apt" ]]
+  then
+    yellow "Installing $PKG using $INSTALLER ..."
+    install_apt $PKG
+  fi
+
+  # run dpkg -i for .deb files
+  if ( ! is_installed_dpkg $PKG ) && [[ $INSTALLER == "deb" ]]
+  then
+    local PACKAGE_URL=$3
+    yellow "Installing $PKG using $INSTALLER ..."
+    install_deb $PKG $PACKAGE_URL
+  fi
+}
+
+############################## shorthands & utilities ##############################
+
+pause(){
+  read -p "$*"
+}
