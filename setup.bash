@@ -13,8 +13,9 @@ source lib/packages.bash
 # pause "Installing must-have packages. Press [Enter] to continue..."
 # 
 install apt make
+install apt curl
+install_git_from_source "2.26.0"
 # # install apt git
-# install apt curl
 # # install apt vim
 # # install apt gitk
 # # install apt tmux
@@ -22,4 +23,3 @@ install apt make
 # # install apt w3m
 # # install apt pandoc
 
-install_git_from_source "2.26.0"

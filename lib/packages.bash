@@ -71,6 +71,7 @@ configure_apt_mirror() {
 }
 
 install_git_from_source() {
+  # Use Git >= 2.19. There some bugs with 'git add --patch' that was fixed there.
   local version=$1 # e.g: 2.26.0
 
   install apt make
@@ -90,6 +91,6 @@ install_git_from_source() {
     make configure && \
     ./configure && \
     make all man && \
-    sudo make install install-doc install-html
+    sudo make install install-man
   # rm -rf $tmpdir
 }
