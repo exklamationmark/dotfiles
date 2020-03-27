@@ -1,4 +1,15 @@
 dotfiles
 ========
 
-Contains some tools for comfort: bash and git alias, vim plugins, setup scripts, etc
+Automate setup for new Ubuntu machine. Updated for use in 2020.
+
+usage
+-----
+
+```
+./setup            # make stock Ubuntu feels like home
+./setup.devtools   # development tools
+                   # - Go, Rust, Racket, Dart, Julia
+                   # - Docker, Kubernetes
+                   # - networking tools
+```
