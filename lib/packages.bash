@@ -90,6 +90,7 @@ git_from_source() {
   install apt zlib1g-dev # required for building
   install apt asciidoc-base
 
+  local orig_dir=$(pwd)
   mkdir -p /tmp/git
   local tmpdir="/tmp/git"
   # local tmpdir=$(mktemp -d)
@@ -100,5 +101,7 @@ git_from_source() {
     ./configure && \
     make all man && \
     sudo make install install-man
-  # rm -rf $tmpdir
+  
+  rm -rf $tmpdir
+  cd $orig_dir
 }
