@@ -29,11 +29,23 @@ if [ -f ~/.bash_golang ]; then
 fi" >> ~/.bashrc
 
 #################### Rust ####################
+blue "Install Rust"
+
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -- -y --profile complete
+echo "
+# Rust-specific helpers
+if [ -f ~/.bash_rust ]; then
+    . ~/.bash_rust
+fi" >> ~/.bashrc
 
 
 
 #################### Racket ####################
+blue "Install Racket"
+sudo add-apt-repository ppa:plt/racket
 
+install apt racket
+raco pkg install sicp
 
 
 #################### Julia ####################
