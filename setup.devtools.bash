@@ -86,4 +86,3 @@ blue "Install debug tools"
 install apt dnsutils
 install apt netcat
 install apt socat
-

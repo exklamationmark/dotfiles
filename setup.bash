@@ -88,4 +88,3 @@ fi
 #################### Cleanup ####################
 echo -e $_COLOR_BLUE"Edit "$_COLOR_RED"/etc/hosts"$_COLOR_NONE" and add your hostname"$_COLOR_NONE
 echo -e $_COLOR_BLUE"Run "$_COLOR_RED"source ~/.bashrc"$_COLOR_NONE" then run "$_COLOR_RED"./workstuff"$_COLOR_NONE
-
