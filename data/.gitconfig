@@ -1,0 +1,45 @@
+[user]
+  name = "exklamationmark"
+  email = "exklamationmark@bitsgofer.com"
+
+[core]
+  repositoryformatversion = 0
+  filemode = true
+  bare = false
+  logallrefupdates = true
+  editor = vim
+  whitespace = trailing-space
+  excludesfile = ~/.gitignore
+
+[merge]
+  tool = vimdiff
+  ff = false
+
+[color]
+  ui = true
+
+[diff]
+  tool = kidff3
+[difftool]
+  prompt = false
+
+[push]
+  default = simple
+
+[alias]
+  s = status
+  cm = commit -v
+  cma = commit -v --amend
+  cmm = commit --message
+  tree = log --graph --pretty=oneline --abbrev-commit --decorate
+  forest = log --graph --branches=* --pretty=oneline --abbrev-commit --decorate
+  adda = add --all
+  resolve = mergetool
+  dfa = diff -w
+  dfs = diff --cached
+  ap = add --patch
+  mg = merge --stat
+  diffstat = diff --color --stat
+
+# [url "git@github.com:"]
+#   insteadOf = https://github.com/

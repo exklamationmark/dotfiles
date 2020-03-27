@@ -5,21 +5,87 @@ set -exuo
 source lib/colors.bash
 source lib/packages.bash
 
-# configure_apt_mirror
-# sudo apt-get update
-# 
-# #################### Build essentials ####################
-# 
-# pause "Installing must-have packages. Press [Enter] to continue..."
-# 
+configure_apt_mirror
+sudo apt-get update
+
+
+
+#################### Day-to-day essentials ####################
+pause "Installing must-have packages. Press [Enter] to continue..."
+
 install apt make
 install apt curl
 install_git_from_source "2.26.0"
-# # install apt git
-# # install apt vim
-# # install apt gitk
-# # install apt tmux
-# # install apt xclip
-# # install apt w3m
-# # install apt pandoc
+install apt vim
+install apt gitk
+install apt tmux
+install apt xclip
+install apt w3m
+install apt pandoc
+
+
+
+#################### Custom envs ####################
+# tmux
+cp -f data/.tmux.conf ~/.tmux.conf
+# git
+cp -f data/.gitconfig ~/.gitconfig
+# inputrc
+cp -f data/.inputrc ~/.inputrc
+# w3m
+cp -rf data/.w3m ~/
+
+
+
+#################### Bash ####################
+cp -f data/.bashrc ~/.bashrc
+cp -f data/.bash_aliases ~/.bash_aliases
+# xclip aliases
+cp -f data/.bash_xclip ~/.bash_xclip
+echo "
+# xclip shortcuts (xc and xcf)
+if [ -f ~/.bash_xclip ]; then
+    . ~/.bash_xclip
+fi" >> ~/.bashrc
+
+# define a custom prompt that shows more info on git repository
+cp -f data/.bash_custom_prompt ~/.bash_custom_prompt
+echo "
+# bash prompt for working with git repo (show current branch)
+if [ -f ~/.bash_custom_prompt ]; then
+    . ~/.bash_custom_prompt
+fi" >> ~/.bashrc
+
+
+
+#################### Bash ####################
+# vundle
+git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+
+# minimum .vimrc to bootstrap
+cp -f data/.vimrc.vundle ~/.vimrc # basic vundle only
+
+# install solarized color theme
+vim +'PluginInstall altercation/vim-colors-solarized' +qall
+# install golang plugin for vim
+vim +'PluginInstall fatih/vim-go' +qall
+# install dockerfile plugin for vim
+vim +'PluginInstall ekalinin/Dockerfile.vim' +qall
+
+# .vimrc with frequently-used bindings
+cp -f data/.vimrc ~/.vimrc # vundle + plugins + settings
+
+
+
+#################### Workspace ####################
+if [ ! -d "~/workspace/src" ]
+then
+	mkdir -p ~/workspace/src
+fi
+
+
+
+#################### Cleanup ####################
+echo -e $_COLOR_BLUE"Edit "$_COLOR_RED"/etc/hosts"$_COLOR_NONE" and add your hostname"$_COLOR_NONE
+echo -e $_COLOR_BLUE"Run "$_COLOR_RED"source ~/.bashrc"$_COLOR_NONE" then run "$_COLOR_RED"./workstuff"$_COLOR_NONE
 
