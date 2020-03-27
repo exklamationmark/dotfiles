@@ -1,0 +1,14 @@
+#!/bin/bash
+
+export PATH=$HOME/.krew/bin:$PATH
+
+k.set.ns() {
+	local namespace=$1
+	kubectl config set-context $(kubectl config current-context) --namespace=${namespace}
+}
+
+k() {
+	kubectl $@
+}
+
+source <(kubectl completion bash | sed -e 's|kubectl|k|g')
