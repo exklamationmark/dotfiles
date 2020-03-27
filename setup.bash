@@ -15,7 +15,7 @@ pause "Installing must-have packages. Press [Enter] to continue..."
 
 install apt make
 install apt curl
-install_git_from_source "2.26.0"
+install source git "2.26.0"
 install apt vim
 install apt gitk
 install apt tmux
@@ -27,21 +27,21 @@ install apt pandoc
 
 #################### Custom envs ####################
 # tmux
-cp -f data/.tmux.conf ~/.tmux.conf
+cp -f ./data/.tmux.conf ~/.tmux.conf
 # git
-cp -f data/.gitconfig ~/.gitconfig
+cp -f ./data/.gitconfig ~/.gitconfig
 # inputrc
-cp -f data/.inputrc ~/.inputrc
+cp -f ./data/.inputrc ~/.inputrc
 # w3m
-cp -rf data/.w3m ~/
+cp -rf ./data/.w3m ~/
 
 
 
 #################### Bash ####################
-cp -f data/.bashrc ~/.bashrc
-cp -f data/.bash_aliases ~/.bash_aliases
+cp -f ./data/.bashrc ~/.bashrc
+cp -f ./data/.bash_aliases ~/.bash_aliases
 # xclip aliases
-cp -f data/.bash_xclip ~/.bash_xclip
+cp -f ./data/.bash_xclip ~/.bash_xclip
 echo "
 # xclip shortcuts (xc and xcf)
 if [ -f ~/.bash_xclip ]; then
@@ -49,7 +49,7 @@ if [ -f ~/.bash_xclip ]; then
 fi" >> ~/.bashrc
 
 # define a custom prompt that shows more info on git repository
-cp -f data/.bash_custom_prompt ~/.bash_custom_prompt
+cp -f ./data/.bash_custom_prompt ~/.bash_custom_prompt
 echo "
 # bash prompt for working with git repo (show current branch)
 if [ -f ~/.bash_custom_prompt ]; then
@@ -63,7 +63,7 @@ fi" >> ~/.bashrc
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 
 # minimum .vimrc to bootstrap
-cp -f data/.vimrc.vundle ~/.vimrc # basic vundle only
+cp -f ./data/.vimrc.vundle ~/.vimrc # basic vundle only
 
 # install solarized color theme
 vim +'PluginInstall altercation/vim-colors-solarized' +qall
@@ -73,7 +73,7 @@ vim +'PluginInstall fatih/vim-go' +qall
 vim +'PluginInstall ekalinin/Dockerfile.vim' +qall
 
 # .vimrc with frequently-used bindings
-cp -f data/.vimrc ~/.vimrc # vundle + plugins + settings
+cp -f ./data/.vimrc ~/.vimrc # vundle + plugins + settings
 
 
 

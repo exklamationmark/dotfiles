@@ -51,6 +51,14 @@ install() {
     yellow "Installing $package using $installer ..."
     install_deb $package $package_url
   fi
+
+  # install from source
+  if ( ! is_installed $package ) && [[ $installer == "source" ]]
+  then
+    local install_function=${package}_from_source
+    yellow "Installing $package using $installer ..."
+    $install_function ${@:3}
+  fi
 }
 
 pause(){
@@ -70,7 +78,7 @@ configure_apt_mirror() {
   rm -f $tmp
 }
 
-install_git_from_source() {
+git_from_source() {
   # Use Git >= 2.19. There some bugs with 'git add --patch' that was fixed there.
   local version=$1 # e.g: 2.26.0
 
