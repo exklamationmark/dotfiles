@@ -1,6 +1,6 @@
 [user]
-  name = "exklamationmark"
-  email = "exklamationmark@bitsgofer.com"
+  name = "GIT_USER_NAME"
+  email = "GIT_USER_EMAIL"
 
 [core]
   repositoryformatversion = 0

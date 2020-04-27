@@ -105,3 +105,19 @@ git_from_source() {
   rm -rf $tmpdir
   cd $orig_dir
 }
+
+configure_git() {
+	local confirmed="n"
+
+	local git_user_name
+	local git_user_email
+	while [ "${confirmed}" != "y" ]
+	do
+		read -p "Enter git user.name (or Github username): " git_user_name
+		read -p "Enter git user.email (or Github email): " git_user_email
+		echo -e "Configure git: user.name=\"${_COLOR_YELLOW}${git_user_name}${_COLOR_NONE}\"; user.email=\"${_COLOR_YELLOW}${git_user_email}${_COLOR_NONE}\""
+		read -p "Are you sure (y/n): " confirmed
+	done
+
+	cat ./data/.gitconfig | sed -e "s/GIT_USER_NAME/${git_user_name}/g" | sed -e "s/GIT_USER_EMAIL/${git_user_email}/g" > ~/.gitconfig
+}

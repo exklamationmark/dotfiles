@@ -29,7 +29,7 @@ install apt pandoc
 # tmux
 cp -f ./data/.tmux.conf ~/.tmux.conf
 # git
-cp -f ./data/.gitconfig ~/.gitconfig
+configure_git
 # inputrc
 cp -f ./data/.inputrc ~/.inputrc
 # w3m
