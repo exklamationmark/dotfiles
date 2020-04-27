@@ -15,8 +15,10 @@ pause "Installing must-have packages. Press [Enter] to continue..."
 
 install apt make
 install apt curl
-install source git "2.26.0"
-install apt vim
+install apt git
+# install source git "2.26.0"
+# install apt vim
+install apt neovim
 install apt gitk
 install apt tmux
 install apt xclip
