@@ -41,7 +41,17 @@ cp -rf ./data/.w3m ~/
 
 #################### Bash ####################
 cp -f ./data/.bashrc ~/.bashrc
+
+# extra
+cp -f ./data/.bash_extra ~/.bash_extra
+echo "
+# extra preferences for bash
+if [ -f ~/.bash_extra ]; then
+    . ~/.bash_extra
+fi" >> ~/.bashrc
+
 cp -f ./data/.bash_aliases ~/.bash_aliases
+
 # xclip aliases
 cp -f ./data/.bash_xclip ~/.bash_xclip
 echo "

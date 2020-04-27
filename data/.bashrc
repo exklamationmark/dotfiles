@@ -107,21 +107,3 @@ fi
 if [ -f /etc/bash_completion ]; then
   . /etc/bash_completion
 fi
-
-# use 8bit color scheme in terminal
-# export TERM=screen-256color
-
-# Use vi bindings
-set -o vi
-
-# History
-# don't put duplicate lines or lines starting with space in the history.
-# See bash(1) for more options
-HISTCONTROL=ignoreboth
-shopt -s histappend # append to the history file when shell exits
-# for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
-HISTSIZE=999999
-HISTFILESIZE=999999
-# After each command, append to the history file and reread it
-PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND$'\n'}history -a; history -c; history -r"
-
