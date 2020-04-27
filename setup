@@ -32,6 +32,9 @@ install apt pandoc
 cp -f ./data/.tmux.conf ~/.tmux.conf
 # git
 configure_git
+# i3
+mkdir -p ~/.i3
+cp -f ./data/.i3.config ~/.i3/config
 # inputrc
 cp -f ./data/.inputrc ~/.inputrc
 # w3m
@@ -72,20 +75,20 @@ fi" >> ~/.bashrc
 
 #################### Bash ####################
 # vundle
-git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+# git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 
 # minimum .vimrc to bootstrap
-cp -f ./data/.vimrc.vundle ~/.vimrc # basic vundle only
+# cp -f ./data/.vimrc.vundle ~/.vimrc # basic vundle only
 
 # install solarized color theme
-vim +'PluginInstall altercation/vim-colors-solarized' +qall
+# vim +'PluginInstall altercation/vim-colors-solarized' +qall
 # install golang plugin for vim
-vim +'PluginInstall fatih/vim-go' +qall
+# vim +'PluginInstall fatih/vim-go' +qall
 # install dockerfile plugin for vim
-vim +'PluginInstall ekalinin/Dockerfile.vim' +qall
+# vim +'PluginInstall ekalinin/Dockerfile.vim' +qall
 
 # .vimrc with frequently-used bindings
-cp -f ./data/.vimrc ~/.vimrc # vundle + plugins + settings
+# cp -f ./data/.vimrc ~/.vimrc # vundle + plugins + settings
 
 
 
