@@ -20,6 +20,10 @@ cleanup.docker.all.images() {
 	docker rmi -f `docker images | grep -v REPO | awk '{print $3}' | sort | uniq`
 }
 
+vim() {
+	nvim $@
+}
+
 # docker logs
 dk() {
 	local cmd=$1

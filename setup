@@ -90,6 +90,9 @@ fi" >> ~/.bashrc
 # .vimrc with frequently-used bindings
 # cp -f ./data/.vimrc ~/.vimrc # vundle + plugins + settings
 
+mkdir -p ~/.config/nvim
+cp ./data/.nvim.init.vim ~/.config/nvim/init.vim
+
 
 
 #################### Workspace ####################
@@ -113,3 +116,5 @@ gsettings set org.gnome.desktop.interface enable-animations false
 #################### Cleanup ####################
 echo -e $_COLOR_BLUE"Edit "$_COLOR_RED"/etc/hosts"$_COLOR_NONE" and add your hostname"$_COLOR_NONE
 echo -e $_COLOR_BLUE"Run "$_COLOR_RED"source ~/.bashrc"$_COLOR_NONE" then run "$_COLOR_RED"./workstuff"$_COLOR_NONE
+
+# TODO: note about setting terminal profile (Solarized Dark + Solarized)
