@@ -1,5 +1,12 @@
+# ls aliases
+alias ll='ls -alF'
+alias la='ls -A'
+alias l='ls -CF'
+
+
+
 # cd to code directories
-alias startcoding='cd ~/workspace/src'# Git
+alias startcoding='cd ~/workspace/src'
 
 
 
@@ -100,11 +107,6 @@ xc() { # pipe to clipboard, e.g: <command> | xc
 xcf() { # copy file content to clipboard, e.g: xcf <file>
 	cat "$1" | xc;
 }
-
-
-
-# grep
-alias grep='grep --color=auto'
 
 
 
