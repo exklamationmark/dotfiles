@@ -91,20 +91,19 @@ map gip :GoImports<ENTER>
 
 " spell check
 " setlocal spell spelllang=en_us
-noremap <C-c>cs :set spell spelllang=en_us
-noremap <C-m> ]s
-noremap <C-n>s :set nospell
+" noremap <C-c>cs :set spell spelllang=en_us
+" noremap <m> ]s
+" noremap <M> [s
+" noremap <C-n>s :set nospell
 hi clear SpellBad
 hi SpellBad cterm=underline ctermfg=125 ctermbg=187
 
 " mergetool
-map mm ]c
-map mp [c
+" map mm ]c
+" map mp [c
 
 " vimdiff colors
 hi DiffAdd      cterm=none ctermfg=112  ctermbg=none
 hi DiffDelete   cterm=none ctermfg=160 ctermbg=none
 hi DiffChange   cterm=none ctermfg=none ctermbg=236
 hi DiffText     cterm=none ctermfg=221 ctermbg=none
-
-

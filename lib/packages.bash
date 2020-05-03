@@ -2,81 +2,6 @@
 
 # This file contains functions for working with packages (status, install, etc).
 
-is_installed(){
-  local package=$1
-  if dpkg --get-selections | grep -q "^$package[[:space:]]*install$" >/dev/null
-  then
-    return 0
-  fi
-  return 1
-}
-
-install_apt() {
-  local package=$1
-  sudo apt-get install $package -y
-}
-
-install_deb() {
-  # install a .deb file from a URL
-  local package=$1
-  local url=$2
-
-  if [[ -n "$url" ]]
-  then
-    curl $url > /tmp/$package.deb
-  fi
-  sudo dpkg -i /tmp/$package.deb
-}
-
-install() {
-  local installer=$1
-  local package=$2
-  if is_installed $package
-  then
-    green "$package is already installed"
-    return 0
-  fi
-
-  # run apt-get install for apt packages
-  if ( ! is_installed $package ) && [[ $installer == "apt" ]]
-  then
-    yellow "Installing $package using $installer ..."
-    install_apt $package
-  fi
-
-  # run dpkg -i for .deb files
-  if ( ! is_installed $package ) && [[ $installer == "deb" ]]
-  then
-    local package_url=$3
-    yellow "Installing $package using $installer ..."
-    install_deb $package $package_url
-  fi
-
-  # install from source
-  if ( ! is_installed $package ) && [[ $installer == "source" ]]
-  then
-    local install_function=${package}_from_source
-    yellow "Installing $package using $installer ..."
-    $install_function ${@:3}
-  fi
-}
-
-pause(){
-  read -p "$*"
-}
-
-configure_apt_mirror() {
-  local backup=$(mktemp)
-  local tmp=$(mktemp)
-  local src="/etc/apt/sources.list"
-
-  yellow "Backing up $src at $backup ..."
-  cp $src $backup
-  yellow "Updating $src to use Ubuntu's mirrors list ..."
-  cat $backup | sed -e 's|http://us.archive.ubuntu.com/ubuntu/|mirror://mirrors.ubuntu.com/mirrors.txt|g' > $tmp
-  sudo mv $tmp $src
-  rm -f $tmp
-}
 
 git_from_source() {
   # Use Git >= 2.19. There some bugs with 'git add --patch' that was fixed there.
@@ -101,23 +26,9 @@ git_from_source() {
     ./configure && \
     make all man && \
     sudo make install install-man
-  
+
   rm -rf $tmpdir
   cd $orig_dir
 }
 
-configure_git() {
-	local confirmed="n"
 
-	local git_user_name
-	local git_user_email
-	while [ "${confirmed}" != "y" ]
-	do
-		read -p "Enter git user.name (or Github username): " git_user_name
-		read -p "Enter git user.email (or Github email): " git_user_email
-		echo -e "Configure git: user.name=\"${_COLOR_YELLOW}${git_user_name}${_COLOR_NONE}\"; user.email=\"${_COLOR_YELLOW}${git_user_email}${_COLOR_NONE}\""
-		read -p "Are you sure (y/n): " confirmed
-	done
-
-	cat ./data/.gitconfig | sed -e "s/GIT_USER_NAME/${git_user_name}/g" | sed -e "s/GIT_USER_EMAIL/${git_user_email}/g" > ~/.gitconfig
-}

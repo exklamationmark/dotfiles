@@ -1,0 +1,11 @@
+parse_git_branch() {
+	git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
+}
+
+PS1_RED='\[\033[31m\]'
+PS1_GREEN='\[\033[32m\]'
+PS1_YELLOW='\[\033[33m\]'
+PS1_BLUE='\[\033[34m\]'
+PS1_MAGENTA='\[\033[35m\]'
+PS1_NONE='\[\033[0m\]'
+export PS1="$PS1_GREEN\u@\h $PS1_NONE\W $PS1_BLUE\$(parse_git_branch)\[\033[00m\] $ "

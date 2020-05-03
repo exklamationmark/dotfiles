@@ -2,8 +2,8 @@
 
 set -exuo
 
-source lib/colors.bash
-source lib/packages.bash
+source lib/install.bash
+source lib/configure.bash
 
 configure_apt_mirror
 sudo apt-get update
@@ -11,13 +11,11 @@ sudo apt-get update
 
 
 #################### Day-to-day essentials ####################
-pause "Installing must-have packages. Press [Enter] to continue..."
+echo "Installing must-have packages..."
 
 install apt make
 install apt curl
 install apt git
-# install source git "2.26.0"
-# install apt vim
 install apt neovim
 install apt gitk
 install apt tmux
@@ -27,11 +25,29 @@ install apt pandoc
 
 
 
+#################### /etc/bash.bashrc for Ubuntu 20.04 ####################
+cp -f ./data/.bashrc ~/.bashrc
+
+
+
+#################### Workspace for code ####################
+if [ ! -d "~/workspace/src" ]
+then
+	mkdir -p ~/workspace/src
+fi
+
+
+
 #################### Custom envs ####################
 # tmux
 cp -f ./data/.tmux.conf ~/.tmux.conf
 # git
-configure_git
+render_gitconfig
+cp -f ./data/.gitconfig ~/.gitconfig
+echo "if [ -f /etc/bash_completion.d/git-completion.bash ]; then
+	. /etc/bash_completion.d/git-completion.bash;
+fi" >> ~/.bashrc
+
 # i3
 mkdir -p ~/.i3
 cp -f ./data/.i3.config ~/.i3/config
@@ -43,32 +59,21 @@ cp -rf ./data/.w3m ~/
 
 
 #################### Bash ####################
-cp -f ./data/.bashrc ~/.bashrc
+echo "# customized bash" >> ~/.bashrc
 
-# extra
 cp -f ./data/.bash_extra ~/.bash_extra
-echo "
-# extra preferences for bash
-if [ -f ~/.bash_extra ]; then
+echo "if [ -f ~/.bash_extra ]; then
     . ~/.bash_extra
 fi" >> ~/.bashrc
 
 cp -f ./data/.bash_aliases ~/.bash_aliases
-
-# xclip aliases
-cp -f ./data/.bash_xclip ~/.bash_xclip
-echo "
-# xclip shortcuts (xc and xcf)
-if [ -f ~/.bash_xclip ]; then
-    . ~/.bash_xclip
+echo "if [ -f ~/.bash_aliases ]; then
+    . ~/.bash_aliases
 fi" >> ~/.bashrc
 
-# define a custom prompt that shows more info on git repository
-cp -f ./data/.bash_custom_prompt ~/.bash_custom_prompt
-echo "
-# bash prompt for working with git repo (show current branch)
-if [ -f ~/.bash_custom_prompt ]; then
-    . ~/.bash_custom_prompt
+cp -f ./data/.bash_ps1 ~/.bash_ps1
+echo "if [ -f ~/.bash_ps1 ]; then
+    . ~/.bash_ps1
 fi" >> ~/.bashrc
 
 
@@ -91,15 +96,9 @@ fi" >> ~/.bashrc
 # cp -f ./data/.vimrc ~/.vimrc # vundle + plugins + settings
 
 mkdir -p ~/.config/nvim
-cp ./data/.nvim.init.vim ~/.config/nvim/init.vim
+cp ./data/.neovim.init.vim ~/.config/nvim/init.vim
 
 
-
-#################### Workspace ####################
-if [ ! -d "~/workspace/src" ]
-then
-	mkdir -p ~/workspace/src
-fi
 
 
 
@@ -111,10 +110,11 @@ sudo systemctl disable apt-daily.service
 sudo systemctl disable apt-daily.timer
 # disable animation
 gsettings set org.gnome.desktop.interface enable-animations false
+# TODO: set terminal profile to use: Solarized
+# TODO: set temrinal font size
 
 
 #################### Cleanup ####################
 echo -e $_COLOR_BLUE"Edit "$_COLOR_RED"/etc/hosts"$_COLOR_NONE" and add your hostname"$_COLOR_NONE
 echo -e $_COLOR_BLUE"Run "$_COLOR_RED"source ~/.bashrc"$_COLOR_NONE" then run "$_COLOR_RED"./workstuff"$_COLOR_NONE
 
-# TODO: note about setting terminal profile (Solarized Dark + Solarized)
