@@ -7,6 +7,10 @@ call plug#begin('~/.vim/plugged')
 " Solarized
 Plug 'iCyMind/NeoSolarized'
 
+" vim-go
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+
+
 " ----------------------------------------
 
 " List ends here. Plugins become visible to Vim after this call.
