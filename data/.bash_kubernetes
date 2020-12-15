@@ -12,3 +12,20 @@ k() {
 }
 
 source <(kubectl completion bash | sed -e 's|kubectl|k|g')
+
+# Kubernetes in Docker (kind)
+kind.create.simple.cluster() {
+	kind create cluster \
+		--config=${HOME}/.kube/kind_1_node_cluster.yaml \
+		--kubeconfig=${HOME}/.kube/kind.config
+}
+kind.create.big.cluster() {
+	kind create cluster \
+		--config=${HOME}/.kube/kind_3_node_cluster.yaml \
+		--kubeconfig=${HOME}/.kube/kind.config
+}
+source <(kind completion bash)
+kind_cluster.load_img() {
+	local img=$1
+	kind load docker-image ${img}
+}

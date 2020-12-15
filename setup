@@ -1,5 +1,4 @@
 #!/bin/bash
-
 set -exuo
 
 source lib/install.bash
@@ -52,6 +51,7 @@ fi" >> ~/.bashrc
 # i3
 mkdir -p ~/.i3
 cp -f ./data/.i3.config ~/.i3/config
+
 # inputrc
 cp -f ./data/.inputrc ~/.inputrc
 # w3m
@@ -76,6 +76,24 @@ cp -f ./data/.bash_ps1 ~/.bash_ps1
 echo "if [ -f ~/.bash_ps1 ]; then
     . ~/.bash_ps1
 fi" >> ~/.bashrc
+
+cp -f ./data/.bash_golang ~/.bash_golang
+echo "if [ -f ~/.bash_golang ]; then
+    . ~/.bash_golang
+fi" >> ~/.bashrc
+
+cp -f ./data/.bash_kubernetes ~/.bash_kubernetes
+echo "if [ -f ~/.bash_kubernetes ]; then
+    . ~/.bash_kubernetes
+fi" >> ~/.bashrc
+
+render_bash_dw
+cp -f ./data/.bash_dw ~/.bash_dw
+echo "if [ -f ~/.bash_dw ]; then
+    . ~/.bash_dw
+fi" >> ~/.bashrc
+
+
 
 
 

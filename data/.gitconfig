@@ -37,9 +37,14 @@
   resolve = mergetool
   dfa = diff -w
   dfs = diff --cached
+  fetch = fetch -a
   ap = add --patch
+  an = add --intent-to-add
   mg = merge --stat
   diffstat = diff --color --stat
 
 [url "git@github.com:"]
   insteadOf = https://github.com/
+
+[url "git@github.ihs.demonware.net:"]
+  insteadOf = https://github.ihs.demonware.net/

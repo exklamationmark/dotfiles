@@ -1,7 +1,5 @@
 # ls aliases
 alias ll='ls -alF'
-alias la='ls -A'
-alias l='ls -CF'
 
 
 
@@ -53,9 +51,9 @@ dk() {
 
 
 # Neovim
-vim() {
-	nvim $@
-}
+# vim() {
+# 	nvim $@
+# }
 
 
 
@@ -107,8 +105,3 @@ xc() { # pipe to clipboard, e.g: <command> | xc
 xcf() { # copy file content to clipboard, e.g: xcf <file>
 	cat "$1" | xc;
 }
-
-
-
-# timer
-alias timer="/usr/bin/time -f '%Uu %Ss %er %MkB %C' \"$@\""
