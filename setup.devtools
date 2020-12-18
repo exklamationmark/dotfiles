@@ -102,6 +102,15 @@ fi" >> ~/.bashrc
 
 
 
+#################### Work ####################
+render_bash_dw
+cp -f ./data/.bash_dw ~/.bash_dw
+echo "if [ -f ~/.bash_dw ]; then
+    . ~/.bash_dw
+fi" >> ~/.bashrc
+
+
+
 #################### Debug ####################
 blue "Install debug tools"
 

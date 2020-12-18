@@ -43,3 +43,15 @@ render_bash_dw() {
 		> ./data/.bash_dw
 	rm ${tmp}
 }
+
+connect_to_github() {
+	local confirmed="n"
+
+	local github_private_key
+	while [ "${confirmed}" != "y" ]
+	do
+		read -p "Enter path to Github's private key: " github_private_key
+		echo -e "Running: \"${YELLOW}ssh -T git@github.com -i ${github_private_key}${NONE}\""
+		read -p "Are you sure (y/n): " confirmed
+	done
+}

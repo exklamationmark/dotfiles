@@ -79,24 +79,6 @@ echo "if [ -f ~/.bash_custom_prompt ]; then
     . ~/.bash_custom_prompt
 fi" >> ~/.bashrc
 
-cp -f ./data/.bash_golang ~/.bash_golang
-echo "if [ -f ~/.bash_golang ]; then
-    . ~/.bash_golang
-fi" >> ~/.bashrc
-
-cp -f ./data/.bash_kubernetes ~/.bash_kubernetes
-echo "if [ -f ~/.bash_kubernetes ]; then
-    . ~/.bash_kubernetes
-fi" >> ~/.bashrc
-
-render_bash_dw
-cp -f ./data/.bash_dw ~/.bash_dw
-echo "if [ -f ~/.bash_dw ]; then
-    . ~/.bash_dw
-fi" >> ~/.bashrc
-
-
-
 
 
 #################### Bash ####################
@@ -120,6 +102,10 @@ mkdir -p ~/.config/nvim
 curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 cp ./data/.neovim.init.vim ~/.config/nvim/init.vim
+ssh -T
+
+# Connect got github.com for the first time
+connect_to_github
 nvim +':PlugInstall' +qall
 
 
