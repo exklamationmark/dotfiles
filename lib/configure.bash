@@ -39,7 +39,7 @@ render_bash_dw() {
 	cp ./data/.bash_dw ${tmp}
 	cat ${tmp} | \
 		sed -e "s/DW_LDAP_USERNAME/${ldap_username}/g" | \
-		sed -e "s/DW_GITHUB_PERSONAL_ACCESS_TOKEN/${github_token}/g" | \
+		sed -e "s/DW_GITHUB_PERSONAL_ACCESS_TOKEN/${github_token}/g" \
 		> ./data/.bash_dw
 	rm ${tmp}
 }
