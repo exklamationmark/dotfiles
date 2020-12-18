@@ -22,6 +22,8 @@ install apt xclip
 install apt w3m
 install apt pandoc
 install apt i3
+install apt tree
+install apt jq
 
 
 
@@ -72,9 +74,9 @@ echo "if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi" >> ~/.bashrc
 
-cp -f ./data/.bash_ps1 ~/.bash_ps1
-echo "if [ -f ~/.bash_ps1 ]; then
-    . ~/.bash_ps1
+cp -f ./data/.bash_custom_prompt ~/.bash_custom_prompt
+echo "if [ -f ~/.bash_custom_prompt ]; then
+    . ~/.bash_custom_prompt
 fi" >> ~/.bashrc
 
 cp -f ./data/.bash_golang ~/.bash_golang

@@ -2,8 +2,8 @@
 
 set -exuo
 
-source lib/colors.bash
-source lib/packages.bash
+source lib/install.bash
+source lib/configure.bash
 
 
 

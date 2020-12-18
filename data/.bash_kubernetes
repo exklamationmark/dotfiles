@@ -29,3 +29,28 @@ kind_cluster.load_img() {
 	local img=$1
 	kind load docker-image ${img}
 }
+
+install_kubectl() {
+	latest=$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)
+	local pwd=$(pwd)
+	local tmp=$(mktemp)
+	cd $tmp
+	curl -LO "https://storage.googleapis.com/kubernetes-release/release/$latest/bin/linux/amd64/kubectl"
+	chmod +x ./kubectl
+	sudo mv ./kubectl /usr/local/bin/kubectl
+
+	cd $pwd
+	rm -rf $tmp
+}
+
+install_kind() {
+	local pwd=$(pwd)
+	local tmp=$(mktemp)
+	cd $tmp
+	curl -Lo ./kind https://kind.sigs.k8s.io/dl/v0.9.0/kind-linux-amd64
+	chmod +x ./kind
+	sudo mv ./kind /usr/local/bin/kind
+
+	cd $pwd
+	rm -rf $tmp
+}
