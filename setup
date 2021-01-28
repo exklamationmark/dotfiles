@@ -15,7 +15,7 @@ echo "Installing must-have packages..."
 install apt make
 install apt curl
 install apt git
-install apt neovim
+install apt neovim # TODO(mark): apt-get remove vim
 install apt gitk
 install apt tmux
 install apt xclip
@@ -28,7 +28,7 @@ install apt jq
 
 
 #################### /etc/bash.bashrc for Ubuntu 20.04 ####################
-cp -f ./data/.bashrc ~/.bashrc
+ln -sf ${PWD}/data/.bashrc ~/.bashrc
 
 
 
@@ -42,39 +42,39 @@ fi
 
 #################### Custom envs ####################
 # tmux
-cp -f ./data/.tmux.conf ~/.tmux.conf
+ln -sf ${PWD}/data/.tmux.conf ~/.tmux.conf
 # git
 render_gitconfig
-cp -f ./data/.gitconfig ~/.gitconfig
+ln -sf ${PWD}/data/.gitconfig ~/.gitconfig
 echo "if [ -f /etc/bash_completion.d/git-completion.bash ]; then
 	. /etc/bash_completion.d/git-completion.bash;
 fi" >> ~/.bashrc
 
 # i3
 mkdir -p ~/.i3
-cp -f ./data/.i3.config ~/.i3/config
+ln -sf ${PWD}/data/.i3.config ~/.i3/config
 
 # inputrc
-cp -f ./data/.inputrc ~/.inputrc
+ln -sf ${PWD}/data/.inputrc ~/.inputrc
 # w3m
-cp -rf ./data/.w3m ~/
+ln -sf  ${PWD}/data/.w3m ~/
 
 
 
 #################### Bash ####################
 echo "# customized bash" >> ~/.bashrc
 
-cp -f ./data/.bash_extra ~/.bash_extra
+ln -sf ${PWD}/data/.bash_extra ~/.bash_extra
 echo "if [ -f ~/.bash_extra ]; then
     . ~/.bash_extra
 fi" >> ~/.bashrc
 
-cp -f ./data/.bash_aliases ~/.bash_aliases
+ln -sf ${PWD}/data/.bash_aliases ~/.bash_aliases
 echo "if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi" >> ~/.bashrc
 
-cp -f ./data/.bash_custom_prompt ~/.bash_custom_prompt
+ln -sf ${PWD}/data/.bash_custom_prompt ~/.bash_custom_prompt
 echo "if [ -f ~/.bash_custom_prompt ]; then
     . ~/.bash_custom_prompt
 fi" >> ~/.bashrc
@@ -98,15 +98,15 @@ fi" >> ~/.bashrc
 # .vimrc with frequently-used bindings
 # cp -f ./data/.vimrc ~/.vimrc # vundle + plugins + settings
 
+# NeoVim
 mkdir -p ~/.config/nvim
-curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
-    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-cp ./data/.neovim.init.vim ~/.config/nvim/init.vim
-ssh -T
+sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
+       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+ln -sf ${PWD}/data/.neovim.init.vim ~/.config/nvim/init.vim
+nvim +':PlugInstall' +qall
 
 # Connect got github.com for the first time
 connect_to_github
-nvim +':PlugInstall' +qall
 
 
 
