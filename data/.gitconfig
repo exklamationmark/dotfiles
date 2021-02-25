@@ -42,6 +42,9 @@
   an = add --intent-to-add
   mg = merge --stat
   diffstat = diff --color --stat
+  fixup = commit --fixup
+  rbcont = rebase --continue
+  rbabort = rebase --abort
 
 [url "git@github.com:"]
   insteadOf = https://github.com/
