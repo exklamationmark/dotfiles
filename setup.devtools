@@ -8,12 +8,12 @@ source lib/configure.bash
 
 
 #################### Go ####################
-blue "Install go 1.15"
+blue "Install go 1.16"
 
 install apt gcc
 
 sudo rm -rf /usr/local/go
-curl 'https://dl.google.com/go/go1.15.linux-amd64.tar.gz' > /tmp/golang.tar.gz
+curl 'https://dl.google.com/go/go1.16.linux-amd64.tar.gz' > /tmp/golang.tar.gz
 sudo tar -C /usr/local/ -xzvf /tmp/golang.tar.gz
 sudo ln -sf /usr/local/go/bin/go /usr/local/bin/go
 
@@ -21,7 +21,7 @@ sudo ln -sf /usr/local/go/bin/go /usr/local/bin/go
 vim +'GoInstallBinaries' +qall
 
 # bash helpers
-cp -f data/.bash_golang ~/.bash_golang
+ln -sf ${PWD}/data/.bash_golang ~/.bash_golang
 echo "
 # Go-specific helpers
 if [ -f ~/.bash_golang ]; then
@@ -41,21 +41,21 @@ fi" >> ~/.bashrc
 
 
 #################### Racket ####################
-blue "Install Racket"
-sudo add-apt-repository ppa:plt/racket
-
-install apt racket
-raco pkg install sicp
-
-
-#################### Dart ####################
-blue "Install Dart"
-
-install apt apt-transport-https
-sudo sh -c 'wget -qO- https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add -'
-sudo sh -c 'wget -qO- https://storage.googleapis.com/download.dartlang.org/linux/debian/dart_stable.list > /etc/apt/sources.list.d/dart_stable.list'
-sudo apt-get update
-install apt dart
+# blue "Install Racket"
+# sudo add-apt-repository ppa:plt/racket
+#
+# install apt racket
+# raco pkg install sicp
+#
+#
+# #################### Dart ####################
+# blue "Install Dart"
+#
+# install apt apt-transport-https
+# sudo sh -c 'wget -qO- https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add -'
+# sudo sh -c 'wget -qO- https://storage.googleapis.com/download.dartlang.org/linux/debian/dart_stable.list > /etc/apt/sources.list.d/dart_stable.list'
+# sudo apt-get update
+# install apt dart
 
 
 
@@ -93,7 +93,7 @@ sudo chmod +x kubectl
 sudo mv kubectl /usr/local/bin/
 
 # bash helpers
-cp -f data/.bash_kubernetes ~/.bash_kubernetes
+ln -sf ${PWD}/data/.bash_kubernetes ~/.bash_kubernetes
 echo "
 # Kubernetes-specific helpers
 if [ -f ~/.bash_kubernetes ]; then
@@ -104,7 +104,7 @@ fi" >> ~/.bashrc
 
 #################### Work ####################
 render_bash_dw
-cp -f ./data/.bash_dw ~/.bash_dw
+ln -sf ./data/.bash_dw ~/.bash_dw
 echo "if [ -f ~/.bash_dw ]; then
     . ~/.bash_dw
 fi" >> ~/.bashrc
