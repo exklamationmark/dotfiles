@@ -2,12 +2,12 @@
 # Demonware-related helpers
 
 goto.dw() {
-	cd $HOME/workspace/src/github.ihs.demonware.net
+	cd $HOME/workspace/src/DW_GITHUB_DOMAIN
 }
 
 # Vault
 # Use LAS Vault instance by default
-export VAULT_ADDR=https://vault.las.demonware.net:8200
+export VAULT_ADDR=https://DW_VAULT_DOMAIN:DW_VAULT_PORT
 vault.login() {
 	echo "Login to Vault at ${VAULT_ADDR}..."
 	vault login --method=ldap username=DW_LDAP_USERNAME
