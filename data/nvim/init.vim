@@ -99,7 +99,8 @@ map gip :GoImports<ENTER>
 " noremap <m> ]s
 " noremap <M> [s
 " noremap <C-n>s :set nospell
-hi clear SpellBad
+set spell
+set spelllang=en
 hi SpellBad cterm=underline ctermfg=125 ctermbg=187
 
 " mergetool
