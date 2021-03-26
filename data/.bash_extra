@@ -54,5 +54,9 @@ else
     start_agent;
 fi
 
+add.ssh_keys() {
+	ssh-add /path/to/ssh/key
+}
+
 # Include Python's pip path
 export PATH=/home/dev/.local/bin:$PATH
