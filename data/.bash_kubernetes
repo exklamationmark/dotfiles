@@ -11,6 +11,57 @@ k() {
 	kubectl $@
 }
 
+kk() {
+    local command=$1
+	local selector=$2
+    local params=${@:3}
+
+	local resource_type=$(echo "${selector}" | awk -F '/' '{print $1}')
+    local pattern=$(echo "${selector}" | awk -F '/' '{print $2}')
+
+	# stop if we match two or more resources
+	# TODO: It's not very efficient since we run two kubectl command.
+	# => see if we can store the result of the first kubectl call and reuse.
+    local target_count=$(kubectl get ${resource_type} | grep ${pattern} | awk '{print $1'} | wc -l)
+	if [ "${target_count}" == "0" ]
+	then
+		echo "There are ZERO targets with kind=\"${resource_type}\" whose names matches \"${pattern}\""
+		return
+	elif [ "${target_count}" != "1" ]
+	then
+		echo "There are >=2 targets with kind=\"${resource_type}\" whose names matches \"${pattern}\" => Danger!"
+		return
+	fi
+
+    # grab the first resource
+    local target=$(kubectl get ${resource_type} | grep ${pattern} | head -n 1 | awk '{print $1'})
+    if [ -z "${target}" ]
+    then
+        echo "Found no ${resource_type} matching \"${pattern}\""
+        return
+    fi
+
+    case ${command} in
+        desc)
+            command="describe"
+        ;;
+        execit)
+            command="exec -it"
+        ;;
+        bash)
+            command="exec -it"
+            params="/bin/bash"
+        ;;
+        sh)
+            command="exec -it"
+            params="/bin/sh"
+        ;;
+    esac
+
+    kubectl ${command} ${resource_type}/${target} ${params}
+}
+
+
 source <(kubectl completion bash | sed -e 's|kubectl|k|g')
 
 # Kubernetes in Docker (kind)
@@ -26,8 +77,9 @@ kind.create.big.cluster() {
 }
 source <(kind completion bash)
 kind_cluster.load_img() {
-	local img=$1
-	kind load docker-image ${img}
+	local cluster_name=$1
+	local img=$2
+	kind --name ${cluster_name} load docker-image ${img}
 }
 
 install_kubectl() {
