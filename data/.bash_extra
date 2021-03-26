@@ -53,3 +53,6 @@ if [ -f "${SSH_ENV}" ]; then
 else
     start_agent;
 fi
+
+# Include Python's pip path
+export PATH=/home/dev/.local/bin:$PATH
