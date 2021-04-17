@@ -3,9 +3,11 @@ alias ll='ls -alF'
 
 
 
-# cd to code directories
+# useful for shortcuts
 alias startcoding='cd ~/workspace/src'
 
+add.ssh_keys() { # add ssh keys
+}
 
 
 # git
