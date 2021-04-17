@@ -94,7 +94,7 @@ map grn :GoRename<ENTER>
 map gip :GoImports<ENTER>
 
 " spell check
-" setlocal spell spelllang=en_us
+setlocal spell spelllang=en_us
 " noremap <C-c>cs :set spell spelllang=en_us
 " noremap <m> ]s
 " noremap <M> [s
