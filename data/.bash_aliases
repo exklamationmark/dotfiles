@@ -11,6 +11,7 @@ alias startcoding='cd ~/workspace/src'
 # git
 alias gitka='gitk --all'                  # view all commits & branches on gitk
 alias gdiff='git diff --color-words --no-index'              # colored git diff
+alias less='less -r'
 
 
 

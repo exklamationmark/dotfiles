@@ -37,12 +37,12 @@
   cm = commit -v
   cma = commit -v --amend
   cmm = commit --message
-  tree = log --graph --pretty=oneline --abbrev-commit --decorate
-  forest = log --graph --branches=* --pretty=oneline --abbrev-commit --decorate
+  tree = log --graph --pretty=oneline --abbrev-commit --decorate --color=always
+  forest = log --graph --branches=* --pretty=oneline --abbrev-commit --decorate --color=always
   adda = add --all
   resolve = mergetool
-  dfa = diff -w
-  dfs = diff --cached
+  dfa = diff -w --color=always
+  dfs = diff --cached --color=always
   fetch = fetch -a
   ap = add --patch
   an = add --intent-to-add
