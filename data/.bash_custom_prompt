@@ -8,8 +8,11 @@ _current_git_branch() {
 }
 
 _current_k8s_context() {
-	local current_context=$(kubectl config current-context)
 	local context_name=$(kubectl config view -o json | jq -r '."current-context"')
+	if [ -z "${context_name}" ]; then
+		echo "(NONE)"
+		return 0
+	fi
 	local namespace=$(kubectl config view -o json | jq -r '.contexts[] | select (.name | contains("'"$context_name"'")).context.namespace')
 
 	echo "($context_name/$namespace)"
