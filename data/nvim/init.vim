@@ -10,6 +10,8 @@ Plug 'iCyMind/NeoSolarized'
 " vim-go
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 
+Plug 'hashivim/vim-terraform'
+
 
 " ----------------------------------------
 
@@ -86,6 +88,13 @@ let g:loaded_logipat = 1
 autocmd BufWritePre * %s/\s\+$//e
 
 " golang mappings
+" let g:go_def_mode='gopls'
+" let g:go_info_mode='gopls'
+let g:go_def_mode='godef'
+" let g:go_info_mode='godef'
+let g:go_highlight_structs = 0
+let g:go_highlight_interfaces = 0
+let g:go_highlight_operators = 0
 map gd :GoDef<ENTER>
 map gb :GoDefPop<ENTER>
 map gcv :GoCoverage<ENTER>
