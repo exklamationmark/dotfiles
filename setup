@@ -105,13 +105,6 @@ sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.
 ln -sf ${PWD}/data/nvim ~/.config/nvim
 nvim +':PlugInstall' +qall
 
-# Connect got github.com for the first time
-connect_to_github
-
-
-
-
-
 #################### Some system tuning ####################
 # disable automatic apt update
 sudo systemctl disable apt-daily-upgrade.service
