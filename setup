@@ -7,8 +7,6 @@ source lib/configure.bash
 configure_apt_mirror
 sudo apt-get update
 
-test_github_private_key
-
 #################### Day-to-day essentials ####################
 echo "Installing must-have packages..."
 
