@@ -12,55 +12,41 @@ k() {
 }
 
 kk() {
-    local command=$1
+	local command=$1
 	local selector=$2
-    local params=${@:3}
+	# local resource_type=$2
+	# local pattern=$3
+	local params=${@:3}
 
+	# grab the first resource
 	local resource_type=$(echo "${selector}" | awk -F '/' '{print $1}')
-    local pattern=$(echo "${selector}" | awk -F '/' '{print $2}')
-
-	# stop if we match two or more resources
-	# TODO: It's not very efficient since we run two kubectl command.
-	# => see if we can store the result of the first kubectl call and reuse.
-    local target_count=$(kubectl get ${resource_type} | grep ${pattern} | awk '{print $1'} | wc -l)
-	if [ "${target_count}" == "0" ]
+	local pattern=$(echo "${selector}" | awk -F '/' '{print $2}')
+	local target=$(kubectl get ${resource_type} | grep ${pattern} | head -n 1 | awk '{print $1'})
+	if [ -z "${target}" ]
 	then
-		echo "There are ZERO targets with kind=\"${resource_type}\" whose names matches \"${pattern}\""
-		return
-	elif [ "${target_count}" != "1" ]
-	then
-		echo "There are >=2 targets with kind=\"${resource_type}\" whose names matches \"${pattern}\" => Danger!"
+		echo "Found no ${resource_type} matching \"${pattern}\""
 		return
 	fi
 
-    # grab the first resource
-    local target=$(kubectl get ${resource_type} | grep ${pattern} | head -n 1 | awk '{print $1'})
-    if [ -z "${target}" ]
-    then
-        echo "Found no ${resource_type} matching \"${pattern}\""
-        return
-    fi
+	case ${command} in
+		desc)
+			command="describe"
+		;;
+		execit)
+			command="exec -it"
+		;;
+		bash)
+			command="exec -it"
+			params="/bin/bash"
+		;;
+		sh)
+			command="exec -it"
+			params="/bin/sh"
+		;;
+	esac
 
-    case ${command} in
-        desc)
-            command="describe"
-        ;;
-        execit)
-            command="exec -it"
-        ;;
-        bash)
-            command="exec -it"
-            params="/bin/bash"
-        ;;
-        sh)
-            command="exec -it"
-            params="/bin/sh"
-        ;;
-    esac
-
-    kubectl ${command} ${resource_type}/${target} ${params}
+	kubectl ${command} ${resource_type}/${target} ${params}
 }
-
 
 source <(kubectl completion bash | sed -e 's|kubectl|k|g')
 
