@@ -2,13 +2,12 @@
 # Demonware-related helpers
 
 goto.dw() {
-	cd $HOME/workspace/src/DW_GITHUB_DOMAIN
+	cd $HOME/workspace/src/DW_GITHUB_URL
 }
 
 # Vault
-# Use LAS Vault instance by default
-export VAULT_ADDR=https://DW_VAULT_DOMAIN:DW_VAULT_PORT
-vault.login() {
+export VAULT_ADDR=DW_VAULT_URL
+auth.vault() {
 	echo "Login to Vault at ${VAULT_ADDR}..."
 	vault login --method=ldap username=DW_LDAP_USERNAME
 }
@@ -16,13 +15,42 @@ vault.login() {
 # Use local kind cluster's config for kubectl
 export KUBECONFIG=~/.kube/kind.config
 
-
 # PlantUML
 plantuml.svg() {
+	local plantuml="java -jar /usr/local/bin/plantuml.jar"
 	local _file=$1
-	java -jar /usr/local/bin/plantuml.jar -verbose -tsvg ${_file}
+	${plantuml} -verbose -tsvg ${_file}
 }
 
 # GITHUB_TOKEN for downloading private repos with Go
 export GITHUB_TOKEN="DW_GITHUB_PERSONAL_ACCESS_TOKEN"
 
+activisionvpn.connect() {
+	echo "Connecting to Activision VPN at: ACTIVISION_VPN_URL"
+	echo "Make sure that DC VPN (via PulseSecure) is turned off, or this will fail"
+	globalprotect connect -p ACTIVISION_VPN_URL
+}
+
+activisionvpn.disconnect() {
+	globalprotect disconnect
+}
+
+add.ssh_keys() {
+	# ssh-add /path/to/key
+}
+
+push.scratch_img() {
+	local original=$1
+
+	local scratch=$(echo $1 | sed -e 's|docker|docker-scratch|g')
+	docker tag $original $scratch
+	docker push $scratch
+	echo $scratch | xc
+}
+
+export GOPRIVATE=DW_GOLANG_PRIVATE_PREFIX/*
+
+auth.gcloud() {
+	gcloud auth login
+	gcloud auth application-default login
+}
