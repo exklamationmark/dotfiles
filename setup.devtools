@@ -109,6 +109,11 @@ echo "if [ -f ~/.bash_dw ]; then
     . ~/.bash_dw
 fi" >> ~/.bashrc
 
+# - PulseSecure
+# - GlobalProtectUI
+# - Slack
+# - Chrome
+# - openssh-server
 
 
 #################### Debug ####################
