@@ -13,8 +13,8 @@ set -o vi
 # History for bash + tmux usage
 HISTCONTROL=ignoreboth  # don't put duplicate lines or lines starting with space in the history.
 shopt -s histappend     # append to the history file when shell exits
-HISTSIZE=999999         # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
-HISTFILESIZE=999999
+HISTSIZE=9999999         # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
+HISTFILESIZE=9999999
 # After each command, append to the history file and reread it (persist history across tmux panes).
 PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND$'\n'}history -a; history -c; history -r"
 
@@ -53,10 +53,3 @@ if [ -f "${SSH_ENV}" ]; then
 else
     start_agent;
 fi
-
-add.ssh_keys() {
-	ssh-add /path/to/ssh/key
-}
-
-# Include Python's pip path
-export PATH=/home/dev/.local/bin:$PATH
