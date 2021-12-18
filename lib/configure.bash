@@ -26,11 +26,20 @@ render_bash_dw() {
 	local confirmed="n"
 
 	local ldap_username
+	local github_url
 	local github_token
+	local vault_url
+	local activision_vpn_url
+	local golang_private_prefix
+
 	while [ "${confirmed}" != "y" ]
 	do
 		read -p "Enter Demonware's DC username (in LDAP): " ldap_username
+		read -p "Enter DW Github's URL (<sth>.<sth>.<domain>): " github_url
 		read -p "Enter DW Github's token (Settings > Developer settings > Personal access token): " github_token
+		read -p "Enter DW Vault's URL (https://<sth>.<sth>.<domain>:<port>): " vault_url
+		read -p "Enter Activision VPN's URL (<sth>.<sth>.<domain>): " activision_vpn_url
+		read -p "Enter Golang's private prefix (<sth>.<sth>.<domain>): " golang_private_prefix
 		echo -e "Configure data/.bash_dw's DW_LDAP_USERNAME=\"${YELLOW}${ldap_username}${NONE}\""
 		read -p "Are you sure (y/n): " confirmed
 	done
@@ -40,18 +49,10 @@ render_bash_dw() {
 	cat ${tmp} | \
 		sed -e "s/DW_LDAP_USERNAME/${ldap_username}/g" | \
 		sed -e "s/DW_GITHUB_PERSONAL_ACCESS_TOKEN/${github_token}/g" \
+		sed -e "s/DW_GITHUB_URL/${github_url}/g" \
+		sed -e "s/DW_VAULT_URL/${vault_url}/g" \
+		sed -e "s/ACTIVISION_VPN_URL/${activision_vpn_url}/g" \
+		sed -e "s/DW_GOLANG_PRIVATE_PREFIX/${golang_private_prefix}/g" \
 		> ./data/.bash_dw
 	rm ${tmp}
-}
-
-connect_to_github() {
-	local confirmed="n"
-
-	local github_private_key
-	while [ "${confirmed}" != "y" ]
-	do
-		read -p "Enter path to Github's private key: " github_private_key
-		echo -e "Running: \"${YELLOW}ssh -T git@github.com -i ${github_private_key}${NONE}\""
-		read -p "Are you sure (y/n): " confirmed
-	done
 }

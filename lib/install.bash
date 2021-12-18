@@ -107,3 +107,10 @@ configure_apt_mirror() {
   sudo mv $tmp $src
   rm -f $tmp
 }
+
+test_github_private_key() {
+	red "Make sure ssh private keys are added..."
+	pause
+	echo "Testing..."
+	ssh -T git@github.com
+}
