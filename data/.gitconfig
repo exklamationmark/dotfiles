@@ -26,6 +26,8 @@
 
 [diff]
   tool = kidff3
+  colorMoved = default
+  colorMovedWS = allow-indentation-change
 [difftool]
   prompt = false
 
@@ -51,6 +53,7 @@
   fixup = commit --fixup
   rbcont = rebase --continue
   rbabort = rebase --abort
+  pusho = !git push -u origin $(git branch --show-current)
 
 [url "git@github.com:"]
   insteadOf = https://github.com/
