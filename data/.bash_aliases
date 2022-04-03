@@ -108,3 +108,13 @@ xc() { # pipe to clipboard, e.g: <command> | xc
 xcf() { # copy file content to clipboard, e.g: xcf <file>
 	cat "$1" | xc;
 }
+
+# PlantUML run the PlantUML container built in https://github.com/bitsgofer/plantuml
+plantuml() {
+	local INPUT_UML_FILE=${1}
+	local OUTPUT_SVG_FILE=${2}
+
+	local plantUML_image=bitsgofer/plantuml:1.2022.3
+
+	docker run --rm -i ${plantUML_image} < ${INPUT_UML_FILE} > ${OUTPUT_SVG_FILE}
+}
