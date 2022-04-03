@@ -117,4 +117,4 @@ gsettings set org.gnome.desktop.interface enable-animations false
 
 #################### Cleanup ####################
 echo -e $BLUE"Edit "$RED"/etc/hosts"$NONE" and add your hostname"$NONE
-echo -e $BLUE"Run "$RED"source ~/.bashrc"$NONE" then run "$RED"./workstuff"$NONE
+echo -e $BLUE"Run "$RED"source ~/.bashrc"$NONE" then run "$RED"./setup.devtools"$NONE
