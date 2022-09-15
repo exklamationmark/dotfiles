@@ -6,7 +6,7 @@ goto.dw() {
 }
 
 # Vault
-export VAULT_ADDR=DW_VAULT_URL
+export VAULT_ADDR=https://DW_VAULT_URL
 auth.vault() {
 	echo "Login to Vault at ${VAULT_ADDR}..."
 	vault login --method=ldap username=DW_LDAP_USERNAME

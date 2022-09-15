@@ -37,7 +37,7 @@ render_bash_dw() {
 		read -p "Enter Demonware's DC username (in LDAP): " ldap_username
 		read -p "Enter DW Github's URL (<sth>.<sth>.<domain>): " github_url
 		read -p "Enter DW Github's token (Settings > Developer settings > Personal access token): " github_token
-		read -p "Enter DW Vault's URL (https://<sth>.<sth>.<domain>:<port>): " vault_url
+		read -p "Enter DW Vault's URL (<sth>.<sth>.<domain>:<port>): " vault_url
 		read -p "Enter Activision VPN's URL (<sth>.<sth>.<domain>): " activision_vpn_url
 		read -p "Enter Golang's private prefix (<sth>.<sth>.<domain>): " golang_private_prefix
 		echo -e "Configure data/.bash_dw's DW_LDAP_USERNAME=\"${YELLOW}${ldap_username}${NONE}\""
