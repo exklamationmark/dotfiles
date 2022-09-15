@@ -35,10 +35,6 @@ activisionvpn.disconnect() {
 	globalprotect disconnect
 }
 
-add.ssh_keys() {
-	# ssh-add /path/to/key
-}
-
 push.scratch_img() {
 	local original=$1
 

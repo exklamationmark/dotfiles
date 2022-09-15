@@ -23,6 +23,7 @@
 
 [color]
   ui = true
+  diff = auto
 
 [diff]
   tool = kidff3
@@ -54,6 +55,9 @@
   rbcont = rebase --continue
   rbabort = rebase --abort
   pusho = !git push -u origin $(git branch --show-current)
+  pick = cherry-pick -x
+  pa = cherry-pick --abort
+  pc = cherry-pick --continue
 
 [url "git@github.com:"]
   insteadOf = https://github.com/

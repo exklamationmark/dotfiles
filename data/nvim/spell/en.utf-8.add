@@ -186,3 +186,4 @@ mariadb
 ns/
 fullnameOverride
 MariaDB
+prometheus

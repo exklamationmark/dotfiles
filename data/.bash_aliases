@@ -110,7 +110,7 @@ xcf() { # copy file content to clipboard, e.g: xcf <file>
 }
 
 # PlantUML run the PlantUML container built in https://github.com/bitsgofer/plantuml
-plantuml() {
+render.plantuml() {
 	local INPUT_UML_FILE=${1}
 	local OUTPUT_SVG_FILE=${2}
 
