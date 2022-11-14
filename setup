@@ -22,6 +22,10 @@ install apt pandoc
 install apt i3
 install apt tree
 install apt jq
+install apt network-manager-openconnect
+install apt network-manager-openconnect-gnome
+install apt network-manager-ssh
+install apt network-manager-ssh-gnome
 
 
 
