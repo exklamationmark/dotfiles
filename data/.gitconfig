@@ -44,7 +44,7 @@
   forest = log --graph --branches=* --pretty=oneline --abbrev-commit --decorate --color=always
   adda = add --all
   resolve = mergetool
-  dfa = diff -w --color=always
+  dfa = diff --ignore-all-space --color=always
   dfs = diff --cached --color=always
   fetch = fetch -a
   ap = add --patch
@@ -64,3 +64,8 @@
 
 [url "git@github.ihs.demonware.net:"]
   insteadOf = https://github.ihs.demonware.net/
+[filter "lfs"]
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
