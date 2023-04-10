@@ -1,16 +1,237 @@
+:SPELLGOOD *********************************************************************
+:SPELLGOOD *********************************************************************
+:SPELLGOOD Kubernetes
+:SPELLGOOD *********************************************************************
+:SPELLGOOD *********************************************************************
+
+
+
+:SPELLGOOD ---------------------------------------------------------------------
+:SPELLGOOD Resource units
+:SPELLGOOD ---------------------------------------------------------------------
+Ki
+Mi
+Gi
+Ti
+
+:SPELLGOOD ---------------------------------------------------------------------
+:SPELLGOOD Resource Kind(s) and related words
+:SPELLGOOD ---------------------------------------------------------------------
+apiVersion
+kind
+metadata
+name
+
+ns/
+namespace
+Namespace
+namespaced
+
+po/
+pods
+Pods
+
+rs/
+replicaset
+replicaSet
+ReplicaSet
+
+sa/
+serviceaccount
+serviceAccount
+ServiceAccount
+
+sts/
+statefulset
+statefulSet
+StatefulSet
+
+ds/
+daemonset
+daemonSet
+DaemonSet
+
+deploy/
+deployment
+Deployment
+rollout
+
+secret/
+secret
+Secret
+secretName
+
+cm/
+configmap
+configMap
+ConfigMap
+
+quota/
+resourcequota
+resourceQuota
+ResourceQuota
+
+svc/
+service
+Service
+serviceType
+ClusterIP
+LoadBalancer
+NodePort
+targetPort
+externalPort
+loadBalancers
+
+pv/
+persistentvolume
+persistentVolume
+PersistentVolume
+pvc/
+persistentvolumeclaims
+persistentVolumeClaims
+PersistentVolumeClaims
+storageclass
+storageClass
+StorageClass
+ephemeralStorage
+
+priorityclass
+priorityClass
+PriorityClass
+priorityClassName
+
+clusterissuer
+clusterIssuer
+ClusterIssuer
+
+netpol/
+networkpolicy
+networkPolicy
+NetworkPolicy
+
+job
+Job
+
+cj
+cronjob
+cronJob
+CronJob
+
+
+:SPELLGOOD ---------------------------------------------------------------------
+:SPELLGOOD Words in resources' YAML files
+:SPELLGOOD ---------------------------------------------------------------------
+
+:SPELLGOOD ---------------------------------------------------------------------
+:SPELLGOOD Golang's packages
+:SPELLGOOD ---------------------------------------------------------------------
+k8s.io
+k8s.io/v1
+v1
+
+:SPELLGOOD ---------------------------------------------------------------------
+:SPELLGOOD Words in Helm charts
+:SPELLGOOD ---------------------------------------------------------------------
+extraVolumes
+extraEnvironmentVars
+fullnameOverride
+
+:SPELLGOOD ---------------------------------------------------------------------
+:SPELLGOOD Uncategorized words
+:SPELLGOOD ---------------------------------------------------------------------
+k8s
+kubernetes
+Kubernetes
+
+RBAC
+PVCs
+IPVS
+
+apiserver
+
+kubebuilder
+kubectl
+
+kustomize
+Kustomize
+kustomization
+
+subresource
+
+
+
+:SPELLGOOD *********************************************************************
+:SPELLGOOD *********************************************************************
+:SPELLGOOD Golang
+:SPELLGOOD *********************************************************************
+:SPELLGOOD *********************************************************************
+
+
+
+fmt
+encoding/json
+io
+ioutil
+omitempty
+
+
+
+:SPELLGOOD *********************************************************************
+:SPELLGOOD *********************************************************************
+:SPELLGOOD Rust
+:SPELLGOOD *********************************************************************
+:SPELLGOOD *********************************************************************
+
+
+
+print
+print!
+println
+println!
+
+Enum
+
+vec
+vec!
+
+
+
+:SPELLGOOD *********************************************************************
+:SPELLGOOD *********************************************************************
+:SPELLGOOD exklamationmark
+:SPELLGOOD *********************************************************************
+:SPELLGOOD *********************************************************************
+
+
+
+Astra
+Astra's
+astra
+Ignis
+
+google-doc-url
+
+bitsgofer
+exklamationmark
+hkhiem
+
+:SPELLGOOD *********************************************************************
+:SPELLGOOD *********************************************************************
+:SPELLGOOD Others
+:SPELLGOOD *********************************************************************
+:SPELLGOOD *********************************************************************
+
+
+
 blog
 devops
-k8s
 Grafana
 backend
 SaaS
 etc
-IoT
-Activision
-Demonware
-Kubernetes
 GCP
 e.g
+IoT
 apps
 Microsystems
 sysadmins
@@ -18,67 +239,33 @@ OpenBSD
 nginx
 HTTPS
 config
-println
 str
 alloc
-steamese
 admin
-fmt
-image/!
 image
-metadata
 Wiki
-PlantUML
 onboard
 wiki
-plantuml
 UML
 SVG
-OpenEdx
-LMS
-CMS
 Terraform
-STEAM's
-namespace
 FQDN
 stateful
 API
 env
-namespaces
-StatefulSet
-DaemonSet
 JSON
 YAML
-ReplicaSet
-DigitalOcean
 i.e
-#eployment
-deployment
-deployment
 IPs
 DNS
-statefulset
-ClusterIP
-NodePort
-LoadBalancer
 admins
 DevOps
 VLANs
 VMs
-apiVersion
-ResourceQuota
 cpu
-kubernetes
 https
-#rustable
 OOM
 burstable
-Gi
-PVCs
-persistentvolumeclaims
-PriorityClass
-k8s.io
-v1
 yaml
 patsubst
 notdir
@@ -86,17 +273,13 @@ wildcard
 dir
 addons
 repo
-namespaced
 username
 workflow
 templating
-kube-applier
 async
 UI
-steamforvietnam
 dev
 frontend
-hkhiem
 README
 GitOps
 -ish
@@ -107,34 +290,23 @@ solarized
 IPv4
 VPC
 api
-VNT
 repos
 Github
 dns
 io
-GoDaddy
 sharded
-ConfigMap
 Shamir
-DO's
-ephemeralStorage
-loadBalancers
 TLS
 cfssl
 cfssljson
-exklamationmark
 tls
-R2021
 CSR
 SANs
 CA's
-DEV2021
 etcd
 json
 hostname
 (s)
-svc
-ClusterIssuer
 objs
 requires
 mTLS
@@ -145,15 +317,7 @@ ui
 crt
 letsencrypt
 addr
-priorityClassName
-targetPort
-extraVolumes
-extraEnvironmentVars
-storageClass
-serviceType
-externalPort
 ttl
-secretName
 webhooks
 CAs
 kv_admin
@@ -170,28 +334,32 @@ fi
 -p
 hcl
 userpass
-#OCALMACHINE
 approle
 OAUTH
 terraform
-apptTime/!
-#€™s
-wordpress
 github
-steamforvietnambot
 Redis
 PostgreSQL
-#ariaDB
 mariadb
-ns/
-fullnameOverride
 MariaDB
 prometheus
 sudo
 ARG
 iframe
-#oogleDoc
-#oogleDoc
+WIP
 rebase
-google-doc-url
-bitsgofer
+TBD
+conf
+scaffolded
+overfitting
+SPELLGOOD
+
+:SPELLGOOD *********************************************************************
+:SPELLGOOD *********************************************************************
+:SPELLGOOD Needs sorting
+:SPELLGOOD *********************************************************************
+:SPELLGOOD *********************************************************************
+
+
+
+

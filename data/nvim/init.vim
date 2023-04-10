@@ -105,8 +105,6 @@ map gccc :GoCoverageClear<ENTER>
 map grn :GoRename<ENTER>
 map gip :GoImports<ENTER>
 
-" spell check
-setlocal spell spelllang=en_us
 " noremap <C-c>cs :set spell spelllang=en_us
 " noremap <m> ]s
 " noremap <M> [s
@@ -124,3 +122,18 @@ hi DiffAdd      cterm=none ctermfg=112  ctermbg=none
 hi DiffDelete   cterm=none ctermfg=160 ctermbg=none
 hi DiffChange   cterm=none ctermfg=none ctermbg=236
 hi DiffText     cterm=none ctermfg=221 ctermbg=none
+
+" -----------------------------------------------------------------
+" Build binary spell file from frequently used word list(s)
+" so they don't show up as spelling errors"
+" -----------------------------------------------------------------
+" autocmd VimEnter * execute "set spellfile=".glob(&runtimepath, "spell/*.add", 0, 1)
+function! RecompileSpell()
+  for d in globpath(&runtimepath, "spell/*.add", 0, 1)
+      execute "mkspell! " . fnameescape(d)
+  endfor
+endfunction
+command! -nargs=0 RecompileSpell call RecompileSpell()
+
+" Turn on spell check
+setlocal spell spelllang=en_us
