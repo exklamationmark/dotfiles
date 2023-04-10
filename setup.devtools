@@ -21,7 +21,7 @@ sudo ln -sf /usr/local/go/bin/go /usr/local/bin/go
 vim +'GoInstallBinaries' +qall
 
 # bash helpers
-ln -sf ${PWD}/data/.bash_golang ~/.bash_golang
+ln -sf ${PWD}/data/.bash_golang ${HOME}/.bash_golang
 echo "
 # Go-specific helpers
 if [ -f ~/.bash_golang ]; then
@@ -93,7 +93,7 @@ sudo chmod +x kubectl
 sudo mv kubectl /usr/local/bin/
 
 # bash helpers
-ln -sf ${PWD}/data/.bash_kubernetes ~/.bash_kubernetes
+ln -sf ${PWD}/data/.bash_kubernetes ${HOME}/.bash_kubernetes
 echo "
 # Kubernetes-specific helpers
 if [ -f ~/.bash_kubernetes ]; then
@@ -112,9 +112,10 @@ mkdir -p $HOME/.config/tstruct
 ln -sf ${PWD}/data/d2_terrastruct/auth.json ${HOME}/.config/tstruct/auth.json
 
 
+
 #################### Work ####################
 render_bash_dw
-ln -sf ./data/.bash_dw ~/.bash_dw
+ln -sf ${PWD}/data/.bash_dw ${HOME}/.bash_dw
 echo "if [ -f ~/.bash_dw ]; then
     . ~/.bash_dw
 fi" >> ~/.bashrc
