@@ -58,6 +58,7 @@
   pick = cherry-pick -x
   pa = cherry-pick --abort
   pc = cherry-pick --continue
+  wipe = clean --force -d
 
 [url "git@github.com:"]
   insteadOf = https://github.com/
