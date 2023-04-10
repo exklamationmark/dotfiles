@@ -53,3 +53,8 @@ if [ -f "${SSH_ENV}" ]; then
 else
     start_agent;
 fi
+
+# Setup default D2's Layout Engine
+export D2_LAYOUT=tala
+export D2_THEME=3 # Flagship Terrastruct
+
