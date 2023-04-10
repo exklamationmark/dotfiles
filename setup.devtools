@@ -100,6 +100,7 @@ if [ -f ~/.bash_kubernetes ]; then
     . ~/.bash_kubernetes
 fi" >> ~/.bashrc
 
+install_krew
 
 #################### D2 ####################
 blue "Install D2 diagram tool and TALA layout engine"
