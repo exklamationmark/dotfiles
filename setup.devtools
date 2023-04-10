@@ -101,6 +101,16 @@ if [ -f ~/.bash_kubernetes ]; then
 fi" >> ~/.bashrc
 
 
+#################### D2 ####################
+blue "Install D2 diagram tool and TALA layout engine"
+
+curl -fsSL https://d2lang.com/install.sh | sh -s -- --tala
+
+render_d2lang_TALA_apikey
+
+mkdir -p $HOME/.config/tstruct
+ln -sf ${PWD}/data/d2_terrastruct/auth.json ${HOME}/.config/tstruct/auth.json
+
 
 #################### Work ####################
 render_bash_dw

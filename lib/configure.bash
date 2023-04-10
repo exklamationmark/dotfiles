@@ -56,3 +56,22 @@ render_bash_dw() {
 		> ./data/.bash_dw
 	rm ${tmp}
 }
+
+render_d2lang_TALA_apikey() {
+	local api_token
+
+	local confirmed="n"
+	while [ "${confirmed}" != "y" ]
+	do
+		read -p "Enter D2 Lang's TALA layout engine's API token: " api_token
+		read -p "Are you sure (y/n): " confirmed
+	done
+
+	local tmp=$(mktemp)
+	cp ./data/d2_terrastruct/auth.json ${tmp}
+	cat ${tmp} | \
+		sed -e "s/D2_TALA_API_TOKEN/${api_token}/g" \
+		> ./data/d2_terrastruct/auth.json
+
+	rm ${tmp}
+}
