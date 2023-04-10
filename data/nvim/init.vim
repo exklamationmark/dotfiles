@@ -12,6 +12,9 @@ Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 
 Plug 'hashivim/vim-terraform'
 
+" D2 diagrams
+Plug 'terrastruct/d2-vim'
+
 
 " ----------------------------------------
 
