@@ -52,14 +52,6 @@ dk() {
 	esac
 }
 
-
-# Neovim
-# vim() {
-# 	nvim $@
-# }
-
-
-
 # Pandoc
 render.markdown() {
 	# Need: pip3 install grip
