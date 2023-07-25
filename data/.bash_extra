@@ -57,4 +57,4 @@ fi
 # Setup default D2's Layout Engine
 export D2_LAYOUT=tala
 export D2_THEME=3 # Flagship Terrastruct
-
+export D2_PAD=50 # Flagship Terrastruct
