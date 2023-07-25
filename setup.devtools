@@ -32,6 +32,7 @@ fi" >> ~/.bashrc
 blue "Install Rust"
 
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y --profile complete
+ln -sf ${PWD}/data/.bash_rust ${HOME}/.bash_rust
 echo "
 # Rust-specific helpers
 if [ -f ~/.bash_rust ]; then
