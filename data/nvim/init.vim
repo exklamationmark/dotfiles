@@ -15,6 +15,10 @@ Plug 'hashivim/vim-terraform'
 " D2 diagrams
 Plug 'terrastruct/d2-vim'
 
+" Rust
+Plug 'rust-lang/rust.vim'
+" let g:rustfmt_autosave = 1
+
 
 " ----------------------------------------
 

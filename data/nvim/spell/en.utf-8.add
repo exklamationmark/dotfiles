@@ -363,3 +363,9 @@ SPELLGOOD
 
 
 
+param
+sys1
+KUBECONFIG
+kubeconfig
+linux
+macOS
