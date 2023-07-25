@@ -110,7 +110,7 @@ map grn :GoRename<ENTER>
 map gip :GoImports<ENTER>
 augroup GoAutoCommands
   autocmd!
-  autocmd BufWritePost *.go silent! !gci write --debug --section standard --section default --section blank --section dot --section 'prefix(k8s.io)' --section 'prefix(github.ihs.demonware.net)' %:p
+  autocmd BufWritePost *.go silent! !gci write --section standard --section default --section 'prefix(k8s.io)' --section 'prefix(github.ihs.demonware.net)' %:p
   autocmd BufWritePost *.go edit
   autocmd BufWritePost *.go redraw!
 augroup END
