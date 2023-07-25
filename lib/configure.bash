@@ -48,10 +48,10 @@ render_bash_dw() {
 	cp ./data/.bash_dw ${tmp}
 	cat ${tmp} | \
 		sed -e "s/DW_LDAP_USERNAME/${ldap_username}/g" | \
-		sed -e "s/DW_GITHUB_PERSONAL_ACCESS_TOKEN/${github_token}/g" \
-		sed -e "s/DW_GITHUB_URL/${github_url}/g" \
-		sed -e "s/DW_VAULT_URL/${vault_url}/g" \
-		sed -e "s/ACTIVISION_VPN_URL/${activision_vpn_url}/g" \
+		sed -e "s/DW_GITHUB_PERSONAL_ACCESS_TOKEN/${github_token}/g" | \
+		sed -e "s/DW_GITHUB_URL/${github_url}/g" | \
+		sed -e "s/DW_VAULT_URL/${vault_url}/g" | \
+		sed -e "s/ACTIVISION_VPN_URL/${activision_vpn_url}/g" | \
 		sed -e "s/DW_GOLANG_PRIVATE_PREFIX/${golang_private_prefix}/g" \
 		> ./data/.bash_dw
 	rm ${tmp}
