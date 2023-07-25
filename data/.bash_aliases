@@ -6,6 +6,14 @@ alias ll='ls -alF'
 # useful for shortcuts
 alias startcoding='cd ~/workspace/src'
 
+goto.bitsgofer() {
+	cd $HOME/workspace/src/github.com/bitsgofer
+}
+
+goto.dw() {
+	cd $HOME/workspace/src/github.ihs.demonware.net
+}
+
 add.ssh_keys() { # add ssh keys
 }
 
@@ -109,4 +117,8 @@ render.plantuml() {
 	local plantUML_image=bitsgofer/plantuml:1.2022.3
 
 	docker run --rm -i ${plantUML_image} < ${INPUT_UML_FILE} > ${OUTPUT_SVG_FILE}
+}
+
+openssl.cert() {
+	openssl x509 -text -noout
 }
