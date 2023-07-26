@@ -42,6 +42,7 @@
   cmm = commit --message
   tree = log --graph --pretty=oneline --abbrev-commit --decorate --color=always
   forest = log --graph --branches=* --pretty=oneline --abbrev-commit --decorate --color=always
+  showmsg = show --pretty=format:%B -s
   adda = add --all
   resolve = mergetool
   dfa = diff --ignore-all-space --color=always
