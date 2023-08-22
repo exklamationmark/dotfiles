@@ -124,6 +124,12 @@ render_d2lang_TALA_apikey
 mkdir -p $HOME/.config/tstruct
 ln -sf ${PWD}/data/d2_terrastruct/auth.json ${HOME}/.config/tstruct/auth.json
 
+#################### Vault ####################
+blue "Install Harshicorp Vault CLI"
+
+wget -O- https://apt.releases.hashicorp.com/gpg | sudo gpg --dearmor -o /usr/share/keyrings/hashicorp-archive-keyring.gpg
+echo "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/hashicorp.list
+install apt vault
 
 #################### Work ####################
 render_bash_dw
