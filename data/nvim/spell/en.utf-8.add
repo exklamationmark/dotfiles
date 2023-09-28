@@ -194,6 +194,10 @@ Enum
 vec
 vec!
 
+struct
+dyn
+
+
 
 
 :SPELLGOOD *********************************************************************
@@ -378,10 +382,8 @@ Komet
 googledoc
 komet
 DocumentType
-struct
 pandoc
 dpkg
-dyn
 tmp
 amd64
 gz
