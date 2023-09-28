@@ -94,7 +94,7 @@ let g:loaded_logipat = 1
 " remove trailing spaces
 autocmd BufWritePre * %s/\s\+$//e
 
-" golang mappings
+" Go configs
 " let g:go_def_mode='gopls'
 " let g:go_info_mode='gopls'
 let g:go_def_mode='godef'
@@ -114,6 +114,9 @@ augroup GoAutoCommands
   autocmd BufWritePost *.go edit
   autocmd BufWritePost *.go redraw!
 augroup END
+
+" Rust config
+let g:rustfmt_autosave = 1
 
 " noremap <C-c>cs :set spell spelllang=en_us
 " noremap <m> ]s
