@@ -1,3 +1,4 @@
+#!/bin/bash
 export GOPATH="$HOME/workspace"
 export PATH=$GOPATH/bin:/usr/local/go/bin:/usr/local/kubebuilder/bin:$PATH
 
@@ -24,4 +25,12 @@ test.all() {
 
 godoc.server() {
 	godoc --http=0.0.0.0:10666
+}
+
+gotool.cover() {
+	local COVERAGE_FILE=${1:-cover.out}
+	local COVERGAGE_HTML="/tmp/coverage.html"
+
+	go tool cover -html=${COVERAGE_FILE} -o ${COVERGAGE_HTML}
+	google-chrome ${COVERGAGE_HTML}
 }

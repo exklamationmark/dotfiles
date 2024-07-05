@@ -45,8 +45,8 @@
   showmsg = show --pretty=format:%B -s
   adda = add --all
   resolve = mergetool
-  dfa = diff --ignore-all-space --color=always
-  dfs = diff --cached --color=always
+  dfa = diff --ignore-all-space --color-moved --color=always
+  dfs = diff --cached --color-moved --color=always
   fetch = fetch -a
   ap = add --patch
   an = add --intent-to-add
