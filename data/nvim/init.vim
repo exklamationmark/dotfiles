@@ -66,6 +66,9 @@ set wrap
 " 100-char width
 set colorcolumn=80,100
 
+" showcmd
+set showcmd
+
 " forward search with space, backward search with Ctrl+Space
 map <space> /
 map <C-space> ?
