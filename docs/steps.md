@@ -24,6 +24,8 @@
       # DEBUG: git checkout nix
       ln -sf ${PWD}/home-manager ${HOME}/.config/home-manager
       cd ~/.config/home-manager
-      # DEBUG: nix run home-manager switch
+      rm ~/.bashrc ~/.profile
+      nix run home-manager switch -- -b backup
+      gnome-session-switch
 
 - NOTE: Nix need to configure locale
