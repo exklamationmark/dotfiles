@@ -9,6 +9,7 @@
   # Imports
   imports = [
     ./apps/neovim/neovim.nix
+    ./apps/bash/bash.nix
   ];
 
   # This value determines the Home Manager release that your configuration is
