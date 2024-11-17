@@ -10,6 +10,7 @@
   imports = [
     ./apps/neovim/neovim.nix
     ./apps/bash/bash.nix
+    ./apps/tmux/tmux.nix
   ];
 
   # This value determines the Home Manager release that your configuration is
