@@ -12,6 +12,7 @@
     ./apps/bash/bash.nix
     ./apps/tmux/tmux.nix
     ./apps/gnome-terminal/gnome-terminal.nix
+    ./apps/git/git.nix
     ./apps/dev-tools/dev-tools.nix
   ];
 
