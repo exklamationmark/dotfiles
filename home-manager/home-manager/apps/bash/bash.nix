@@ -38,5 +38,10 @@ in
     enable = true;
     bashrcExtra = bashrcExtra;
     initExtra = initExtra;
+
+    shellAliases = {
+      # TODO: combine shell alias from multiple apps here
+      vim = "nvim"; # TODO: split into: apps/neovim
+    };
   };
 }
