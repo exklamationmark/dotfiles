@@ -77,6 +77,9 @@ set colorcolumn=80,100
 " showcmd
 set showcmd
 
+" remap :E to :Explore. Otherwise, :E might be confused with :EditQuery
+command! E Explore
+
 " forward search with space, backward search with Ctrl+Space
 map <space> /
 map <C-space> ?
