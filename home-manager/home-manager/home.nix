@@ -11,6 +11,7 @@
     ./apps/neovim/neovim.nix
     ./apps/bash/bash.nix
     ./apps/tmux/tmux.nix
+    ./apps/gnome-terminal/gnome-terminal.nix
   ];
 
   # This value determines the Home Manager release that your configuration is
