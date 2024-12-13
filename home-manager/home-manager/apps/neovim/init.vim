@@ -12,8 +12,8 @@ call plug#begin()
 " Declare the list of plugins.
 " ----------------------------------------
 
-" Solarized
-Plug 'iCyMind/NeoSolarized'
+" NeoSolarized
+Plug 'Tsuzat/NeoSolarized.nvim'
 
 " vim-go
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
@@ -96,8 +96,7 @@ nnoremap <silent> <C-l> :nohl<CR><C-l>
 " lazyredraw for fast scrolling
 set lazyredraw
 
-" Solarized
-" set termguicolors " This seems to make the colors weird
+" NeoSolarized
 set background=dark
 colorscheme NeoSolarized
 
