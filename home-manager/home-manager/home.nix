@@ -18,6 +18,7 @@
     ./apps/gnome-terminal/gnome-terminal.nix
     ./apps/git/git.nix
     ./apps/dev-tools/dev-tools.nix
+    ./apps/go/go.nix
   ];
 
   # This value determines the Home Manager release that your configuration is
