@@ -8,6 +8,7 @@
 
   # Imports
   imports = [
+    ./style/ubuntu/ubuntu.nix
     ./apps/neovim/neovim.nix
     ./apps/bash/bash.nix
     ./apps/tmux/tmux.nix
