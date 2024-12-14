@@ -24,6 +24,7 @@
       # DEBUG: git checkout nix
       ln -sf ${PWD}/home-manager ${HOME}/.config/home-manager
       cd ~/.config/home-manager
+      sudo snap remove --purge firefox
       nix run home-manager switch -- -b backup
       sudo reboot
 
