@@ -25,3 +25,11 @@ render_gitconfig_for() {
 		-e "s/${placeholder_email}/${git_user_email}/g" \
 		${file}
 }
+
+post_install_nvim() {
+	red "Post-install: nvim:"
+	yellow "nvim -c qa"
+	yellow "nvim --headless -c 'PlugInstall' -c 'qa'"
+	yellow "nvim --headless -c 'GoInstallBinaries' -c 'qa'"
+	yellow "nvim --headless -c 'RecompileSpell' -c 'qa'"
+}

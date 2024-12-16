@@ -68,3 +68,6 @@ nix run home-manager switch -- -b backup
 red "For the best experience, reboot using:"
 blue "sudo reboot"
 pause
+
+post_install_nvim
+pause

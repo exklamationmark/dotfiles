@@ -1,0 +1,535 @@
+:SPELLGOOD *********************************************************************
+:SPELLGOOD *********************************************************************
+:SPELLGOOD Kubernetes
+:SPELLGOOD *********************************************************************
+:SPELLGOOD *********************************************************************
+
+
+
+:SPELLGOOD ---------------------------------------------------------------------
+:SPELLGOOD Resource units
+:SPELLGOOD ---------------------------------------------------------------------
+Ki
+Mi
+Gi
+Ti
+
+:SPELLGOOD ---------------------------------------------------------------------
+:SPELLGOOD Resource Kind(s) and related words
+:SPELLGOOD ---------------------------------------------------------------------
+apiVersion
+kind
+metadata
+name
+
+ns/
+namespace
+Namespace
+namespaced
+
+po/
+pods
+Pods
+
+rs/
+replicaset
+replicaSet
+ReplicaSet
+
+sa/
+serviceaccount
+serviceAccount
+ServiceAccount
+
+sts/
+statefulset
+statefulSet
+StatefulSet
+
+ds/
+daemonset
+daemonSet
+DaemonSet
+
+deploy/
+deployment
+Deployment
+rollout
+
+secret/
+secret
+Secret
+secretName
+
+cm/
+configmap
+configMap
+ConfigMap
+
+quota/
+resourcequota
+resourceQuota
+ResourceQuota
+
+svc/
+service
+Service
+serviceType
+ClusterIP
+LoadBalancer
+NodePort
+targetPort
+externalPort
+loadBalancers
+
+pv/
+persistentvolume
+persistentVolume
+PersistentVolume
+pvc/
+persistentvolumeclaims
+persistentVolumeClaims
+PersistentVolumeClaims
+storageclass
+storageClass
+StorageClass
+ephemeralStorage
+
+priorityclass
+priorityClass
+PriorityClass
+priorityClassName
+
+clusterissuer
+clusterIssuer
+ClusterIssuer
+
+netpol/
+networkpolicy
+networkPolicy
+NetworkPolicy
+
+job
+Job
+
+cj
+cronjob
+cronJob
+CronJob
+
+BonzaiCluster
+bonzaicluster
+
+:SPELLGOOD ---------------------------------------------------------------------
+:SPELLGOOD Words in resources' YAML files
+:SPELLGOOD ---------------------------------------------------------------------
+
+:SPELLGOOD ---------------------------------------------------------------------
+:SPELLGOOD Golang's packages
+:SPELLGOOD ---------------------------------------------------------------------
+k8s.io
+k8s.io/v1
+v1
+
+BonzaiClusterSpec
+BonzaiClusterStatus
+ClusterTier
+ClusterSpec
+ClusterStatus
+infraProvider
+remoteCluster
+BonzaiClusterTier
+BonzaiClusterInfraProvider
+DWDataCenter
+GKE
+dwDataCenter
+
+:SPELLGOOD ---------------------------------------------------------------------
+:SPELLGOOD Clusters
+:SPELLGOOD ---------------------------------------------------------------------
+sys1
+qa1
+qa2
+i1
+i2
+s1
+s3
+p1
+p3
+p4
+p6
+p7
+lt1
+lt2
+lt3
+lt4
+
+:SPELLGOOD ---------------------------------------------------------------------
+:SPELLGOOD Words in Helm charts
+:SPELLGOOD ---------------------------------------------------------------------
+extraVolumes
+extraEnvironmentVars
+fullnameOverride
+
+:SPELLGOOD ---------------------------------------------------------------------
+:SPELLGOOD Uncategorized words
+:SPELLGOOD ---------------------------------------------------------------------
+k8s
+kubernetes
+Kubernetes
+
+RBAC
+PVCs
+IPVS
+CRDs
+CRD
+CR
+CRs
+
+apiserver
+
+kubebuilder
+kubectl
+
+kustomize
+Kustomize
+kustomization
+
+subresource
+
+KUBECONFIG
+kubeconfig
+
+:SPELLGOOD *********************************************************************
+:SPELLGOOD *********************************************************************
+:SPELLGOOD Golang
+:SPELLGOOD *********************************************************************
+:SPELLGOOD *********************************************************************
+
+
+
+fmt
+encoding/json
+io
+ioutil
+omitempty
+
+
+
+:SPELLGOOD *********************************************************************
+:SPELLGOOD *********************************************************************
+:SPELLGOOD Rust
+:SPELLGOOD *********************************************************************
+:SPELLGOOD *********************************************************************
+
+
+
+print
+print!
+println
+println!
+
+Enum
+
+vec
+vec!
+
+struct
+dyn
+
+
+
+
+:SPELLGOOD *********************************************************************
+:SPELLGOOD *********************************************************************
+:SPELLGOOD exklamationmark
+:SPELLGOOD *********************************************************************
+:SPELLGOOD *********************************************************************
+
+
+
+Astra
+Astra's
+astra
+Ignis
+
+google-doc-url
+
+bitsgofer
+exklamationmark
+hkhiem
+
+:SPELLGOOD *********************************************************************
+:SPELLGOOD *********************************************************************
+:SPELLGOOD Others
+:SPELLGOOD *********************************************************************
+:SPELLGOOD *********************************************************************
+
+
+
+blog
+devops
+Grafana
+backend
+SaaS
+etc
+GCP
+e.g
+IoT
+apps
+Microsystems
+sysadmins
+OpenBSD
+nginx
+HTTPS
+config
+str
+alloc
+admin
+image
+Wiki
+onboard
+wiki
+UML
+SVG
+Terraform
+FQDN
+stateful
+API
+env
+JSON
+YAML
+i.e
+IPs
+DNS
+admins
+DevOps
+VLANs
+VMs
+cpu
+https
+OOM
+burstable
+yaml
+patsubst
+notdir
+wildcard
+dir
+addons
+repo
+username
+workflow
+templating
+async
+UI
+dev
+frontend
+README
+GitOps
+-ish
+org
+app
+px
+solarized
+IPv4
+VPC
+api
+repos
+Github
+dns
+io
+sharded
+Shamir
+TLS
+cfssl
+cfssljson
+tls
+CSR
+SANs
+CA's
+etcd
+json
+hostname
+(s)
+objs
+requires
+mTLS
+CLI
+CACERT
+ADDR
+ui
+crt
+letsencrypt
+addr
+ttl
+webhooks
+CAs
+kv_admin
+superadmin
+PKI
+AppRole
+auth
+terraform
+superadmins
+pem
+fi
+-z
+-s
+-p
+hcl
+userpass
+approle
+OAUTH
+terraform
+github
+Redis
+PostgreSQL
+mariadb
+MariaDB
+prometheus
+sudo
+ARG
+iframe
+WIP
+rebase
+TBD
+conf
+scaffolded
+overfitting
+param
+SPELLGOOD
+
+:SPELLGOOD *********************************************************************
+:SPELLGOOD *********************************************************************
+:SPELLGOOD Needs sorting
+:SPELLGOOD *********************************************************************
+:SPELLGOOD *********************************************************************
+
+
+
+
+linux
+macOS
+Bitsgofer
+Patreon
+Matosodon
+monospace
+Bonzai
+Komet
+googledoc
+komet
+DocumentType
+pandoc
+dpkg
+tmp
+amd64
+gz
+flexbox
+Typecaster
+analytics
+data analytics
+SRE
+golang
+Demonware
+Activision Blizzard
+structs
+apimachinery
+apis
+clientcmd
+#eepCopyInto
+DeepCopy
+DeepCopyInto
+DeepCopyObject
+printcolumn
+JSONPath
+InfraProvider
+storageversion
+v1alpha1
+groupName
+demonware
+bonzai
+TypeMeta
+TypeMeta
+jsonPath
+additionalPrinterColumns
+openAPIV3Schema
+APIVersion
+.md
+enum
+workloadCluster
+IsNotFound
+BonzaiCluster's
+clientFromWorkloadCluster
+corev1
+TypedLocalObjectReference
+healthcheck
+kube-system
+requeue
+backoff
+TerminalError
+ratelimit
+BonzaiClusterStatus
+ProbeSucceeded
+ProbeFailed
+BonzaiClusterReconcilerConfig
+BonzaiClusterReconciler
+TODO(mtong)
+mtong
+kubeConfig
+#robeWorkloadCluster
+mutex
+ConcurrentMap
+testhelpers
+ArgoCD
+tlsClientConfig
+caData
+certData
+keyData
+CADataBase64
+CertDataBase64/!
+CertDataBase64
+KeyDataBase64
+HaveArgoCDSecret
+argocd
+Describe
+func
+import
+kubeConfigSecret
+Reconcile
+controllerReference
+argoCD
+KubeConfig
+ArgoCDClusterSecret
+argoproj
+Printf
+argoCDClusterSecret
+updatedArgoCDClusterSecret
+updatedCluster
+restclient
+ClusterState
+rbac
+png
+DistroRelease
+aio
+ComponentRelease
+ComponentDeployment
+TEARDOWN
+BeforeEach
+V2
+DeploymentRule
+SizeClass
+sizeClass
+kubernetesVersion
+bootcamp
+appVersion
+v0
+crds
+K8S
+timestamp
+PluginServer/!
+Namespace/!
+sys2
+CustomResource
+OwnerReference
+inherriting
+DEPCON
