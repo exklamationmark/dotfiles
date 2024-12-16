@@ -1,4 +1,6 @@
 #!/bin/bash
+set -euo
+# set -x # DEBUG
 
 # Download the repo and run some initial setup:
 # - Update Ubuntu mirrors URL
@@ -13,4 +15,28 @@ wget -q https://github.com/exklamationmark/dotfiles/archive/refs/heads/main.zip 
 unzip dotfiles.zip
 cd dotfiles-main
 
-bash setup.bash
+source lib/install.bash
+source lib/configure.bash
+
+# Installs a minimal setup of tools, clone the repo using git
+# and then run the actual setup from there.
+#
+# This way, we can mutate the repo (e.g: adding work email, secrets, etc),
+# yet track the changes as and commit them for future use.
+# ------------------------------------------------------------------------------
+configure_apt_mirror
+sudo apt-get clean
+sudo apt-get update
+sudo apt-get upgrade -y
+
+install apt curl
+install apt git
+
+GH_ORG_DIR=${HOME}/workspace/src/github.com/exklamationmark
+REPO=${GH_ORG_DIR}/dotfiles
+
+mkdir -p ${GH_ORG_DIR}
+cd ${GH_ORG_DIR}
+git clone https://github.com/exklamationmark/dotfiles.git
+
+red "cd ${REPO} && ./setup.bash"

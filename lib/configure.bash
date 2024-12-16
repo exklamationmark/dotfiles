@@ -28,10 +28,9 @@ render_gitconfig_for() {
 
 post_install_nvim() {
 	red "Post-install: nvim:"
-	yellow "nvim -c qa"
-	yellow "nvim --headless -c 'PlugInstall' -c 'qa'"
-	yellow "nvim --headless -c 'GoInstallBinaries' -c 'qa'"
-	yellow "nvim --headless -c 'RecompileSpell' -c 'qa'"
+	nvim +':PlugInstall' +qall
+	nvim +':GoInstallBinaries' +qall
+	nvim +':RecompileSpell' +qall
 }
 
 post_install_unattended_upgrades() {
@@ -52,4 +51,5 @@ post_install_1password() {
 	yellow "- Show 1password Developer experience"
 	yellow "- Use the SSH Agent"
 	yellow "- Integrate with 1Password CLI"
+	pause
 }
