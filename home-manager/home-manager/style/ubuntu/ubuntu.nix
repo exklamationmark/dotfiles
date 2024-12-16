@@ -1,6 +1,10 @@
 { config, pkgs, lib, ... }:
 
 {
+  home.packages = [
+    pkgs.dconf-editor
+  ];
+
   dconf = {
     settings = {
       "org/gnome/desktop/interface" = {
