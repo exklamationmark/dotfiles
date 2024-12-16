@@ -128,8 +128,8 @@
   home.file.".config/git/user-work" = {
     text = ''
       [user]
-      name = "???"
-      email = "???@???.???"
+      name = "USERNAME"
+      email = "EMAIL"
     '';
   };
 }

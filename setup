@@ -1,0 +1,36 @@
+#!/bin/bash
+set -exuo
+
+source lib/install.bash
+source lib/configure.bash
+
+configure_apt_mirror
+configure_google_ppa
+configure_mozilla_ppa
+
+sudo apt-get update
+
+install apt curl
+install apt git
+
+install apt google-chrome-stable
+
+sudo snap remove --purge firefox
+sudo apt remove firefox
+install apt firefox
+
+curl --proto '=https' --tlsv1.2 -sSf \
+	-L https://install.determinate.systems/nix | \
+	sh -s -- install
+
+# mkdir -p ${HOME}/workspace/src/github.com/exklamationmark
+# cd ${HOME}/workspace/src/github.com/exklamationmark
+# git clone https://github.com/exklamationmark/dotfiles.git
+# cd dotfiles
+# DEBUG:
+# git checkout nix
+# DEBUG:
+ln -sf ${PWD}/home-manager ${HOME}/.config/home-manager
+cd ~/.config/home-manager
+nix run home-manager switch -- -b backup
+sudo reboot
