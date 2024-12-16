@@ -8,8 +8,10 @@
     extraConfig = builtins.readFile ./init.vim;
   };
 
-  # TODO: does not seem to run???
-  # home.activation.installNeovimPlugins = lib.mkAfter ''
-  #   ${pkgs.neovim}/bin/nvim +':PlugInstall --sync' +qall
-  # '';
+  home.activation.createAliasForNeovim = lib.hm.dag.entryAfter ["writeBoundary"] ''
+    if [ ! -L ${config.home.homeDirectory}/.local/bin/vim ]; then
+      run mkdir -p ${config.home.homeDirectory}/.local/bin
+      run ln -s -f ~/.nix-profile/bin/nvim ${config.home.homeDirectory}/.local/bin/vim
+    fi
+  '';
 }
