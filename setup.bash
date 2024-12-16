@@ -71,3 +71,6 @@ pause
 
 post_install_nvim
 pause
+
+post_install_unattended_upgrades
+pause

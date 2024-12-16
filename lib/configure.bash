@@ -33,3 +33,14 @@ post_install_nvim() {
 	yellow "nvim --headless -c 'GoInstallBinaries' -c 'qa'"
 	yellow "nvim --headless -c 'RecompileSpell' -c 'qa'"
 }
+
+post_install_unattended_upgrades() {
+	red "Configure Ubuntu Software & Updates:"
+	echo "Open the app: Software & Updates (blue icon) to configure its settings"
+	echo "Go to: Updates (tab). Set:"
+	yellow "- Subscribed to: Security and recommended updates"
+	yellow "- Automatically check for updates: Daily"
+	yellow "- When there are security updates: Download and install automatically"
+	yellow "- When there are other updates: Display weekly"
+	pause
+}
