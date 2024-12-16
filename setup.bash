@@ -1,5 +1,6 @@
 #!/bin/bash
-set -exuo
+set -euo
+# set -x # DEBUG
 
 source lib/install.bash
 source lib/configure.bash
@@ -46,6 +47,11 @@ sudo apt remove firefox -y
 install apt firefox
 
 install apt 1password
+# ==============================================================================
+
+# Template secrets/sensitive info
+# ==============================================================================
+render_gitconfig_for "WORK" home-manager/home-manager/apps/git/git.nix
 # ==============================================================================
 
 # Nix
