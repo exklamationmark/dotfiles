@@ -74,3 +74,6 @@ pause
 
 post_install_unattended_upgrades
 pause
+
+post_install_1password
+pause

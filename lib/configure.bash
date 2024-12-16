@@ -44,3 +44,12 @@ post_install_unattended_upgrades() {
 	yellow "- When there are other updates: Display weekly"
 	pause
 }
+
+post_install_1password() {
+	red "Configure 1Password:"
+	echo "Open 1Password and login"
+	echo "Go to: Developer (tab). Set:"
+	yellow "- Show 1password Developer experience"
+	yellow "- Use the SSH Agent"
+	yellow "- Integrate with 1Password CLI"
+}
