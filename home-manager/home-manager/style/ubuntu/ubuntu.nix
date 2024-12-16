@@ -22,6 +22,18 @@
 
         enable-hot-corners = true;
       };
+
+      "org/gnome/shell" = {
+        favorite-apps = [
+          "org.gnome.Nautilus.desktop"
+          "org.gnome.Terminal.desktop"
+          "firefox.desktop"
+          "google-chrome.desktop"
+          "1password.desktop"
+          "org.gnome.Settings.desktop"
+        ];
+      };
+
     };
   };
 }
