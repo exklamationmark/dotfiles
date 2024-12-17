@@ -45,6 +45,7 @@ install apt tailscale
 
 # Template secrets/sensitive info
 # ==============================================================================
+render_home_manager
 render_gitconfig_for "WORK" home-manager/home-manager/apps/git/git.nix
 # ==============================================================================
 

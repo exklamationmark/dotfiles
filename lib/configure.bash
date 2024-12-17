@@ -1,5 +1,16 @@
 #!/bin/bash
 
+render_home_manager() {
+	local username=$(whoami)
+
+	sed --in-place \
+		-e "s|HOME_MANAGER_USERNAME|${username}|g" \
+		home-manager/home-manager/home.nix
+	sed --in-place \
+		-e "s|HOME_MANAGER_USERNAME|${username}|g" \
+		home-manager/flake.nix
+}
+
 render_gitconfig_for() {
 	local PURPOSE=$(echo -n ${1} | tr 'a-z' 'A-Z')
 	local file=$2
