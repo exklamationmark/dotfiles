@@ -20,7 +20,7 @@ let
     ./bashrc.d/ps1.bash
     ./bashrc.d/kubernetes.bash
     ../go/bashrc.d/go.bash
-    ./bashrc.d/rust.bash
+    ../rust/bashrc.d/rust.bash
     ../work/bashrc.d/tailscale.bash
   ];
   bashrcExtra = builtins.concatStringsSep "\n" (map builtins.readFile bashrcExtraFragments);
