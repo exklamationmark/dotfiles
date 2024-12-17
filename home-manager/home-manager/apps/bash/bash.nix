@@ -18,7 +18,7 @@ let
     ./bashrc.d/aliases.bash
     ./bashrc.d/d2.bash
     ./bashrc.d/ps1.bash
-    ./bashrc.d/kubernetes.bash
+    ../dev-tools/kubernetes/bashrc.d/kubernetes.bash
     ../go/bashrc.d/go.bash
     ../rust/bashrc.d/rust.bash
     ../work/bashrc.d/tailscale.bash
