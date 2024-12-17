@@ -3,6 +3,7 @@
 {
   home.packages = [
     pkgs.dconf-editor
+    pkgs.dconf2nix
   ];
 
   dconf = {
