@@ -150,6 +150,11 @@ configure_docker_ppa() {
 	echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 }
 
+configure_tailscale_ppa() {
+	wget -q -O - https://pkgs.tailscale.com/stable/ubuntu/$(lsb_release -cs).gpg | sudo tee /etc/apt/keyrings/tailscale.asc >/dev/null
+	echo "deb [signed-by=/etc/apt/keyrings/tailscale.asc] https://pkgs.tailscale.com/stable/ubuntu $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/tailscale.list > /dev/null
+}
+
 kubectl_custom_install() {
 	local version=$1
 

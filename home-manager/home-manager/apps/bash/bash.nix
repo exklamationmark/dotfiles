@@ -21,6 +21,7 @@ let
     ./bashrc.d/kubernetes.bash
     ./bashrc.d/golang.bash
     ./bashrc.d/rust.bash
+    ../work/bashrc.d/tailscale.bash
   ];
   bashrcExtra = builtins.concatStringsSep "\n" (map builtins.readFile bashrcExtraFragments);
 

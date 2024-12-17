@@ -11,6 +11,7 @@ configure_google_chrome_ppa
 configure_mozilla_ppa
 configure_1password_ppa
 configure_docker_ppa
+configure_tailscale_ppa
 
 sudo apt-get update
 
@@ -31,6 +32,8 @@ sudo usermod -aG docker $(whoami)
 
 install custom kubectl v1.31.0
 install custom k8s_kind v0.26.0
+
+install apt tailscale
 # ==============================================================================
 
 # Template secrets/sensitive info
