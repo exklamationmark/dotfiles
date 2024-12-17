@@ -30,6 +30,7 @@ install apt containerd.io
 install apt docker-buildx-plugin
 sudo usermod -aG docker $(whoami)
 
+mkdir -p ${HOME}/.local/bin
 install custom kubectl v1.31.0
 install custom k8s_kind v0.26.0
 
