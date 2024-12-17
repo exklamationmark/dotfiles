@@ -19,7 +19,7 @@ let
     ./bashrc.d/d2.bash
     ./bashrc.d/ps1.bash
     ./bashrc.d/kubernetes.bash
-    ./bashrc.d/golang.bash
+    ../go/bashrc.d/go.bash
     ./bashrc.d/rust.bash
     ../work/bashrc.d/tailscale.bash
   ];
