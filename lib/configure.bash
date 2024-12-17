@@ -53,3 +53,14 @@ post_install_1password() {
 	yellow "- Integrate with 1Password CLI"
 	pause
 }
+
+post_install_d2() {
+	local api_token=$(op item get 'D2 (Terrastruct)' --fields label='license key')
+
+	local source=${PWD}/home-manager/home-manager/apps/dev-tools/d2/auth.json
+	local symlink=${HOME}/.config/tstruct/auth.json
+	mkdir -p ${HOME}/.config/tstruct
+	ln -sf ${source} ${symlink}
+
+	sed --in-place -e "s/D2_TALA_API_TOKEN/${api_token}/g" ${source}
+}
