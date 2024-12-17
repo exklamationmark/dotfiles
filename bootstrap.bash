@@ -11,6 +11,7 @@ set -euo
 
 cd /tmp
 
+blue "Download: github.com/exklamationmark/dotfiles"
 wget -q https://github.com/exklamationmark/dotfiles/archive/refs/heads/main.zip -O dotfiles.zip
 unzip dotfiles.zip
 cd dotfiles-main
@@ -24,19 +25,24 @@ source lib/configure.bash
 # This way, we can mutate the repo (e.g: adding work email, secrets, etc),
 # yet track the changes as and commit them for future use.
 # ------------------------------------------------------------------------------
+blue "Configure: apt"
 configure_apt_mirror
 sudo apt-get clean
 sudo apt-get update
+
+blue "Install: apt-get upgrade"
 sudo apt-get upgrade -y
 
+blue "Install: git + curl"
 install apt curl
 install apt git
 
+blue "Clone: github.com/exklamationmark/dotfiles"
 GH_ORG_DIR=${HOME}/workspace/src/github.com/exklamationmark
 REPO=${GH_ORG_DIR}/dotfiles
-
 mkdir -p ${GH_ORG_DIR}
 cd ${GH_ORG_DIR}
 git clone https://github.com/exklamationmark/dotfiles.git
 
-red "cd ${REPO} && ./setup.bash"
+red "To continue, run:"
+blue "cd ${REPO} && ./setup.bash"
