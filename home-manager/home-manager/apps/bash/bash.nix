@@ -45,4 +45,10 @@ in
       vim = "nvim"; # TODO: split into: apps/neovim
     };
   };
+
+  home.file.".inputrc" = {
+    text = ''
+      "\C-l": clear-screen
+    '';
+  };
 }
