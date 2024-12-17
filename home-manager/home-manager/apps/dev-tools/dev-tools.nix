@@ -16,5 +16,8 @@
     pkgs.tcpdump
     pkgs.vault
     pkgs.terraform
+    pkgs.kubernetes-helm
+    pkgs.kustomize
+    pkgs.dyff
   ];
 }
