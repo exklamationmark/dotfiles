@@ -10,6 +10,7 @@ source lib/configure.bash
 configure_google_chrome_ppa
 configure_mozilla_ppa
 configure_1password_ppa
+configure_docker_ppa
 
 sudo apt-get update
 
@@ -20,6 +21,12 @@ sudo apt remove firefox -y
 install apt firefox
 
 install apt 1password
+
+install apt docker-ce
+install apt docker-ce-cli
+install apt containerd.io
+install apt docker-buildx-plugin
+sudo usermod -aG docker $(whoami)
 # ==============================================================================
 
 # Template secrets/sensitive info

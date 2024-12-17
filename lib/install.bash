@@ -136,3 +136,8 @@ configure_1password_ppa() {
 	sudo mkdir -p /usr/share/debsig/keyrings/AC2D62742012EA22
 	wget -q -O - https://downloads.1password.com/linux/keys/1password.asc | sudo gpg --dearmor --output /usr/share/debsig/keyrings/AC2D62742012EA22/debsig.gpg >/dev/null
 }
+
+configure_docker_ppa() {
+	wget -q -O - https://download.docker.com/linux/ubuntu/gpg | sudo tee /etc/apt/keyrings/docker.asc > /dev/null
+	echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+}
