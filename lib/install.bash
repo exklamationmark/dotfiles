@@ -86,6 +86,14 @@ install() {
     yellow "Installing $package using $installer ..."
     $install_function ${@:3}
   fi
+
+  # install with custom function
+  if ( ! is_installed $package ) && [[ $installer == "custom" ]]
+  then
+    local install_function=${package}_custom_install
+    yellow "Installing $package using $installer ..."
+    $install_function ${@:3}
+  fi
 }
 
 pause(){
@@ -140,4 +148,12 @@ configure_1password_ppa() {
 configure_docker_ppa() {
 	wget -q -O - https://download.docker.com/linux/ubuntu/gpg | sudo tee /etc/apt/keyrings/docker.asc > /dev/null
 	echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+}
+
+kubectl_custom_install() {
+	local version=$1
+
+	curl -LO https://storage.googleapis.com/kubernetes-release/release/${version}/bin/linux/amd64/kubectl
+	chmod +x kubectl
+	mv kubectl ~/.local/bin/
 }

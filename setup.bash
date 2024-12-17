@@ -27,6 +27,8 @@ install apt docker-ce-cli
 install apt containerd.io
 install apt docker-buildx-plugin
 sudo usermod -aG docker $(whoami)
+
+install custom kubectl v1.31.0
 # ==============================================================================
 
 # Template secrets/sensitive info
