@@ -16,8 +16,8 @@ let
     ./bashrc.d/ubuntu.bash
     ./bashrc.d/extra.bash
     ./bashrc.d/aliases.bash
-    ./bashrc.d/d2.bash
     ./bashrc.d/ps1.bash
+    ../dev-tools/d2/bashrc.d/d2.bash
     ../dev-tools/kubernetes/bashrc.d/kubernetes.bash
     ../go/bashrc.d/go.bash
     ../rust/bashrc.d/rust.bash
