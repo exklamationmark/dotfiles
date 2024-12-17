@@ -7,6 +7,8 @@
   home.homeDirectory = "/home/ubuntu";
 
   nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
+    "vault"
+    "terraform"
   ];
 
   # Imports

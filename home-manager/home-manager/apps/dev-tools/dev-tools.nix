@@ -14,5 +14,7 @@
     pkgs.netcat-gnu
     pkgs.socat
     pkgs.tcpdump
+    pkgs.vault
+    pkgs.terraform
   ];
 }
