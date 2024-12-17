@@ -21,6 +21,7 @@ sudo apt remove firefox -y
 install apt firefox
 
 install apt 1password
+install apt 1password-cli
 
 install apt docker-ce
 install apt docker-ce-cli
