@@ -11,7 +11,6 @@ set -euo
 
 cd /tmp
 
-blue "Download: github.com/exklamationmark/dotfiles"
 wget -q https://github.com/exklamationmark/dotfiles/archive/refs/heads/main.zip -O dotfiles.zip
 unzip dotfiles.zip
 cd dotfiles-main
