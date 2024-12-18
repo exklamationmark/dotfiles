@@ -89,47 +89,26 @@
         clean = "git-lfs clean -- %f";
         smudge = "git-lfs smudge -- %f";
       };
+
+      url."git@github.com:" = {
+        insteadOf = "https://github.com";
+      };
     };
 
-    # userName && userEmail are not used.
-    # Instead, those info are set conditionally, using include files
+    # userName && userEmail will be overriden for work & personal repos
 
+    userName = "GIT_DEFAULT_USER_NAME";
+    userEmail  = "GIT_DEFAULT_USER_EMAIL";
     includes = [
+      # NOTE: gitdir condition: https://git-scm.com/docs/git-config#Documentation/git-config.txt-codegitdircode
       {
-        path = "~/.config/git/user-default";
+        condition = "gitdir:~/workspace/src/github.com/exklamationmark/**/";
+        path = "~/.config/git/personal";
       }
       {
-        path = "~/.config/git/user-personal";
-        condition = "gitdir:~/workspace/src/github.com/exklamationmark";
-      }
-      {
-        path = "~/.config/git/user-work";
-        condition = "gitdir:~/workspace/src/path/to/work";
+        condition = "gitdir:GIT_WORK_DIRECTORY/**/";
+        path = "~/.config/git/work";
       }
     ];
-  };
-
-  home.file.".config/git/user-default" = {
-    text = ''
-      [user]
-      name = "exklamationmark"
-      email = "tonghuukhiem@gmail.com"
-    '';
-  };
-
-  home.file.".config/git/user-personal" = {
-    text = ''
-      [user]
-      name = "exklamationmark"
-      email = "tonghuukhiem@gmail.com"
-    '';
-  };
-
-  home.file.".config/git/user-work" = {
-    text = ''
-      [user]
-      name = "GIT_USER_NAME_FOR_WORK"
-      email = "GIT_USER_EMAIL_FOR_WORK"
-    '';
   };
 }

@@ -11,29 +11,43 @@ render_home_manager() {
 		home-manager/flake.nix
 }
 
-render_gitconfig_for() {
-	local PURPOSE=$(echo -n ${1} | tr 'a-z' 'A-Z')
-	local file=$2
+render_default_gitconfig() {
+	local file=${PWD}/home-manager/home-manager/apps/git/git.nix
 
 	local confirmed="n"
-	local placeholder_username=GIT_USER_NAME_FOR_${PURPOSE}
-	local placeholder_email=GIT_USER_EMAIL_FOR_${PURPOSE}
+	local placeholder_username=GIT_DEFAULT_USER_NAME
+	local placeholder_email=GIT_DEFAULT_USER_EMAIL
+	local placeholder_work_directory=GIT_WORK_DIRECTORY
 
-	red "Configure Git for ${PURPOSE}:"
+	red "Configure Git"
 	local git_user_name
 	local git_user_email
+	local git_work_directory
 	while [ "${confirmed}" != "y" ]
 	do
-		read -p "Git user.name for ${PURPOSE} (Github username): " git_user_name
-		read -p "Git user.email for ${PURPOSE} (Github email): " git_user_email
-		echo -e "Configure git for ${PURPOSE}: user.name=\"${YELLOW}${git_user_name}${NONE}\"; user.email=\"${YELLOW}${git_user_email}${NONE}\""
+		read -p "Default git user.name (Github username): " git_user_name
+		read -p "Default git user.email (Github email): " git_user_email
+		read -p "Git's work directory: " git_work_directory
+		echo -e "Configure git default: user.name=\"${YELLOW}${git_user_name}${NONE}\"; user.email=\"${YELLOW}${git_user_email}${NONE}\"; workDir=\"${YELLOW}${git_work_directory%/}\"${NONE}"
 		read -p "Are you sure (y/n): " confirmed
 	done
 
 	sed --in-place \
 		-e "s/${placeholder_username}/${git_user_name}/g" \
 		-e "s/${placeholder_email}/${git_user_email}/g" \
+		-e "s|${placeholder_work_directory}|${git_work_directory%/}|g" \
 		${file}
+}
+
+render_gitconfig_for() {
+	local PURPOSE=$(echo -n ${1} | tr 'a-z' 'A-Z')
+	local file=${PWD}/$2
+
+	local basename=$(basename ${file})
+	local symlink=~/.config/git/${basename}
+
+	echo -e "Configure Git for ${PURPOSE}"
+	ln -sf ${file} ${symlink}
 }
 
 render_sshconfig_for() {
