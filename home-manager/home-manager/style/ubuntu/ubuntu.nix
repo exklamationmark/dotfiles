@@ -11,7 +11,7 @@
       "org/gnome/desktop/interface" = {
         color-scheme = "prefer-dark";
 
-        text-scaling-factor = 1.5; # Larger text
+        text-scaling-factor = 1; # Larger text
 
         clock-format = "24h";
         clock-show-date = true;
