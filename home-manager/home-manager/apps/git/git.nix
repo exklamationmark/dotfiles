@@ -109,6 +109,12 @@
         condition = "gitdir:GIT_WORK_DIRECTORY/**/";
         path = "~/.config/git/work";
       }
+      {
+        # NOTE: This forces commands like 'go build, go get' to use SSH
+        # when pulling from work (private repos)
+        condition = "gitdir:~/workspace/pkg/mod/**/";
+        path = "~/.config/git/work";
+      }
     ];
   };
 }
