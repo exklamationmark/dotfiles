@@ -37,6 +37,17 @@ render_gitconfig_for() {
 		${file}
 }
 
+render_sshconfig_for() {
+	local PURPOSE=$(echo -n ${1} | tr 'a-z' 'A-Z')
+	local file=${PWD}/$2
+
+	local basename=$(basename ${file})
+	local symlink=~/.ssh/${basename}
+
+	echo -e "Configure SSH for ${PURPOSE}"
+	ln -sf ${file} ${symlink}
+}
+
 post_install_nvim() {
 	red "Post-install: nvim:"
 	nvim +':PlugInstall' +qall

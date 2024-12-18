@@ -46,7 +46,11 @@ install apt tailscale
 # Template secrets/sensitive info
 # ==============================================================================
 render_home_manager
+
 render_gitconfig_for "WORK" home-manager/home-manager/apps/git/git.nix
+
+render_sshconfig_for "WORK" home-manager/home-manager/apps/work/ssh/work.config
+render_sshconfig_for "PERSONAL" home-manager/home-manager/apps/personal/ssh/personal.config
 # ==============================================================================
 
 blue "Install: nix"

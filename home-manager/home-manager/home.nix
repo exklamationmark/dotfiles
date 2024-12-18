@@ -22,6 +22,9 @@
     ./apps/dev-tools/dev-tools.nix
     ./apps/go/go.nix
     ./apps/rust/rust.nix
+    ./apps/ssh/ssh.nix
+    ./apps/work/work.nix
+    ./apps/personal/personal.nix
   ];
 
   # This value determines the Home Manager release that your configuration is
