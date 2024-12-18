@@ -30,7 +30,6 @@ render_gitconfig_for() {
 		read -p "Are you sure (y/n): " confirmed
 	done
 
-	local tmp=$(mktemp)
 	sed --in-place \
 		-e "s/${placeholder_username}/${git_user_name}/g" \
 		-e "s/${placeholder_email}/${git_user_email}/g" \
