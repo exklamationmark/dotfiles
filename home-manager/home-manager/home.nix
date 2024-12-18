@@ -9,6 +9,8 @@
   nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
     "vault"
     "terraform"
+    # 1password-cli
+    # 1password-gui
   ];
 
   # Imports
@@ -23,6 +25,7 @@
     ./apps/go/go.nix
     ./apps/rust/rust.nix
     ./apps/ssh/ssh.nix
+    ./apps/1password/1password.nix
     ./apps/work/work.nix
     ./apps/personal/personal.nix
   ];
