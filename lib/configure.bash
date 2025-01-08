@@ -61,6 +61,33 @@ render_sshconfig_for() {
 	ln -sf ${file} ${symlink}
 }
 
+render_work() {
+	local file=${PWD}/home-manager/home-manager/apps/work/work.nix
+
+	local confirmed="n"
+	local placeholder_vault_addr=WORK_VAULT_ADDRESS
+	local placeholder_github_token=WORK_PERSONAL_GITHUB_TOKEN
+
+	red "Configure Git"
+	local vault_addr
+	local github_token
+	while [ "${confirmed}" != "y" ]
+	do
+		read -p "Vault's address (e.g: https://vault.work.domain:port): " vault_addr
+		read -p "Github (Enterprise)'s personal access token: " github_token
+		echo -e "Configure VAULT_ADDR: \"${YELLOW}${vault_addr}${NONE}\""
+		echo -e "Configure GITHUB_TOKEN: \"${YELLOW}${github_token}${NONE}\""
+		read -p "Are you sure (y/n): " confirmed
+	done
+
+	sed --in-place \
+		-e "s|${placeholder_vault_addr}|${vault_addr}|g" \
+		-e "s/${placeholder_github_token}/${github_token}/g" \
+		${file}
+}
+
+
+
 post_install_nvim() {
 	red "Post-install: nvim:"
 	nvim +':PlugInstall' +qall

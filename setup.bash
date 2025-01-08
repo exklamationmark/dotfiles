@@ -50,6 +50,8 @@ install snap slack
 # ==============================================================================
 render_home_manager
 
+render_work
+
 render_default_gitconfig
 render_gitconfig_for "WORK" home-manager/home-manager/apps/work/git/work
 render_gitconfig_for "PERSONAL" home-manager/home-manager/apps/personal/git/personal

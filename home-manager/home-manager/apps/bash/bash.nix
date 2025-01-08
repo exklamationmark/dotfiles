@@ -14,6 +14,7 @@ let
   # REF: https://github.com/nix-community/home-manager/blob/release-24.05/modules/programs/bash.nix#L220-L233
   bashrcExtraFragments = [
     ./bashrc.d/ubuntu.bash
+    ./bashrc.d/history.bash
     ./bashrc.d/extra.bash
     ./bashrc.d/aliases.bash
     ./bashrc.d/ps1.bash
@@ -25,10 +26,9 @@ let
   ];
   bashrcExtra = builtins.concatStringsSep "\n" (map builtins.readFile bashrcExtraFragments);
 
-  initExtraFragments = [
-    ./bashrc.d/history.bash
-  ];
-  initExtra = builtins.concatStringsSep "\n" (map builtins.readFile initExtraFragments);
+  initExtra = ''
+    . "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh"
+  '';
 in
 {
   home.sessionPath = [
