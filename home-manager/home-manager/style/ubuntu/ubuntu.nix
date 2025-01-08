@@ -20,7 +20,7 @@
 
         enable-animations = false;
 
-        enable-hot-corners = true;
+        enable-hot-corners = false;
       };
 
       # Lock screen
