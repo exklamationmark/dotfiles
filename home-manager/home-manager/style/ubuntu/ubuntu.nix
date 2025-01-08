@@ -44,6 +44,7 @@
           "firefox.desktop"
           "google-chrome.desktop"
           "1password.desktop"
+          "slack_slack.desktop"
           "org.gnome.Settings.desktop"
         ];
       };

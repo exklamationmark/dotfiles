@@ -9,6 +9,7 @@
   nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
     "vault"
     "terraform"
+    "slack"
     # 1password-cli
     # 1password-gui
   ];

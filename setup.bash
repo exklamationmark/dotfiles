@@ -41,6 +41,9 @@ install custom k8s_kind v0.26.0
 
 blue "Install: tailscale"
 install apt tailscale
+
+blue "Install: slack"
+install snap slack
 # ==============================================================================
 
 # Template secrets/sensitive info

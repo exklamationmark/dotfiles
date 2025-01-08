@@ -38,6 +38,15 @@ is_installed(){
 	return 1
 }
 
+is_installed_snap() {
+	local package=$1
+	if snap list | grep -q "^$package" >/dev/null
+	then
+		return 0
+	fi
+	return 1
+}
+
 install_apt() {
 	local package=$1
 	sudo apt-get install $package -y
@@ -53,6 +62,12 @@ install_deb() {
 		curl $url > /tmp/$package.deb
 	fi
 	sudo dpkg -i /tmp/$package.deb
+}
+
+install_snap() {
+	# install a package from Ubuntu's snap store
+	local package=$1
+	sudo snap install $package
 }
 
 install() {
@@ -77,6 +92,13 @@ install() {
 		local package_url=$3
 		yellow "Installing $package using $installer ..."
 		install_deb $package $package_url
+	fi
+
+	# run snap install for snap packages
+	if ( ! is_installed_snap $package ) && [[ $installer == "snap" ]]
+	then
+		yellow "Installing $package using $installer ..."
+		install_snap $package
 	fi
 
 	# install from source
