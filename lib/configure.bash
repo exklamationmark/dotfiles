@@ -60,6 +60,7 @@ render_sshconfig_for() {
 
 	echo -e "Configure SSH for ${PURPOSE}"
 	mkdir -p $(dirname ${symlink})
+	chmod 600 ${file} # Otherwise, SSH will complain about permissions
 	ln -sf ${file} ${symlink}
 }
 
@@ -92,7 +93,6 @@ render_work() {
 
 post_install_nvim() {
 	red "Post-install: nvim:"
-	chmod 600 ~/.ssh/*.config # Otherwise SSH cannot read config files to get keys
 	nvim +':PlugInstall' +qall
 	nvim +':GoInstallBinaries' +qall
 	nvim +':RecompileSpell' +qall
