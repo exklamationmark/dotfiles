@@ -115,6 +115,9 @@ post_install_1password() {
 	yellow "- Show 1password Developer experience"
 	yellow "- Use the SSH Agent"
 	yellow "- Integrate with 1Password CLI"
+	echo ""
+	blue "- Run: ${YELLOW}op item list --categories 'SSH Key'${BLUE} to get a list of SSH keys"
+	blue "  - For each key that 1Password should manage, run: ${YELLOW}op item get [KEY TITLE] --fields=public_key | tee ~/.ssh/[KEY TITLE].pub${BLUE}"
 	pause
 }
 
