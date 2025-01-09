@@ -92,6 +92,7 @@ render_work() {
 
 post_install_nvim() {
 	red "Post-install: nvim:"
+	chmod 600 ~/.ssh/*.config # Otherwise SSH cannot read config files to get keys
 	nvim +':PlugInstall' +qall
 	nvim +':GoInstallBinaries' +qall
 	nvim +':RecompileSpell' +qall
@@ -130,4 +131,13 @@ post_install_d2() {
 	ln -sf ${source} ${symlink}
 
 	sed --in-place -e "s/D2_TALA_API_TOKEN/${api_token}/g" ${source}
+}
+
+post_install_ssh_to_github() {
+	red "Configure SSH access to Github:"
+	yellow "- Update ${RED}~/.ssh/personal.config${YELLOW} and ${RED}~/.ssh/work.config${YELLOW} with IdentityFile(s)"
+	echo "Test these commands. They should work and use the right credentials:"
+	yellow "ssh -T git@github.com"
+	yellow "ssh -T git@work.domain"
+	pause
 }

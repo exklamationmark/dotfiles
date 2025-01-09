@@ -9,6 +9,9 @@ blue "Configure: 1password"
 post_install_1password
 op signin
 
+blue "Configure: SSH to Github"
+post_install_ssh_to_github
+
 blue "Configure: nvim"
 post_install_nvim
 
