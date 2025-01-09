@@ -47,6 +47,7 @@ render_gitconfig_for() {
 	local symlink=~/.config/git/${basename}
 
 	echo -e "Configure Git for ${PURPOSE}"
+	mkdir -p $(dirname ${symlink})
 	ln -sf ${file} ${symlink}
 }
 
@@ -58,6 +59,7 @@ render_sshconfig_for() {
 	local symlink=~/.ssh/${basename}
 
 	echo -e "Configure SSH for ${PURPOSE}"
+	mkdir -p $(dirname ${symlink})
 	ln -sf ${file} ${symlink}
 }
 
@@ -121,7 +123,7 @@ post_install_d2() {
 
 	local source=${PWD}/home-manager/home-manager/apps/dev-tools/d2/auth.json
 	local symlink=${HOME}/.config/tstruct/auth.json
-	mkdir -p ${HOME}/.config/tstruct
+	mkdir -p $(dirname ${symlink})
 	ln -sf ${source} ${symlink}
 
 	sed --in-place -e "s/D2_TALA_API_TOKEN/${api_token}/g" ${source}
