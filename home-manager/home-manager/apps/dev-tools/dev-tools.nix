@@ -21,5 +21,7 @@
     pkgs.dyff
     pkgs.virtualbox
     (pkgs.google-cloud-sdk.withExtraComponents [ pkgs.google-cloud-sdk.components.gke-gcloud-auth-plugin ]) # REF: https://github.com/NixOS/nixpkgs/issues/182856#issuecomment-2319115082
+    pkgs.bat
+    pkgs.glow
   ];
 }
