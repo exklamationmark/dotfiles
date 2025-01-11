@@ -100,6 +100,12 @@ set lazyredraw
 set background=dark
 colorscheme NeoSolarized
 
+" horizontal and vertical separators
+hi WinSeparator guifg=#cb4b16 " Solarized's orange
+set laststatus=2 "one status line per panel
+hi StatusLine guibg=#268bd2 guifg=#002b36 " of current panel
+hi StatusLineNC guibg=#839496 guifg=#002b36 " of non-current panel
+
 " remove trailing spaces
 autocmd BufWritePre * %s/\s\+$//e
 
