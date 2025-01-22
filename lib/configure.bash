@@ -70,22 +70,27 @@ render_work() {
 	local confirmed="n"
 	local placeholder_vault_addr=WORK_VAULT_ADDRESS
 	local placeholder_github_token=WORK_PERSONAL_GITHUB_TOKEN
+	local placeholder_goprivate_env=WORK_GOPRIVATE
 
 	red "Configure Git"
 	local vault_addr
 	local github_token
+	local goprivate_env
 	while [ "${confirmed}" != "y" ]
 	do
 		read -p "Vault's address (e.g: https://vault.work.domain:port): " vault_addr
 		read -p "Github (Enterprise)'s personal access token: " github_token
+		read -p "GOPRIVATE - Github (Enterprise)'s domain: " goprivate_env
 		echo -e "Configure VAULT_ADDR: \"${YELLOW}${vault_addr}${NONE}\""
 		echo -e "Configure GITHUB_TOKEN: \"${YELLOW}${github_token}${NONE}\""
+		echo -e "Configure GOPRIVATE: \"${YELLOW}${goprivate_env}${NONE}\""
 		read -p "Are you sure (y/n): " confirmed
 	done
 
 	sed --in-place \
 		-e "s|${placeholder_vault_addr}|${vault_addr}|g" \
 		-e "s/${placeholder_github_token}/${github_token}/g" \
+		-e "s/${placeholder_goprivate_env}/${goprivate_env}/g" \
 		${file}
 }
 
