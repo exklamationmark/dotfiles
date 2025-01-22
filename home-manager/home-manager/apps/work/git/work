@@ -1,3 +1,7 @@
 [user]
 name = "GIT_WORK_USER"
 email = "GIT_WORK_EMAIL"
+
+# Used with GOPRIVATE
+# [url "git@WORK_GITHUB_ENTERPRISE_DOMAIN:"]
+# 	insteadOf = "https://WORK_GITHUB_ENTERPRISE_DOMAIN"
