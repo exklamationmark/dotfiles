@@ -44,6 +44,9 @@ install apt tailscale
 
 blue "Install: slack"
 install snap slack
+
+blue "Install: Aseprite"
+download_licensed_aseprite
 # ==============================================================================
 
 # Template secrets/sensitive info

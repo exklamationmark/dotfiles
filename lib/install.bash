@@ -194,3 +194,18 @@ k8s_kind_custom_install() {
 	chmod +x ./kind
 	mv ./kind ~/.local/bin
 }
+
+download_licensed_aseprite() {
+	local confirmed="n"
+	red "Get Aseprite licensed download link"
+
+	local link
+	while [ "${confirmed}" != "y" ]
+	do
+		read -p "Aseprite licensed download link: " link
+		echo -e "Configure Aseprite download link: \"${YELLOW}${link}\"${NONE}"
+		read -p "Are you sure (y/n): " confirmed
+	done
+
+	install deb aseprite ${link}
+}
