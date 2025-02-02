@@ -12,7 +12,7 @@ configure_google_chrome_ppa
 configure_mozilla_ppa
 configure_1password_ppa
 configure_docker_ppa
-configure_tailscale_ppa
+configure_ubuntu_dotnet_ppa
 sudo apt-get update
 
 blue "Install: google-chrome"
@@ -50,6 +50,10 @@ download_licensed_aseprite
 
 blue "Install: Twine"
 install_twine_from_github_release 2.10.0
+
+blue "Install: Godot"
+install_godot "4.3-stable"
+install apt dotnet-sdk-9.0
 # ==============================================================================
 
 # Template secrets/sensitive info

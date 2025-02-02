@@ -46,8 +46,10 @@
           "1password.desktop"
           "aseprite.desktop"
           "twine.desktop"
-          "slack_slack.desktop"
+          "godot.desktop"
+          "godot_dotnet.desktop"
           "org.gnome.Settings.desktop"
+          "slack_slack.desktop"
         ];
       };
 

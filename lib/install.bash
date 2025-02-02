@@ -177,6 +177,10 @@ configure_tailscale_ppa() {
 	echo "deb [signed-by=/etc/apt/keyrings/tailscale.asc] https://pkgs.tailscale.com/stable/ubuntu $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/tailscale.list > /dev/null
 }
 
+configure_ubuntu_dotnet_ppa() {
+	sudo add-apt-repository ppa:dotnet/backports
+}
+
 kubectl_custom_install() {
 	local version=$1
 
@@ -229,4 +233,35 @@ install_twine_from_github_release() {
 
 	local logo_url="https://twinery.org/icons/twine.svg"
 	curl -L $logo_url -o ${install_dir}/twine.svg
+}
+
+install_godot() {
+	local version=${1}
+
+	local package=godot
+	local file=/tmp/$package.zip
+	local install_dir=~/.local/share/${package}
+
+	mkdir -p $install_dir
+
+	# GDScript binary
+	local url="https://github.com/godotengine/godot/releases/download/${version}/Godot_v${version}_linux.x86_64.zip"
+	curl -L $url -o $file
+	unzip -o $file -d $install_dir
+	rm $file
+	mv $install_dir/Godot_v${version}_linux.x86_64 $install_dir/godot
+	local logo_url="https://godotengine.org/assets/press/icon_color.svg"
+	curl -L $logo_url -o ${install_dir}/godot.svg
+
+	# .NET binary
+	local url="https://github.com/godotengine/godot/releases/download/${version}/Godot_v${version}_mono_linux_x86_64.zip"
+	curl -L $url -o $file
+	unzip -o $file -d $install_dir
+	rm $file
+	mv $install_dir/Godot_v${version}_mono_linux_x86_64 $install_dir/godot_dotnet
+	local dotnet_install_dir=$install_dir/godot_dotnet
+	mv $dotnet_install_dir/Godot_v${version}_mono_linux.x86_64 $dotnet_install_dir/godot_dotnet
+
+	local logo_url="https://godotengine.org/assets/press/icon_monochrome_dark.svg"
+	curl -L $logo_url -o ${install_dir}/godot_dotnet.svg
 }
