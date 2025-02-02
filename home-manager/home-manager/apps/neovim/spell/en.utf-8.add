@@ -533,3 +533,4 @@ CustomResource
 OwnerReference
 inherriting
 DEPCON
+kube_pod_labels/!
