@@ -27,6 +27,7 @@
     ./apps/rust/rust.nix
     ./apps/ssh/ssh.nix
     ./apps/1password/1password.nix
+    ./apps/twine/twine.nix
     ./apps/work/work.nix
     ./apps/personal/personal.nix
   ];

@@ -209,3 +209,24 @@ download_licensed_aseprite() {
 
 	install deb aseprite ${link}
 }
+
+install_twine_from_github_release() {
+	local version=${1}
+
+	local url="https://github.com/klembot/twinejs/releases/download/${version}/Twine-${version}-Linux-x64.zip"
+	local package=twine
+	local file=/tmp/$package.zip
+	local install_dir=~/.local/share/${package}
+
+	curl -L $url -o $file
+	mkdir -p $install_dir
+	unzip -o $file -d $install_dir
+	rm $file
+
+	local chrome_sandbox=${install_dir}/chrome-sandbox
+	sudo chown root $chrome_sandbox
+	sudo chmod 4755 $chrome_sandbox
+
+	local logo_url="https://twinery.org/icons/twine.svg"
+	curl -L $logo_url -o ${install_dir}/twine.svg
+}

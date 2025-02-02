@@ -47,6 +47,9 @@ install snap slack
 
 blue "Install: Aseprite"
 download_licensed_aseprite
+
+blue "Install: Twine"
+install_twine_from_github_release 2.10.0
 # ==============================================================================
 
 # Template secrets/sensitive info
