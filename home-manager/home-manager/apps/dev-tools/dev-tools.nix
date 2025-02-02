@@ -8,7 +8,6 @@
     pkgs.pandoc
     pkgs.tree
     pkgs.jq
-    pkgs.yq
     pkgs.d2
     pkgs.dig
     pkgs.netcat-gnu
