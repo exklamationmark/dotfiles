@@ -1,11 +1,22 @@
 { config, pkgs, lib, ... }:
 
+let
+  configFragments = [
+    ./config/plugins.vim
+    ./config/neosolarized.vim
+    ./config/spellcheck.vim
+    ./config/golang.vim
+    ./config/rust.vim
+    ./config/all.vim
+  ];
+  extraConfig = builtins.concatStringsSep "\n" (map builtins.readFile configFragments);
+in
 {
   programs.neovim = {
     enable = true;
     defaultEditor = true;
 
-    extraConfig = builtins.readFile ./init.vim;
+    extraConfig = extraConfig;
   };
 
   # Post-install:
