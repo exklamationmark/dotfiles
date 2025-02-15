@@ -50,6 +50,7 @@ download_licensed_aseprite
 
 blue "Install: Twine"
 install_twine_from_github_release 2.10.0
+install_tweego_from_github_release 2.1.1
 
 blue "Install: Godot"
 install_godot "4.3-stable"

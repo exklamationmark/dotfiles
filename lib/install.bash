@@ -235,6 +235,34 @@ install_twine_from_github_release() {
 	curl -L $logo_url -o ${install_dir}/twine.svg
 }
 
+install_tweego_from_github_release() {
+	local version=${1}
+
+	local url="https://github.com/tmedwards/tweego/releases/download/v${version}/tweego-${version}-linux-x64.zip"
+	local package=tweego
+	local file=/tmp/$package.zip
+	local install_dir=~/.local/share/${package}
+
+	curl -L $url -o $file
+	mkdir -p $install_dir
+	unzip -o $file -d $install_dir
+	rm $file
+
+	chmod +x ${install_dir}/tweego
+	ln -sf ${install_dir}/tweego ~/.local/bin/tweego
+
+	local format_logo_url="https://klembot.github.io/chapbook/logo.svg"
+	local format_logo_file=${install_dir}/storyformats/chapbook-2/logo.svg
+	local format_url="https://klembot.github.io/chapbook/use/2.3.0/format.js"
+	local format_file=${install_dir}/storyformats/chapbook-2/format.js
+	mkdir -p $(dirname ${format_file})
+	curl -L ${format_url} -o ${format_file}
+	curl -L ${format_logo_url} -o ${format_logo_file}
+
+	local logo_url="https://twinery.org/icons/twine.svg"
+	curl -L $logo_url -o ${install_dir}/twine.svg
+}
+
 install_godot() {
 	local version=${1}
 
