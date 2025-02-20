@@ -105,7 +105,10 @@ xcf() { # copy file content to clipboard, e.g: xcf <file>
 }
 
 openssl.cert() {
-	openssl x509 -text -noout
+	tmpfile=$(mktemp)
+	cat > ${tmpfile} # put stdin into temp file
+	openssl crl2pkcs7 -nocrl -certfile "$tmpfile" | openssl pkcs7 -print_certs -text -noout
+	rm ${tmpfile}
 }
 
 yamlbat() {
