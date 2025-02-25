@@ -111,6 +111,13 @@ openssl.cert() {
 	rm ${tmpfile}
 }
 
+openssl.summary() {
+	tmpfile=$(mktemp)
+	cat > ${tmpfile} # put stdin into temp file
+	openssl crl2pkcs7 -nocrl -certfile "$tmpfile" | openssl pkcs7 -print_certs -noout
+	rm ${tmpfile}
+}
+
 yamlbat() {
 	bat --language=yaml --style=plain
 }
