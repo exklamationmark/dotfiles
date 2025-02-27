@@ -1,5 +1,5 @@
-Host *
-	IdentityAgent ~/.1password/agent.sock
+# Host *
+# 	IdentityAgent ~/.1password/agent.sock
 
 Include work.config
 Include personal.config
