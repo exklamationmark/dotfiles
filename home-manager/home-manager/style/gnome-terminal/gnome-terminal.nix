@@ -12,7 +12,7 @@
 
       showScrollbar = false;
 
-      font = "Ubuntu Mono 20";
+      font = "Ubuntu Mono 18";
 
 
       colors = {
