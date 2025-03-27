@@ -23,5 +23,6 @@
     pkgs.bat
     pkgs.glow
     pkgs.nettools
+    pkgs.azure-cli
   ];
 }
