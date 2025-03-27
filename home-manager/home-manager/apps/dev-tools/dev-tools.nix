@@ -23,6 +23,15 @@
     pkgs.bat
     pkgs.glow
     pkgs.nettools
-    pkgs.azure-cli
+
+    # Azure CLI
+    (pkgs.azure-cli.withExtensions [
+      pkgs.azure-cli-extensions.amg
+      pkgs.azure-cli-extensions.next
+      pkgs.azure-cli.extensions.aks-preview
+      pkgs.azure-cli-extensions.k8s-runtime
+      pkgs.azure-cli-extensions.k8s-extension
+    ])
+    pkgs.kubelogin
   ];
 }
