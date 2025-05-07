@@ -16,7 +16,7 @@ map grn :GoRename<ENTER>
 map gip :GoImports<ENTER>
 augroup GoAutoCommands
   autocmd!
-  autocmd BufWritePost *.go silent! !gci write --section standard --section default --section 'prefix(sigs.k8s.io,k8s.io)' --section 'prefix(github.ihs.demonware.net)' %:p
+  autocmd BufWritePost *.go silent! !gci write internal/testhelpers/try.go --custom-order --section standard --section default --section 'prefix(sigs.k8s.io,k8s.io,k8s.io)' --section 'prefix(github.com/Azure,github.com/argoproj)' --section 'prefix(github.ihs.demonware.net)' %:p
   autocmd BufWritePost *.go edit
   autocmd BufWritePost *.go redraw!
 augroup END
