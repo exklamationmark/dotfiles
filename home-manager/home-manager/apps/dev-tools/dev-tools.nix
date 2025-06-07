@@ -22,6 +22,7 @@
     pkgs.bat
     pkgs.glow
     pkgs.nettools
+    pkgs.plantuml
 
     # Google Cloud CLI
     # REF: https://github.com/NixOS/nixpkgs/issues/182856#issuecomment-2319115082
