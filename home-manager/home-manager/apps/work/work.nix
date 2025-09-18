@@ -6,4 +6,9 @@
     GITHUB_TOKEN = "WORK_PERSONAL_GITHUB_TOKEN";
     GOPRIVATE = "WORK_GOPRIVATE";
   };
+
+  home.packages = [
+    pkgs.az-pim-cli
+  ];
+
 }
