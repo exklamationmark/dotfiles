@@ -44,6 +44,9 @@ in
       # TODO: combine shell alias from multiple apps here
       vim = "nvim"; # TODO: split into: apps/neovim
     };
+
+    historySize = -1;
+    historyFileSize = -1;
   };
 
   home.file.".inputrc" = {
