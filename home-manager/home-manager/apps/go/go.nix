@@ -4,11 +4,9 @@
   programs.go = {
     enable = true;
 
-    goPath = "workspace";
-
-    goPrivate = [
-      # "*.work.domain"
-    ];
+    env = {
+      GOPATH = "workspace";
+    };
   };
 
   home.packages = [
