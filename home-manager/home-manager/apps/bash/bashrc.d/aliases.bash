@@ -125,6 +125,25 @@ yamlbat() {
 mdglow() {
 	glow --pager
 }
+
+timezone() {
+  local timestamp="${1}"
+  local timezone="${2}"
+  local display_text="${3}"
+
+  local time=$(TZ="${timezone}" date -d @"${timestamp}" "+%Y-%m-%d %H:%M:%S %Z")
+  printf "%-10s || %s\n" "${display_text}" "${time}"
+}
+
+committime() {
+	local commit="${1}"
+
+	local timestamp=$(git show -s --format=%ct "$commit" 2>/dev/null || true)
+	timezone "${timestamp}" "UTC" "UTC"
+	timezone "${timestamp}" "America/Vancouver" "Vancouver"
+	timezone "${timestamp}" "Asia/Shanghai" "Shanghai"
+	timezone "${timestamp}" "Europe/Dublin" "Dublin"
+}
 # ==============================================================================
 # ==============================================================================
 # ==============================================================================
