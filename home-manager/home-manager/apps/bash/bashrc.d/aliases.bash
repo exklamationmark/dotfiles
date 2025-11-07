@@ -139,10 +139,24 @@ committime() {
 	local commit="${1}"
 
 	local timestamp=$(git show -s --format=%ct "$commit" 2>/dev/null || true)
+	echo ${timestamp}
+}
+
+showtime() {
+	local timestamp="${1}"
+	read -r timestamp || return 1
+
 	timezone "${timestamp}" "UTC" "UTC"
 	timezone "${timestamp}" "America/Vancouver" "Vancouver"
 	timezone "${timestamp}" "Asia/Shanghai" "Shanghai"
 	timezone "${timestamp}" "Europe/Dublin" "Dublin"
+}
+
+kibanatotimestamp() {
+	local str="${1}"
+
+	local str_for_date=$(echo "${str}" | sed 's/@ //; s/\.[0-9]*//')
+	date -d "${str_for_date}" +%s
 }
 # ==============================================================================
 # ==============================================================================
