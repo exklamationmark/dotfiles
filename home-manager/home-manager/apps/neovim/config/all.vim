@@ -38,6 +38,7 @@ set wrap
 
 " 100-char width
 set colorcolumn=80,100
+set signcolumn=yes
 
 " showcmd
 set showcmd

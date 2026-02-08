@@ -5,8 +5,8 @@ let
     ./config/plugins.vim
     ./config/neosolarized.vim
     ./config/spellcheck.vim
+    ./config/nvim_lspconfig.vim
     ./config/golang.vim
-    ./config/rust.vim
     ./config/all.vim
   ];
   extraConfig = builtins.concatStringsSep "\n" (map builtins.readFile configFragments);

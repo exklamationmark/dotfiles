@@ -31,6 +31,8 @@ Plug 'terrastruct/d2-vim'
 " ----------------------------------------------------------
 Plug 'rust-lang/rust.vim'
 
+Plug 'neovim/nvim-lspconfig'
+
 " List ends here. Plugins become visible to Vim after this call.
 " ----------------------------------------------------------
 call plug#end()
