@@ -97,8 +97,8 @@
 
     # userName && userEmail will be overriden for work & personal repos
 
-    userName = "GIT_DEFAULT_USER_NAME";
-    userEmail  = "GIT_DEFAULT_USER_EMAIL";
+    userName = "exklamationmark";
+    userEmail  = "tonghuukhiem@gmail.com";
     includes = [
       # NOTE: gitdir condition: https://git-scm.com/docs/git-config#Documentation/git-config.txt-codegitdircode
       {
@@ -106,7 +106,7 @@
         path = "~/.config/git/personal";
       }
       {
-        condition = "gitdir:GIT_WORK_DIRECTORY/**/";
+        condition = "gitdir:~/workspace/src/github.ihs.demonware.net/**/";
         path = "~/.config/git/work";
       }
       {

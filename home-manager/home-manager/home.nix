@@ -3,8 +3,8 @@
 {
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
-  home.username = "HOME_MANAGER_USERNAME";
-  home.homeDirectory = "/home/HOME_MANAGER_USERNAME";
+  home.username = "me";
+  home.homeDirectory = "/home/me";
 
   nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
     "vault"

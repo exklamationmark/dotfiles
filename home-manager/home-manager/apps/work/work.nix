@@ -2,9 +2,9 @@
 
 {
   home.sessionVariables = {
-    VAULT_ADDR = "WORK_VAULT_ADDRESS";
-    GITHUB_TOKEN = "WORK_PERSONAL_GITHUB_TOKEN";
-    GOPRIVATE = "WORK_GOPRIVATE";
+    VAULT_ADDR = "https://vault.bitsgofer.net";
+    GITHUB_TOKEN = "foobar";
+    GOPRIVATE = "git.bitsgofer.net";
   };
 
   home.packages = [
