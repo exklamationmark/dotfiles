@@ -49,6 +49,12 @@ in
     historyFileSize = -1;
   };
 
+  programs.direnv = {
+    enable = true;
+    enableBashIntegration = true;
+    nix-direnv.enable = true;
+  };
+
   home.file.".inputrc" = {
     text = ''
       "\C-l": clear-screen
